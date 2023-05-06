@@ -1,5 +1,0 @@
-Host github github.com
-  HostName github.com
-  User usabarashi
-  IdentityFile ~/.ssh/github_rsa
-

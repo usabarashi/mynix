@@ -8,11 +8,8 @@
   imports = [
     ./git.nix
     ./karabiner.nix
+    ./ssh.nix
   ];
-
-  home.file = {
-    ".ssh/config".source = ./config/ssh/config;
-  };
 
   home.sessionVariables = {
   };

@@ -5,13 +5,16 @@
   home.homeDirectory = "/Users/gen";
   home.stateVersion = "22.11";
 
+  imports = [
+    ./karabiner.nix
+  ];
+
   home.packages = [
     pkgs.git
   ];
 
   home.file = {
     ".config/git/config".source = ./config/git/config;
-    ".config/karabiner/karabiner.json".source = ./config/karabiner/karabiner.json;
     ".ssh/config".source = ./config/ssh/config;
   };
 

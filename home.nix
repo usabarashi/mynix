@@ -10,6 +10,8 @@
   ];
 
   imports = [
+    ./colima.nix
+    ./docker.nix
     ./git.nix
     ./karabiner.nix
     ./ssh.nix

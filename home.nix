@@ -6,7 +6,16 @@
   home.stateVersion = "22.11";
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "discord"
+    "slack"
     "vscode"
+    "zoom"
+  ];
+
+  home.packages = with pkgs; [
+    discord
+    slack
+    zoom-us
   ];
 
   imports = [

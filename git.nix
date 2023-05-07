@@ -4,14 +4,9 @@
 {
   programs.git = {
     enable = true;
-    iniContent = {
-      user = {
-        name = "usabarashi";
-        email = "usabarashi@mac.com";
-      };
-      core = {
-        autocrlf = "input";
-      };
-    };
+    userName = "usabarashi";
+    userEmail = "usabarashi@mac.com";
+    extraConfig.core.autocrlf = "input";
+    ignores = [ ".DS_Store" ];
   };
 }

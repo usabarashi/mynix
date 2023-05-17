@@ -41,7 +41,13 @@ nix-repl> :q
 % home-manager switch
 ```
 
-# macOS troubleshoot
+# Deleting garbage
+
+```console
+% nix-collect-garbage      
+```
+
+# macOS Update troubleshoot
 
 - [macOS updates often break nix installation (updates replace path-hooks on multi-user install)](https://github.com/NixOS/nix/issues/3616)
 

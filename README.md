@@ -10,7 +10,15 @@
 % printenv | grep NIX
 ```
 
-# REPL
+# Edit
+
+```console
+% vi ~/.config/home-manager/home.nix
+```
+
+# Commands
+
+## REPL
 
 ```console
 % nix repl
@@ -29,23 +37,28 @@ nix-repl> :q
 %
 ```
 
-# Edit
+## Channel
 
 ```console
-% vi ~/.config/home-manager/home.nix
+% nix-channel --list
 ```
 
-# Activate
+## Activate
 
 ```console
 % home-manager switch
+% home-manager packages
 ```
 
-# Deleting garbage
+## Deleting garbage
 
 ```console
 % nix-collect-garbage      
 ```
+
+# UnInstall
+
+see: https://nixos.org/manual/nix/stable/installation/installing-binary.html#macos
 
 # macOS Update troubleshoot
 

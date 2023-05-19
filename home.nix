@@ -25,6 +25,7 @@
     ./karabiner.nix
     ./ssh.nix
     ./vscode.nix
+    ./zsh.nix
   ];
 
   home.sessionVariables = {

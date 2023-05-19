@@ -3,7 +3,15 @@
 
 {
   programs.vscode.enable = true;
+  programs.vscode.enableUpdateCheck = false;
 
+  # /Users/USER_NAME/Library/Application Support/Code/User/settings.json
+  programs.vscode.userSettings = {
+    "editor.tabSize" = 4;
+    "[nix]"."editor.tabSize" = 2;
+  };
+
+  # /Users/USER_NAME/.vscode/extensions/extensions.json 
   programs.vscode.extensions = (with pkgs.vscode-extensions; [
     jnoortheen.nix-ide
     ms-azuretools.vscode-docker

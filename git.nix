@@ -6,7 +6,10 @@
     enable = true;
     userName = "usabarashi";
     userEmail = "usabarashi@mac.com";
-    extraConfig.core.autocrlf = "input";
+    extraConfig = {
+      core.autocrlf = "input";
+      credential.helper = "osxkeychain";
+    };
     ignores = [ ".DS_Store" ];
   };
 }

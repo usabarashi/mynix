@@ -52,6 +52,12 @@
         version = "0.24.0";
         sha256 = "sha256-6v4JWpyMxqTDIjEOL3w25bdTN+3VPFH7HdaSbgIlCmo";
       }
+      {
+        name = "vsliveshare";
+        publisher = "MS-vsliveshare";
+        version = "1.0.5864";
+        sha256 = "sha256-UdI9iRvI/BaZj8ihFBCTFJGLZXxS3CtmoDw8JBPbzLY=";
+      }
     ];
   };
 

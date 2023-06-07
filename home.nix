@@ -14,13 +14,15 @@
 
   home.packages = with pkgs; [
     discord
+    iina
+    #OrbStack
     slack
     zoom-us
   ];
 
   imports = [
     ./colima.nix
-    ./docker.nix
+    ./container.nix
     ./git.nix
     ./karabiner.nix
     ./ssh.nix
@@ -28,8 +30,7 @@
     ./zsh.nix
   ];
 
-  home.sessionVariables = {
-  };
+  home.sessionVariables = { };
 
   programs.home-manager.enable = true;
 }

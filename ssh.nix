@@ -2,12 +2,16 @@
 { config, pkgs, ... }:
 
 {
-  programs.ssh.enable = true;
-  programs.ssh.matchBlocks = {
-    "github.com" = {
-      identityFile = "~/.ssh/github_rsa";
-      identitiesOnly = true;
-      user = "usabarashi";
+  programs.ssh = {
+    enable = true;
+
+    matchBlocks = {
+      "github.com" = {
+        identityFile = "~/.ssh/github_rsa";
+        identitiesOnly = true;
+        user = "usabarashi";
+      };
     };
+
   };
 }

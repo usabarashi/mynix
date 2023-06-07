@@ -1,5 +1,4 @@
 { config, pkgs, ... }:
-
 let
   os =
     if pkgs.stdenv.isLinux then "linux"
@@ -9,12 +8,18 @@ let
     if pkgs.stdenv.isx86_64 then "x86_64"
     else if pkgs.stdenv.isAarch64 then "aarch64"
     else throw "Unsupported architecture";
+
   composeVersion = "v2.17.3";
+
+  orbStack = import ./packages/orbstack/default.nix {
+    inherit (pkgs) fetchurl lib stdenv p7zip;
+  };
 in
 {
   home.packages = with pkgs; [
     docker
     kubectl
+    orbStack
   ];
 
   # see: https://github.com/docker/compose/releases

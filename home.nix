@@ -23,7 +23,6 @@ in
   ];
 
   imports = [
-    ./colima.nix
     ./container.nix
     ./git.nix
     ./karabiner.nix

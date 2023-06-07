@@ -1,5 +1,8 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, stdenv, ... }:
 
+let
+  helloWorld = import ./packages/helloworld/default.nix;
+in
 {
   home.username = "gen";
   home.homeDirectory = "/Users/gen";
@@ -14,8 +17,7 @@
 
   home.packages = with pkgs; [
     discord
-    iina
-    #OrbStack
+    helloWorld
     slack
     zoom-us
   ];

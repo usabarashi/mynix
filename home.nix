@@ -1,12 +1,9 @@
 { config, lib, pkgs, stdenv, ... }:
 
-let
-  helloWorld = import ./packages/helloworld/default.nix;
-in
 {
   home.username = "gen";
   home.homeDirectory = "/Users/gen";
-  home.stateVersion = "22.11";
+  home.stateVersion = "23.05";
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
     "discord"
@@ -17,7 +14,6 @@ in
 
   home.packages = with pkgs; [
     discord
-    helloWorld
     slack
     zoom-us
   ];

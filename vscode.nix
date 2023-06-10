@@ -48,6 +48,12 @@
         sha256 = "sha256-U1ZuxfoUBWdnOy+t4Zp7B5jyvGt89xsufrqnX09gm4U=";
       }
       {
+        name = "vscode-drawio";
+        publisher = "hediet";
+        version = "1.6.6";
+        sha256 = "sha256-SPcSnS7LnRL5gdiJIVsFaN7eccrUHSj9uQYIQZllm0M=";
+      }
+      {
         name = "vsliveshare";
         publisher = "MS-vsliveshare";
         version = "1.0.5864";

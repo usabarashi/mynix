@@ -1,13 +1,11 @@
 # Nix Home Manager
 
-![license](https://img.shields.io/badge/nixpkgs-23.05-blue)
-
 # Set up
 
 ```console
 % curl -L https://nixos.org/nix/install | sh
-% nix-channel --add https://nixos.org/channels/nixos-23.05 nixpkgs
-% nix-channel --add https://github.com/nix-community/home-manager/archive/release-23.05.tar.gz home-manager
+% nix-channel --add https://nixos.org/channels/nixos-VERSION nixpkgs
+% nix-channel --add https://github.com/nix-community/home-manager/archive/release-VERSION.tar.gz home-manager
 % nix-channel --update
 % nix-shell '<home-manager>' -A install
 % printenv | grep NIX
@@ -55,7 +53,6 @@ nix-repl> :q
 ## Deleting garbage
 
 ```console
-% home-manager remove-generations
 % nix-collect-garbage
 ```
 

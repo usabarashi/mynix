@@ -18,7 +18,15 @@
         "formatOnSave" = true;
         "tabSize" = 4;
       };
+
+      "[json]"."editor.tabSize" = 2;
+
       "[nix]"."editor.tabSize" = 2;
+      "nix"."enableLanguageServer" = true;
+
+      "[shellscript]"."editor.tabSize" = 4;
+
+      "[yaml]"."editor.tabSize" = 2;
 
       "files" = {
         "insertFinalNewline" = true;
@@ -27,17 +35,16 @@
       };
 
       "extensions.ignoreRecommendations" = false;
-      "nix" = {
-        "enableLanguageServer" = true;
-      };
     };
 
     # /Users/USER_NAME/.vscode/extensions/extensions.json
     extensions = with pkgs.vscode-extensions; [
       bierner.markdown-mermaid
+      foxundermoon.shell-format
       jnoortheen.nix-ide
       ms-azuretools.vscode-docker
       streetsidesoftware.code-spell-checker
+      timonwong.shellcheck
       vscodevim.vim
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       # https://marketplace.visualstudio.com/_apis/public/gallery/publishers/<publisher>/vscode-extensions/<extension-name>/<version>/vspackage
@@ -61,6 +68,7 @@
       }
     ];
   };
+
   home.activation.vscodeVimConfig = config.lib.dag.entryAfter [ "writeBoundary" ] ''
     echo "Setting VSCode Vim Extension configuration..."
     /usr/bin/defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false

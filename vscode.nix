@@ -55,6 +55,7 @@
       ms-azuretools.vscode-docker
       streetsidesoftware.code-spell-checker
       timonwong.shellcheck
+      usernamehw.errorlens
       vscodevim.vim
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       # https://marketplace.visualstudio.com/_apis/public/gallery/publishers/<publisher>/vscode-extensions/<extension-name>/<version>/vspackage

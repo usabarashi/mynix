@@ -72,6 +72,12 @@
         sha256 = "sha256-SPcSnS7LnRL5gdiJIVsFaN7eccrUHSj9uQYIQZllm0M=";
       }
       {
+        name = "vscode-github-actions";
+        publisher = "GitHub";
+        version = "0.25.8";
+        sha256 = "sha256-N9xW/RdVxsGQepnoR1SHRAL48/pk95qQ8I5xc8y3qB4=";
+      }
+      {
         name = "vscode-pull-request-github";
         publisher = "GitHub";
         version = "0.68.0";

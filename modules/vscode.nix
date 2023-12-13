@@ -60,6 +60,18 @@
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       # https://marketplace.visualstudio.com/_apis/public/gallery/publishers/<publisher>/vscode-extensions/<extension-name>/<version>/vspackage
       {
+        name = "copilot";
+        publisher = "GitHub";
+        version = "1.110.389";
+        sha256 = "sha256-Lm3m70gRZXAwQF8R/tRH/0VL5mkhFqI744MEX1MCuAY=";
+      }
+      {
+        name = "copilot-chat";
+        publisher = "GitHub";
+        version = "0.7.0";
+        sha256 = "sha256-U0DkTiJtNsGqifGuid1ZpersiHA0gKVZArxDFc5VVKI=";
+      }
+      {
         name = "remote-containers";
         publisher = "ms-vscode-remote";
         version = "0.292.0";
@@ -70,18 +82,6 @@
         publisher = "hediet";
         version = "1.6.6";
         sha256 = "sha256-SPcSnS7LnRL5gdiJIVsFaN7eccrUHSj9uQYIQZllm0M=";
-      }
-      {
-        name = "vscode-github-actions";
-        publisher = "GitHub";
-        version = "0.25.8";
-        sha256 = "sha256-N9xW/RdVxsGQepnoR1SHRAL48/pk95qQ8I5xc8y3qB4=";
-      }
-      {
-        name = "vscode-pull-request-github";
-        publisher = "GitHub";
-        version = "0.68.0";
-        sha256 = "sha256-mESJ43tsUhYcj3wX8quIZGVo8ecdThueL9rlxRpYCX8=";
       }
       {
         name = "vsliveshare";

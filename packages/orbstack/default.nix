@@ -1,15 +1,16 @@
+# see: https://github.com/Homebrew/homebrew-cask/blob/master/Casks/orbstack.rb
 { fetchurl, lib, stdenv, p7zip }:
 
 let
-  minerVersion = "0.10.2_1450";
+  minerVersion = "0.11.3_1648";
 in
 stdenv.mkDerivation rec {
   pname = "OrbStack";
-  version = "0.10.2";
+  version = "0.11.3";
 
   src = fetchurl {
     url = "https://cdn-updates.orbstack.dev/arm64/OrbStack_v${minerVersion}_arm64.dmg";
-    sha256 = "sha256-wBZ2dI9RyC5NXtlJJaxV6hebBLsfYGa6OcVq3eBfPd8=";
+    sha256 = "sha256-VHP/0C6k+azJS5wB7Uow1nepKVOli5mtzA9VobceFs0=";
   };
 
   nativeBuildInputs = [ p7zip ];

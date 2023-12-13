@@ -10,6 +10,10 @@
       core.autocrlf = "input";
       credential.helper = "osxkeychain";
     };
-    ignores = [ ".DS_Store" ];
+    ignores = [
+      "*~"
+      "*.swp"
+      ".DS_Store"
+    ];
   };
 }

@@ -1,0 +1,11 @@
+[env]
+HOST = { script = ["hostname"] }
+
+[tasks.apply]
+mac_alias = "darwin:apply"
+
+[tasks."darwin:apply"]
+script = '''
+nix build .#darwinConfigurations.${HOST}.system --extra-experimental-features 'nix-command flakes' --debug
+sudo ./result/sw/bin/darwin-rebuild switch --flake ".#${HOST}"
+'''

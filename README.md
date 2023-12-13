@@ -1,77 +1,30 @@
-# Nix Home Manager
+# mynix
 
-# Set up
+My Nix configuration
 
-```console
-% curl -L https://nixos.org/nix/install | sh
-% nix-channel --add https://nixos.org/channels/nixos-VERSION nixpkgs
-% nix-channel --add https://github.com/nix-community/home-manager/archive/release-VERSION.tar.gz home-manager
-% nix-channel --update
-% nix-shell '<home-manager>' -A install
-% printenv | grep NIX
+## Getting started
+
+1. Install nix (and enable flake if needed)
+2. Clone this repository
+
+```sh
+nix run nixpkgs#git -- clone https://github.com/usabarashi/mynix.git
 ```
 
-# Edit
-
-```console
-% vi ~/.config/home-manager/home.nix
+3. Run task
+```sh
+nix shell nixpkgs#cargo-make -c makers `apply`
 ```
 
-# Commands
+## Tasks
 
-## REPL
+```sh
+# Apply host nixos/darwin configuration
+# Make sure $(hostname) match the osConfiguration target
+makers apply
 
-```console
-% nix repl
-Welcome to Nix 2.15.0. Type :? for help.
-
-nix-repl> builtins.currentSystem
-"aarch64-darwin"
-
-nix-repl> :l <nixpkgs>
-Added 18934 variables.
-
-nix-repl> pkgs.stdenv.isAarch64
-true
-
-nix-repl> :q
-%
-```
-
-## Channel
-```console
-% nix-channel --list
-```
-
-## Activate
-
-```console
-% home-manager switch
-% home-manager packages
-```
-
-## Deleting garbage
-
-```console
-% nix-collect-garbage
-```
-
-# UnInstall
-
-see: https://nixos.org/manual/nix/stable/installation/installing-binary.html#macos
-
-# macOS Update troubleshoot
-
-- [macOS updates often break nix installation (updates replace path-hooks on multi-user install)](https://github.com/NixOS/nix/issues/3616)
-
-## Workaround in single-user mode only
-~/.zshrc
-```shell
-# Nix
-if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
-  source '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
-fi
-# End Nix
+# Format
+makers format
 ```
 
 # References

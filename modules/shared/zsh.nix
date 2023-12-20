@@ -14,6 +14,6 @@
       # End Nix
     '';
 
-    enableSyntaxHighlighting = true;
+    syntaxHighlighting.enable = true;
   };
 }

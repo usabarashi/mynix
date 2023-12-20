@@ -11,8 +11,8 @@ let
 
   composeVersion = "v2.17.3";
 
-  dockerCompose = import ./packages/docker-compose/default.nix;
-  orbStack = import ./packages/orbstack/default.nix {
+  dockerCompose = import ../../packages/docker-compose/default.nix;
+  orbStack = import ../../packages/orbstack/default.nix {
     inherit (pkgs) fetchurl lib stdenv p7zip;
   };
 in

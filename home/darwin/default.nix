@@ -5,7 +5,6 @@
     username = "gen";
     homeDirectory = "/Users/gen";
     stateVersion = "23.11";
-    sessionVariables = { };
   };
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
@@ -23,13 +22,13 @@
   ];
 
   imports = [
-    #../../modules/container.nix
-    ../../modules/git.nix
-    #../../modules/karabiner.nix
-    ../../modules/neovim.nix
-    ../../modules/ssh.nix
-    ../../modules/vscode.nix
-    ../../modules/zsh.nix
+    #../../modules/shared/container.nix
+    ../../modules/darwin/karabiner.nix
+    ../../modules/shared/git.nix
+    ../../modules/shared/neovim.nix
+    ../../modules/shared/ssh.nix
+    ../../modules/shared/vscode.nix
+    ../../modules/shared/zsh.nix
   ];
 
 }

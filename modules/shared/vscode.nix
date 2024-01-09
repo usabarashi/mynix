@@ -49,6 +49,7 @@
 
     # /Users/USER_NAME/.vscode/extensions/extensions.json
     extensions = with pkgs.vscode-extensions; [
+      arrterian.nix-env-selector
       bierner.markdown-mermaid
       foxundermoon.shell-format
       jnoortheen.nix-ide
@@ -76,6 +77,12 @@
         publisher = "ms-vscode-remote";
         version = "0.292.0";
         sha256 = "sha256-U1ZuxfoUBWdnOy+t4Zp7B5jyvGt89xsufrqnX09gm4U=";
+      }
+      {
+        name = "terraform";
+        publisher = "HashiCorp";
+        version = "2.29.1";
+        sha256 = "sha256-0XC0j0DQbRnu5k8HBgJSoYb7noj2jxFtgPvGazx0uyI=";
       }
       {
         name = "vscode-drawio";

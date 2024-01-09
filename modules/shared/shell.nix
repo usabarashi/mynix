@@ -1,7 +1,16 @@
-# see: https://github.com/nix-community/home-manager/blob/master/modules/programs/zsh.nix
 { config, pkgs, ... }:
 
 {
+  home.packages = with pkgs; [
+    direnv
+  ];
+
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+    #nix-direnv.enableFlakes = true;
+  };
+
   programs.zsh = {
     enable = true;
     dotDir = ".config/zsh";

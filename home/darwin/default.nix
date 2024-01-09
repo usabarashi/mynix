@@ -28,7 +28,7 @@
     ../../modules/shared/neovim.nix
     ../../modules/shared/ssh.nix
     ../../modules/shared/vscode.nix
-    ../../modules/shared/zsh.nix
+    ../../modules/shared/shell.nix
   ];
 
 }

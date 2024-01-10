@@ -13,7 +13,7 @@ nix run nixpkgs#git -- clone https://github.com/usabarashi/mynix.git
 
 3. Run task
 ```sh
-nix shell nixpkgs#cargo-make -c makers `apply`
+nix shell nixpkgs#cargo-make -c makers apply
 ```
 
 ## Tasks

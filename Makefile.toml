@@ -1,8 +1,16 @@
 [env]
-HOST = { script = ["hostname"] }
+HOST = { script = ['if [[ $(uname) == "Darwin" ]]; then scutil --get ComputerName; else hostname; fi'] }
 
 [tasks.apply]
 mac_alias = "darwin:apply"
+
+[tasks."H3JN70RHWY:apply"]
+extend = "darwin:apply"
+env = { HOST = "H3JN70RHWY" }
+
+[tasks."Mac093:apply"]
+extend = "darwin:apply"
+env = { HOST = "Mac093" }
 
 [tasks."darwin:apply"]
 script = '''

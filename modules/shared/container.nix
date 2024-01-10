@@ -9,26 +9,21 @@ let
     else if pkgs.stdenv.isAarch64 then "aarch64"
     else throw "Unsupported architecture";
 
-  composeVersion = "v2.17.3";
-
-  dockerCompose = import ../../packages/docker-compose/default.nix;
-  orbStack = import ../../packages/orbstack/default.nix {
-    inherit (pkgs) fetchurl lib stdenv p7zip;
-  };
+  composeVersion = "v2.23.3";
 in
 {
   home.packages = with pkgs; [
+    colima
     docker
-    dockerCompose
-    kubectl
+    #kubectl
   ];
 
   # see: https://github.com/docker/compose/releases
-  #home.activation.dockerComposeConfig = config.lib.dag.entryAfter [ "writeBoundary" ] ''
-  #  echo "Setting Docker Compose Plugin configuration..."
-  #  mkdir -p ${config.home.homeDirectory}/.docker/cli-plugins
-  #  /usr/bin/curl -SL https://github.com/docker/compose/releases/download/${composeVersion}/docker-compose-${os}-${arch} \
-  #    -o ${config.home.homeDirectory}/.docker/cli-plugins/docker-compose
-  #  chmod a+x ${config.home.homeDirectory}/.docker/cli-plugins/docker-compose
-  #'';
+  home.activation.dockerComposeConfig = config.lib.dag.entryAfter [ "writeBoundary" ] ''
+    echo "Setting Docker Compose Plugin configuration..."
+    mkdir -p ${config.home.homeDirectory}/.docker/cli-plugins
+    /usr/bin/curl -SL https://github.com/docker/compose/releases/download/${composeVersion}/docker-compose-${os}-${arch} \
+      -o ${config.home.homeDirectory}/.docker/cli-plugins/docker-compose
+    chmod a+x ${config.home.homeDirectory}/.docker/cli-plugins/docker-compose
+  '';
 }

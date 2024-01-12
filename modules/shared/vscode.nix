@@ -8,6 +8,7 @@
 
   programs.vscode = {
     enable = true;
+    # Fixed to false because the contents of the Derivation result will be edited.
     enableUpdateCheck = false;
     enableExtensionUpdateCheck = false;
     mutableExtensionsDir = false;
@@ -54,6 +55,7 @@
       foxundermoon.shell-format
       jnoortheen.nix-ide
       ms-azuretools.vscode-docker
+      scalameta.metals
       streetsidesoftware.code-spell-checker
       timonwong.shellcheck
       usernamehw.errorlens

@@ -18,6 +18,34 @@ in
     #kubectl
   ];
 
+  # Colima Settings
+  #
+  # - Volume Permission
+  # ```~/.lima/_config/override.yaml
+  # mountType: 9p
+  # mounts:
+  # - location: "/Users/USER_NAME"
+  #   writable: true
+  #   9p:
+  #   securityModel: mapped-xattr
+  #   cache: mmap
+  # - location: "~"
+  #   writable: true
+  #   9p:
+  #   securityModel: mapped-xattr
+  #   cache: mmap
+  # - location: /tmp/colima
+  #   writable: true
+  #   9p:
+  #   securityModel: mapped-xattr
+  #   cache: mmap
+  # ```
+  #
+  # - Network Permission
+  # ```
+  # colima start --network-address
+  # ```
+
   # see: https://github.com/docker/compose/releases
   home.activation.dockerComposeConfig = config.lib.dag.entryAfter [ "writeBoundary" ] ''
     echo "Setting Docker Compose Plugin configuration..."

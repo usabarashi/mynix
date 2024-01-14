@@ -55,12 +55,12 @@
       foxundermoon.shell-format
       jnoortheen.nix-ide
       ms-azuretools.vscode-docker
-      scalameta.metals
       streetsidesoftware.code-spell-checker
       timonwong.shellcheck
       usernamehw.errorlens
       vscodevim.vim
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+      # https://marketplace.visualstudio.com/vscode
       # https://marketplace.visualstudio.com/_apis/public/gallery/publishers/<publisher>/vscode-extensions/<extension-name>/<version>/vspackage
       {
         name = "copilot";
@@ -75,10 +75,22 @@
         sha256 = "sha256-U0DkTiJtNsGqifGuid1ZpersiHA0gKVZArxDFc5VVKI=";
       }
       {
+        name = "metals";
+        publisher = "scalameta";
+        version = "1.26.3";
+        sha256 = "sha256-isUMSMWUZtF4fgAryXXzT88zKO5QwCmaQOzRTrBsqY8=";
+      }
+      {
         name = "remote-containers";
         publisher = "ms-vscode-remote";
         version = "0.292.0";
         sha256 = "sha256-U1ZuxfoUBWdnOy+t4Zp7B5jyvGt89xsufrqnX09gm4U=";
+      }
+      {
+        name = "scala";
+        publisher = "scala-lang";
+        version = "0.5.7";
+        sha256 = "sha256-cjMrUgp2+zyqT7iTdtMeii81X0HSly//+gGPOh/Mfn4=";
       }
       {
         name = "terraform";

@@ -1,0 +1,35 @@
+{
+    "[json]": {
+        "editor.formatOnSave": true,
+        "editor.tabSize": 2
+    },
+    "[nix]": {
+        "editor.tabSize": 2
+    },
+    "[shellscript]": {
+        "editor.tabSize":4 
+    },
+    "[yaml]": {
+        "editor.formatOnSave": true,
+        "editor.tabSize": 2
+    },
+    "editor": {
+        "formatOnSave": true,
+        "tabSize": 4
+    },
+    "extensions.autoCheckUpdate": true,
+    "extensions.ignoreRecommendations": false,
+    "files": {
+        "insertFinalNewline": true,
+        "trimFinalNewlines": true,
+        "trimTrailingWhitespace": true
+    },
+    "nix": {
+        "enableLanguageServer": true
+    },
+    "update.mode": true,
+    "workbench.editorAssociations": {
+        "*.scpt": "default"
+    },
+    "windows.zoomLevel": -2
+}

@@ -5,7 +5,7 @@
   programs.git = {
     enable = true;
     userName = "usabarashi";
-    userEmail = "usabarashi@mac.com";
+    userEmail = "19676305+usabarashi@users.noreply.github.com";
     extraConfig = {
       core.autocrlf = "input";
       credential.helper = "osxkeychain";

@@ -7,6 +7,10 @@
     stateVersion = "23.11";
   };
 
+  home.packages = with pkgs; [
+    cyberduck
+  ];
+
   imports = [
     ../../modules/shared/container.nix
     ../../modules/darwin/karabiner.nix

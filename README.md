@@ -6,15 +6,13 @@ My Nix configuration
 
 1. Install nix (and enable flake if needed)
 2. Clone this repository
-
-```sh
-nix run nixpkgs#git -- clone https://github.com/usabarashi/mynix.git
-```
-
+    ```sh
+    nix run nixpkgs#git -- clone https://github.com/usabarashi/mynix.git
+    ```
 3. Run task
-```sh
-nix shell nixpkgs#cargo-make -c makers apply
-```
+    ```sh
+    nix shell nixpkgs#cargo-make -c makers apply
+    ```
 
 ## Tasks
 

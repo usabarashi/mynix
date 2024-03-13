@@ -11,9 +11,10 @@
       credential.helper = "osxkeychain";
     };
     ignores = [
+      ".DS_Store"
       "*~"
       "*.swp"
-      ".DS_Store"
+      ".direnv"
     ];
   };
 }

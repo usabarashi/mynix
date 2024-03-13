@@ -1,0 +1,16 @@
+{
+    "recommendations": [
+        "bierner.markdown-mermaid",
+        "GitHub.copilot",
+        "GitHub.copilot-chat",
+        "hediet.vscode-drawio",
+        "jnoortheen.nix-ide",
+        "ms-azuretools.vscode-docker",
+        "ms-vscode-remote.remote-containers",
+        "ms-vscode.vscode-speech",
+        "ms-vscode.vscode-speech-language-pack-ja-jp",
+        "streetsidesoftware.code-spell-checker",
+        "usernamehw.errorlens",
+        "vscodevim.vim"
+    ]
+}

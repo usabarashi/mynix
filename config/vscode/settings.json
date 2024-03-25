@@ -1,4 +1,6 @@
 {
+    "extensions.autoCheckUpdate": true,
+    "extensions.ignoreRecommendations": false,
     "[json]": {
         "editor.formatOnSave": true,
         "editor.tabSize": 2
@@ -6,8 +8,28 @@
     "[nix]": {
         "editor.tabSize": 2
     },
+    "nix": {
+        "enableLanguageServer": true,
+        "serverPath": "nil",
+        "serverSettings": {
+            // settings for 'nil' LSP
+            "nil": {
+                "diagnostics": {
+                    "ignored": [
+                        "unused_binding",
+                        "unused_with"
+                    ]
+                },
+                "formatting": {
+                    "command": [
+                        "nixpkgs-fmt"
+                    ]
+                }
+            }
+        }
+    },
     "[shellscript]": {
-        "editor.tabSize":4 
+        "editor.tabSize": 4
     },
     "[yaml]": {
         "editor.formatOnSave": true,
@@ -17,19 +39,16 @@
         "formatOnSave": true,
         "tabSize": 4
     },
-    "extensions.autoCheckUpdate": true,
-    "extensions.ignoreRecommendations": false,
     "files": {
         "insertFinalNewline": true,
         "trimFinalNewlines": true,
         "trimTrailingWhitespace": true
     },
-    "nix": {
-        "enableLanguageServer": true
-    },
     "update.mode": true,
     "workbench.editorAssociations": {
         "*.scpt": "default"
     },
-    "windows.zoomLevel": -2
+    "accessibility.voice.speechLanguage": "ja-JP",
+    "accessibility.voice.keywordActivation": "inlineChat",
+    "editor.accessibilitySupport": "off"
 }

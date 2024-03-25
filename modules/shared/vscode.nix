@@ -7,7 +7,8 @@
   ];
 
   home.packages = with pkgs; [
-    rnix-lsp
+    nil
+    nixpkgs-fmt
     vscode
   ];
 

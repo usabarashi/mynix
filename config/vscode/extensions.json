@@ -1,6 +1,7 @@
 {
     "recommendations": [
         "bierner.markdown-mermaid",
+        "esbenp.prettier-vscode",
         "GitHub.copilot",
         "GitHub.copilot-chat",
         "hediet.vscode-drawio",

@@ -50,5 +50,8 @@
     },
     "accessibility.voice.speechLanguage": "ja-JP",
     "accessibility.voice.keywordActivation": "inlineChat",
-    "editor.accessibilitySupport": "off"
+    "editor.accessibilitySupport": "off",
+    "search.exclude": {
+        "**/.direnv": true
+    }
 }

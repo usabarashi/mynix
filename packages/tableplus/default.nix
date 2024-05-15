@@ -1,4 +1,6 @@
 # See: https://github.com/Homebrew/homebrew-cask/blob/master/Casks/t/tableplus.rb
+# Usage:
+#    tablePlus = import ../../packages/tableplus/default.nix { inherit (pkgs) fetchurl stdenv p7zip; inherit lib; };
 { fetchurl, lib, stdenv, p7zip }:
 
 stdenv.mkDerivation rec {

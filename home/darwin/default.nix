@@ -7,7 +7,7 @@ in
   home = {
     username = "gen";
     homeDirectory = "/Users/gen";
-    stateVersion = "23.11";
+    stateVersion = "24.05";
   };
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [

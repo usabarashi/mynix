@@ -4,7 +4,7 @@
   home = {
     username = "motoki_kamimura";
     homeDirectory = "/Users/motoki_kamimura";
-    stateVersion = "23.11";
+    stateVersion = "24.05";
   };
 
   home.packages = with pkgs; [

@@ -1,7 +1,4 @@
 { lib, pkgs, ... }:
-let
-  tablePlus = import ../../packages/tableplus/default.nix { inherit (pkgs) fetchurl stdenv p7zip; inherit lib; };
-in
 {
   programs.home-manager.enable = true;
   home = {
@@ -20,8 +17,8 @@ in
   home.packages = with pkgs; [
     discord
     iina
+    scala-cli
     slack
-    tablePlus
     zoom-us
   ];
 

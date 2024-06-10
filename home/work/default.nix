@@ -9,6 +9,7 @@
 
   home.packages = with pkgs; [
     cyberduck
+    scala-cli
   ];
 
   imports = [

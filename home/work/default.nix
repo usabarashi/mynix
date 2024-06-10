@@ -9,7 +9,6 @@
 
   home.packages = with pkgs; [
     cyberduck
-    dbeaver
   ];
 
   imports = [

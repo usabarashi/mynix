@@ -50,6 +50,7 @@
   };
 
   programs.zsh.enable = true;
+  security.pam.enableSudoTouchIdAuth = true;
   services.nix-daemon.enable = true;
   time.timeZone = "Asia/Tokyo";
 }

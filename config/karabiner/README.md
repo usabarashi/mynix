@@ -5,3 +5,4 @@
 | vendor_id | product_id | note                                      |
 | :-------- | :--------- | :---------------------------------------- |
 | 6127      | 24801      | ThinkPad TrackPoint keyboard II Bluetooth |
+| 6127      | 24814      | ThinkPad TrackPoint keyboard II USB       |

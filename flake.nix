@@ -2,28 +2,21 @@
   description = "Composition Root";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/24.05";
-    home-manager = {
-      url = "github:nix-community/home-manager/release-24.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nix-darwin = {
+      url = "github:lnl7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    nixpkgs-darwin.url = "github:NixOS/nixpkgs/nixpkgs-24.05-darwin";
-    darwin = {
-      url = "github:lnl7/nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs-darwin";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs =
-    { nixpkgs
-    , home-manager
-    , darwin
-    , ...
-    }@inputs:
+  outputs = { self, nixpkgs, nix-darwin, home-manager, ... }:
     {
       darwinConfigurations = {
-        H3JN70RHWY = darwin.lib.darwinSystem {
+        H3JN70RHWY = nix-darwin.lib.darwinSystem {
           system = "aarch64-darwin";
           modules = [
             ./hosts/H3JN70RHWY
@@ -36,7 +29,7 @@
           ];
         };
 
-        Mac093 = darwin.lib.darwinSystem {
+        Mac093 = nix-darwin.lib.darwinSystem {
           system = "aarch64-darwin";
           modules = [
             ./hosts/Mac093

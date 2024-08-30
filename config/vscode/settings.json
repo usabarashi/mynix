@@ -51,7 +51,9 @@
     "accessibility.voice.speechLanguage": "ja-JP",
     "accessibility.voice.keywordActivation": "inlineChat",
     "editor.accessibilitySupport": "off",
-    "search.exclude": {
-        "**/.direnv": true
+    "search": {
+        "exclude": {},
+        "useGlobalIgnoreFiles": true,
+        "useIgnoreFiles": true
     }
 }

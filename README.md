@@ -4,32 +4,41 @@ My Nix configuration
 
 ## Getting started
 
-1. Install nix (and enable flake if needed)
-2. Clone this repository
-    ```sh
-    nix run nixpkgs#git -- clone https://github.com/usabarashi/mynix.git
-    ```
-3. Run task
-    ```sh
-    nix shell nixpkgs#cargo-make -c makers apply
-    ```
-
-## Tasks
+Install Nix.
 
 ```sh
-# Apply host nixos/darwin configuration
-# Make sure $(hostname) match the osConfiguration target
-makers apply
-
-# Format
-makers format
+nix shell nixpkgs#git -c git clone https://github.com/usabarashi/mynix.git
 ```
 
+Install my nix Settings.
+
+```sh
+nix shell nixpkgs#cargo-make -c makers apply
+```
+
+# Uninstall
+
+Uninstall nix-darwin
+
+```sh
+nix --extra-experimental-features "nix-command flakes" run nix-darwin#darwin-uninstaller
+```
+
+Uninstall Nix.
+
+```sh
+/nix/nix-installer uninstall
+```
+
+Reboot to reset boot items.
+
 # References
-- [NixOS: A Purely Functional Linux Distribution](https://edolstra.github.io/pubs/nixos-jfp-final.pdf)
+
 - [Nix](https://nixos.org/)
 - [Nix Reference Manual](https://nixos.org/manual/nix/stable/introduction.html)
 - [https://search.nixos.org/packages](https://search.nixos.org/packages)
-- [Home Manager Manual](https://nix-community.github.io/home-manager/)
-- [Managing dotfiles with Nix](https://alexpearce.me/2021/07/managing-dotfiles-with-nix/)
-- [XDG Base Directory Specification](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html)
+- [nix-installer](https://github.com/DeterminateSystems/nix-installer)
+- [nix-darwin](https://github.com/LnL7/nix-darwin)
+  - [Darwin Configuration Options](https://daiderd.com/nix-darwin/manual/index.html)
+- [home-manager](https://github.com/nix-community/home-manager)
+  - [Home Manager Manual](https://nix-community.github.io/home-manager/)

@@ -19,12 +19,7 @@
         H3JN70RHWY = nix-darwin.lib.darwinSystem {
           system = "aarch64-darwin";
           modules = [
-            # nix-darwin setteings
             ./hosts/H3JN70RHWY
-            {
-              system.stateVersion = 5;
-            }
-            # home-manager settings
             home-manager.darwinModules.home-manager
             {
               home-manager.useGlobalPkgs = false;
@@ -37,12 +32,7 @@
         Mac093 = nix-darwin.lib.darwinSystem {
           system = "aarch64-darwin";
           modules = [
-            # nix-darwin setteings
             ./hosts/Mac093
-            {
-              system.stateVersion = 5;
-            }
-            # home-manager settings
             home-manager.darwinModules.home-manager
             {
               home-manager.useGlobalPkgs = false;

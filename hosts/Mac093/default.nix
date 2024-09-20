@@ -6,6 +6,10 @@
 
   # See: https://daiderd.com/nix-darwin/manual/
   system = {
+
+    # See: https://github.com/LnL7/nix-darwin/pull/1069
+    stateVersion = 5;
+
     defaults = {
       NSGlobalDomain = {
         AppleICUForce24HourTime = true;

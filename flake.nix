@@ -11,9 +11,10 @@
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    mac-app-util.url = "github:hraban/mac-app-util";
   };
 
-  outputs = { self, nixpkgs, nix-darwin, home-manager, ... }:
+  outputs = { self, nixpkgs, nix-darwin, home-manager, mac-app-util, ... }:
     {
       darwinConfigurations = {
         H3JN70RHWY = nix-darwin.lib.darwinSystem {
@@ -22,10 +23,14 @@
             ./hosts/H3JN70RHWY
             home-manager.darwinModules.home-manager
             {
+              home-manager.sharedModules = [
+                mac-app-util.homeManagerModules.default
+              ];
               home-manager.useGlobalPkgs = false;
               home-manager.useUserPackages = true;
               home-manager.users.gen = import ./home/darwin;
             }
+            mac-app-util.darwinModules.default
           ];
         };
 
@@ -35,10 +40,14 @@
             ./hosts/Mac093
             home-manager.darwinModules.home-manager
             {
+              home-manager.sharedModules = [
+                mac-app-util.homeManagerModules.default
+              ];
               home-manager.useGlobalPkgs = false;
               home-manager.useUserPackages = true;
               home-manager.users.motoki_kamimura = import ./home/work;
             }
+            mac-app-util.darwinModules.default
           ];
         };
 

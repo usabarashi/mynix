@@ -1,4 +1,8 @@
 { lib, pkgs, ... }:
+
+let
+  customed-url-schema-iina = import ../../packages/custom-url-schema-iina/default.nix { inherit (pkgs) stdenv; };
+in
 {
   programs.home-manager.enable = true;
   home = {
@@ -14,22 +18,24 @@
     "zoom"
   ];
 
-  home.packages = with pkgs; [
-    discord
-    iina
-    scala-cli
-    slack
-    zoom-us
-  ];
+  home.packages = with pkgs;
+    [
+      discord
+      iina
+      customed-url-schema-iina
+      scala-cli
+      slack
+      zoom-us
+    ];
 
   imports = [
     #../../modules/shared/container.nix
     ../../modules/darwin/karabiner.nix
     ../../modules/shared/git.nix
     ../../modules/shared/neovim.nix
+    ../../modules/shared/shell.nix
     ../../modules/shared/ssh.nix
     ../../modules/shared/vscode.nix
-    ../../modules/shared/shell.nix
   ];
 
 }

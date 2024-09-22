@@ -22,6 +22,33 @@ Install my nix Settings.
 nix shell nixpkgs#cargo-make -c makers apply
 ```
 
+# Delete cache
+
+home-manager の古い世代を削除する
+
+```sh
+nix shell github:nix-community/home-manager/release-24.05 -c home-manager expire-generations now
+```
+
+ユーザーの古いプロファイルを削除する
+
+```sh
+nix-env --delete-generations old
+```
+
+システムプロファイルの古いリンクを削除する
+
+```sh
+sudo nix-env --profile /nix/var/nix/profiles/system --delete-generations old
+```
+
+ガベージコレクションを再実行する
+
+```sh
+nix-collect-garbage -d
+nix-store --gc
+```
+
 # Uninstall
 
 Uninstall nix-darwin
@@ -42,7 +69,9 @@ Reboot to reset boot items.
 
 - [Nix](https://nixos.org/)
 - [Nix Reference Manual](https://nixos.org/manual/nix/stable/introduction.html)
+  - [nix-env --delete-generations](https://nix.dev/manual/nix/2.18/command-ref/nix-env/delete-generations)
 - [https://search.nixos.org/packages](https://search.nixos.org/packages)
+- [Nix package versions](https://lazamar.co.uk/nix-versions/?)
 - [nix-installer](https://github.com/DeterminateSystems/nix-installer)
 - [nix-darwin](https://github.com/LnL7/nix-darwin)
   - [Darwin Configuration Options](https://daiderd.com/nix-darwin/manual/index.html)

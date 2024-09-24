@@ -29,4 +29,9 @@ stdenv.mkDerivation {
     mkdir -p $out/Applications/
     cp -R ${appName} $out/Applications/
   '';
+
+  meta = {
+    platforms = [ "aarch64-darwin" ];
+    homepage = "https://github.com/l3tnun/EPGStation";
+  };
 }

@@ -23,7 +23,7 @@ in
   };
 
   home.packages = with pkgs; [
-    cyberduck
+    # cyberduck
     dbeaver
     scala-cli
   ];

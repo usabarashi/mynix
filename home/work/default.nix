@@ -1,9 +1,21 @@
 { lib, pkgs, ... }:
 
 let
-  pkgs_22_2_2 = import
+  unstable_20240709 = import
     (builtins.fetchGit {
-      name = "22.2.2-revision";
+      name = "unstable-20240709";
+      url = "https://github.com/NixOS/nixpkgs/";
+      ref = "refs/heads/nixpkgs-unstable";
+      rev = "05bbf675397d5366259409139039af8077d695ce";
+    })
+    {
+      system = "aarch64-darwin";
+    };
+  cyberduck = unstable_20240709.cyberduck;
+
+  unstable_20240514 = import
+    (builtins.fetchGit {
+      name = "unstable-20240514";
       url = "https://github.com/NixOS/nixpkgs/";
       ref = "refs/heads/nixpkgs-unstable";
       rev = "0c19708cf035f50d28eb4b2b8e7a79d4dc52f6bb";
@@ -11,8 +23,7 @@ let
     {
       system = "aarch64-darwin";
     };
-
-  dbeaver = pkgs_22_2_2.dbeaver;
+  dbeaver = unstable_20240514.dbeaver;
 in
 {
   programs.home-manager.enable = true;
@@ -23,7 +34,7 @@ in
   };
 
   home.packages = with pkgs; [
-    # cyberduck
+    cyberduck
     dbeaver
     scala-cli
   ];

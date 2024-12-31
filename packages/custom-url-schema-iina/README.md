@@ -1,17 +1,27 @@
 # Custom URL Schema for IINA
 
-# Clear the cache
+# Configure Chrome
 
-Launch Services のキャッシュをクリアする
+## Privacy and security > Site settings > Permissions
 
-```sh
-/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user
-```
+Set `Automatic downloads` to `Allow`.
 
-Google Chrome のキャッシュをクリアする
+## Clear the cache
+
+Execute the following command.
 
 ```sh
 rm -rf ~/Library/Caches/Google/Chrome/Default
+```
+
+# Launch Services
+
+## Clear the cache
+
+Execute the following command.
+
+```sh
+/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user
 ```
 
 # Reference

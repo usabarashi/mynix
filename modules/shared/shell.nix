@@ -18,7 +18,7 @@
       # End Nix
 
       # Add user tools to PATH
-      export PATH=$PATH:$HOME/bin
+      export PATH=$HOME/bin:$PATH
     '';
 
     syntaxHighlighting.enable = true;

@@ -43,7 +43,7 @@ in
   #
   # - Network Permission
   # ```
-  # colima start --network-address
+  # colima start --network-address --mount-inotify
   # ```
 
   # see: https://github.com/docker/compose/releases

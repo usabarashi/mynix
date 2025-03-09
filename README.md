@@ -77,3 +77,4 @@ Reboot to reset boot items.
   - [Darwin Configuration Options](https://daiderd.com/nix-darwin/manual/index.html)
 - [home-manager](https://github.com/nix-community/home-manager)
   - [Home Manager Manual](https://nix-community.github.io/home-manager/)
+- [mac-app-util](https://github.com/hraban/mac-app-util)

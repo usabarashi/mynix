@@ -16,7 +16,6 @@ let
       echo 'cd "$1"' >> $out/bin/code-from-devshell
       echo 'shift' >> $out/bin/code-from-devshell
       echo 'code . "$@"' >> $out/bin/code-from-devshell
-      echo 'cd "$original_dir"' >> $out/bin/code-from-devshell
       chmod +x $out/bin/code-from-devshell
     '';
 

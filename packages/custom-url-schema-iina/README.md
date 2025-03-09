@@ -1,5 +1,13 @@
 # Custom URL Schema for IINA
 
+# Configure IINA
+
+## Settings > Key Binding
+
+```
+~/Library/Application Support/com.colliderli.iina/input_conf/<Configuration Name>.conf
+```
+
 # Configure Chrome
 
 ## Privacy and security > Site settings > Permissions

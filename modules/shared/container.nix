@@ -37,7 +37,7 @@ in
   # colima start --network-address
   # ```
 
-  # see: https://github.com/docker/compose/releases
+  # see: https://docs.docker.jp/compose/install/compose-plugin.html#compose-install-the-plugin-manually
   home.activation.dockerComposeConfig = config.lib.dag.entryAfter [ "writeBoundary" ] ''
     echo "Setting Docker Compose Plugin configuration..."
     mkdir -p ${config.home.homeDirectory}/.docker/cli-plugins

@@ -11,12 +11,12 @@ let
 
     installPhase = ''
       mkdir -p $out/bin
-      echo '#!/bin/sh' > $out/bin/code-from-devshell
-      echo 'original_dir=$(pwd)' >> $out/bin/code-from-devshell
-      echo 'cd "$1"' >> $out/bin/code-from-devshell
-      echo 'shift' >> $out/bin/code-from-devshell
-      echo 'code . "$@"' >> $out/bin/code-from-devshell
-      chmod +x $out/bin/code-from-devshell
+      echo '#!/bin/sh' > $out/bin/codefd
+      echo 'original_dir=$(pwd)' >> $out/bin/codefd
+      echo 'cd "$1"' >> $out/bin/codefd
+      echo 'shift' >> $out/bin/codefd
+      echo 'code . "$@"' >> $out/bin/codefd
+      chmod +x $out/bin/codefd
     '';
 
     meta = with lib; {

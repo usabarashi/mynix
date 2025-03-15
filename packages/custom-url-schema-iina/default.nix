@@ -1,5 +1,4 @@
 { stdenv }:
-
 let
   appName = "OpenIINA.app";
   plistPath = "${appName}/Contents/Info.plist";
@@ -31,7 +30,8 @@ stdenv.mkDerivation {
   '';
 
   meta = {
+    description = "Custom URL Scheme for IINA";
+    homepage = "https://iina.io/";
     platforms = [ "aarch64-darwin" ];
-    homepage = "https://github.com/l3tnun/EPGStation";
   };
 }

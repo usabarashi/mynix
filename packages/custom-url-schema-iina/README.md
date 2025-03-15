@@ -8,13 +8,13 @@
 ~/Library/Application Support/com.colliderli.iina/input_conf/<Configuration Name>.conf
 ```
 
-# Configure Chrome
+## Configure Chrome
 
-## Privacy and security > Site settings > Permissions
+### Privacy and security > Site settings > Permissions
 
 Set `Automatic downloads` to `Allow`.
 
-## Clear the cache
+### Clear the cache
 
 Execute the following command.
 
@@ -22,9 +22,9 @@ Execute the following command.
 rm -rf ~/Library/Caches/Google/Chrome/Default
 ```
 
-# Launch Services
+## Launch Services
 
-## Clear the cache
+### Clear the cache
 
 Execute the following command.
 
@@ -32,7 +32,7 @@ Execute the following command.
 /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user
 ```
 
-# Reference
+## References
 
 - [macOS でのカスタム URL Sceheme の設定](https://github.com/l3tnun/EPGStation/blob/master/doc/mac-url-scheme.md)
 - [AppleScript でカスタム URL スキーム](https://qiita.com/CorecaraBiz/items/9a1fc60aada31858d582)

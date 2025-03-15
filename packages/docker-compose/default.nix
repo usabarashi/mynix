@@ -1,21 +1,40 @@
-with import <nixpkgs> { };
-stdenv.mkDerivation rec {
+{ pkgs, ... }:
+let
+  os =
+    if pkgs.stdenv.isDarwin then "darwin"
+    else throw "Unsupported architecture";
+  arch =
+    if pkgs.stdenv.isAarch64 then "aarch64"
+    else throw "Unsupported architecture";
+
+  version = "2.32.4";
+  src = pkgs.fetchurl {
+    url = "https://github.com/docker/compose/releases/download/v${version}/docker-compose-${os}-${arch}";
+    sha256 =
+      if os == "darwin" && arch == "aarch64" then
+        "sha256-3DCwJ2wLpFhX7vAhtnfU+yu/E7z4CfmbaR25USvKR8w="
+      else
+        throw "Unsupported combination of OS and architecture";
+  };
+in
+pkgs.stdenv.mkDerivation {
   pname = "docker-compose";
-  version = "1.0.0";
+  version = version;
 
-  src = ./.;
+  src = src;
 
-  buildInputs = [ ];
+  unpackPhase = "true";
 
   installPhase = ''
-    mkdir -p $out/bin
-    cp docker-compose.sh $out/bin/docker-compose
-    chmod +x $out/bin/docker-compose
+    mkdir -p $out/cli-plugins
+    cp ${src}  $out/cli-plugins/docker-compose
+    chmod +x $out/cli-plugins/docker-compose
   '';
 
-  meta = with lib; {
-    description = "Sample package";
-    homepage = "https://github.com/usabarashi/home-manager";
-    license = licenses.mit;
+  meta = with pkgs.lib; {
+    description = "Define and run multi-container applications with Docker";
+    homepage = "https://docs.docker.com/compose/";
+    license = licenses.asl20;
+    platforms = [ "aarch64-darwin" ];
   };
 }

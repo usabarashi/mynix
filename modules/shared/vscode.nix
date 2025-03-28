@@ -215,6 +215,13 @@ in
       ######################
       # Programming Language
 
+      # HashiCorp Configuration Language
+      {
+        name = "terraform";
+        publisher = "HashiCorp";
+        version = "2.34.2025012311";
+        sha256 = "SmADVhgysDDvmI2/FZHoNWfgSrcxQfJTJj4ZgxOxjhc=";
+      }
       # Scala
       {
         name = "metals";

@@ -36,13 +36,7 @@ in
     mutableExtensionsDir = false;
 
     userSettings = {
-      extensions.ignoreRecommendations = true;
-
-      search = {
-        exclude = { };
-        useGlobalIgnoreFiles = true;
-        useIgnoreFiles = true;
-      };
+      "update.mode" = "none";
 
       "[nix]" = {
         editor.formatOnSave = true;
@@ -74,7 +68,22 @@ in
         trimFinalNewlines = true;
         trimTrailingWhitespace = true;
       };
+
       workbench.editorAssociations = { "*.scpt" = "default"; };
+
+      "files.watcherExclude" = {
+        "**/.direnv" = true;
+        "**/.git" = true;
+        # Scala
+        "**/.bloop" = true; # https://github.com/scalameta/metals-vscode/issues/411
+        "**/.metals" = true; # https://github.com/scalameta/metals-vscode/issues/411
+      };
+
+      search = {
+        exclude = { };
+        useGlobalIgnoreFiles = true;
+        useIgnoreFiles = true;
+      };
 
       chat.promptFiles = true;
       github.copilot.chat = {
@@ -111,6 +120,12 @@ in
           { text = "変更内容の概要を明確に書いてください."; }
         ];
       };
+
+      extensions = {
+        autoCheckUpdates = false;
+        ignoreRecommendations = true;
+      };
+
     };
 
     keybindings = [ ];
@@ -118,6 +133,9 @@ in
     # https://marketplace.visualstudio.com/vscode
     # https://marketplace.visualstudio.com/_apis/public/gallery/publishers/<publisher>/vsextensions/<extension-name>/<version>/vspackage
     extensions = pkgs.vscode-utils.extensionsFromVscodeMarketplace ([
+      ###############
+      # Base Settings
+
       {
         name = "code-spell-checker";
         publisher = "streetsidesoftware";
@@ -178,7 +196,6 @@ in
         version = "0.107.2025032704";
         sha256 = "dLg9GAQ9Gu3YZE4PH6UuH0aQitsZJGD4nHv3yqK6nTQ=";
       }
-
       {
         name = "copilot";
         publisher = "GitHub";
@@ -193,6 +210,33 @@ in
         publisher = "GitHub";
         version = "0.25.2025030502";
         sha256 = "WaqwXebpiGmlt8stSxOR1Emhv9bPUBusiD/wshqbHPY=";
+      }
+
+      ######################
+      # Programming Language
+
+      # Scala
+      {
+        name = "metals";
+        publisher = "scalameta";
+        version = "1.48.0";
+        sha256 = "GtlVj/XvnlsLQb8PwXl6S2OW0mOl8SCR3N76zhZBwxA=";
+      }
+      {
+        name = "scala";
+        publisher = "scala-lang";
+        version = "0.5.9";
+        sha256 = "zgCqKwnP7Fm655FPUkD5GL+/goaplST8507X890Tnhc=";
+      }
+
+      ############
+      # Data Store
+
+      {
+        name = "mysql-shell-for-vs-code";
+        publisher = "oracle";
+        version = "1.19.3";
+        sha256 = "t/Z4vOsR2GseFQj5N6VzYiAj0AJiwC1mF2N+LdTwUcM=";
       }
     ]);
   };

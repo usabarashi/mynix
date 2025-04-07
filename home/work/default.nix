@@ -33,6 +33,10 @@ in
     stateVersion = "24.05";
   };
 
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "vscode"
+  ];
+
   home.packages = with pkgs; [
     cyberduck
     dbeaver

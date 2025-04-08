@@ -86,6 +86,7 @@ in
       };
 
       chat.promptFiles = true;
+      chat.agent.enabled = true;
       github.copilot.chat = {
         generateTests.codeLens = true;
         codeGeneration.instructions = [

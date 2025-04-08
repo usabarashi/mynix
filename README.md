@@ -22,12 +22,24 @@ Install my nix Settings.
 nix shell nixpkgs#cargo-make -c makers apply
 ```
 
-# Delete cache
+## Update dependency
+
+```sh
+nix flake update
+```
+
+[NixOS Search](https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query=nix) の特定リビジョン `Data from nixpkgs <REVISION>.` へ更新したい場合
+
+```sh
+nix flake lock --update-input nixpkgs --override-input nixpkgs github:nixos/nixpkgs/<REVISION>
+```
+
+## Delete cache
 
 home-manager の古い世代を削除する
 
 ```sh
-nix shell github:nix-community/home-manager/release-24.05 -c home-manager expire-generations now
+nix shell github:nix-community/home-manager -c home-manager expire-generations now
 ```
 
 ユーザーの古いプロファイルを削除する
@@ -49,7 +61,7 @@ nix-collect-garbage -d
 nix-store --gc
 ```
 
-# Uninstall
+## Uninstall
 
 Uninstall nix-darwin
 
@@ -65,7 +77,7 @@ Uninstall Nix.
 
 Reboot to reset boot items.
 
-# References
+## References
 
 - [Nix](https://nixos.org/)
 - [Nix Reference Manual](https://nixos.org/manual/nix/stable/introduction.html)

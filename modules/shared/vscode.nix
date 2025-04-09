@@ -177,8 +177,8 @@ in
       {
         name = "gitlens";
         publisher = "eamodio";
-        version = "2025.3.2705";
-        sha256 = "vldpP1A+BCLugIDM+DHc6YZ6crzReqm+nYFX94mm3cY=";
+        version = "2025.4.905";
+        sha256 = "sha256-MieWkv/OCEAvjnpN/AccDEVcAIAWSbl+PBMttvg4E2s=";
       }
       {
         name = "markdown-mermaid";

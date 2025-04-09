@@ -88,8 +88,15 @@ in
         useIgnoreFiles = true;
       };
 
-      chat.promptFiles = true;
-      chat.agent.enabled = true;
+      accessibility.voice = {
+        speechLanguage = "ja-JP";
+        autoSynthesize = true;
+        ignoreCodeBlocks = true;
+      };
+      chat = {
+        promptFiles = true;
+        agent.enabled = true;
+      };
       github.copilot.chat = {
         generateTests.codeLens = true;
         codeGeneration.instructions = [
@@ -221,6 +228,9 @@ in
         version = "0.107.2025032704";
         sha256 = "dLg9GAQ9Gu3YZE4PH6UuH0aQitsZJGD4nHv3yqK6nTQ=";
       }
+
+      ################
+      # GitHub Copilot
       {
         name = "copilot";
         publisher = "github";
@@ -236,6 +246,19 @@ in
         version = "0.26.2";
         sha256 = "sha256-TgfzaX+CPUYST6+JG4RGcUl3e8G2lev3iJOXDPNpBuQ=";
       }
+      {
+        name = "vscode-speech";
+        publisher = "ms-vscode";
+        version = "0.12.1";
+        sha256 = "sha256-fxmaPI7uq7DQlzgJc8RcZzHDOwMuodSCf9TkLU9+/+k=";
+      }
+      {
+        name = "vscode-speech-language-pack-ja-jp";
+        publisher = "ms-vscode";
+        version = "0.5.0";
+        sha256 = "sha256-gbesiqyKWPlEPDyAmTgDSbMN9rWRkq1Trsih0gLgPr0=";
+      }
+
       ######################
       # Programming Language
 

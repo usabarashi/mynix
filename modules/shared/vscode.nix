@@ -199,6 +199,12 @@ in
         sha256 = "k/c0Ylot3DUJ2UNZDozNmDwuaUAZgPWfuVT16h9eZZI=";
       }
       {
+        name = "remote-ssh";
+        publisher = "ms-vscode-remote";
+        version = "0.120.2025040915";
+        sha256 = "sha256-S6quMPlDNSLIqyMmTZsDts5bLh2LBdAPuQibT3AEHH8=";
+      }
+      {
         name = "run-on-save";
         publisher = "pucelle";
         version = "1.10.2";

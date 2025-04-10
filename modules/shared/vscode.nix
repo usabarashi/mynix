@@ -77,7 +77,7 @@ in
       "files.watcherExclude" = {
         "**/.direnv" = true;
         "**/.git" = true;
-        # Scala
+        # Metals: automatic addition
         "**/.bloop" = true; # https://github.com/scalameta/metals-vscode/issues/411
         "**/.metals" = true; # https://github.com/scalameta/metals-vscode/issues/411
       };
@@ -86,6 +86,15 @@ in
         exclude = { };
         useGlobalIgnoreFiles = true;
         useIgnoreFiles = true;
+      };
+
+      # Gitlens: automatic addition
+      gitlens = {
+        codeconnections.showInStatusBar = "auto";
+        plusFeatures.enabled = false;
+        showWelcomeOnInstall = false;
+        showWhatsNewAfterUpgrades = false;
+        telemetry.enabled = false;
       };
 
       accessibility.voice = {
@@ -203,7 +212,7 @@ in
         name = "remote-ssh";
         publisher = "ms-vscode-remote";
         version = "0.120.2025040915";
-        sha256 = "sha256-S6quMPlDNSLIqyMmTZsDts5bLh2LBdAPuQibT3AEHH8=";
+        sha256 = "sha256-XW7BiUtqFH758I5DDRU2NPdESJC6RfTDAuUA4myY734=";
       }
       {
         name = "run-on-save";

@@ -88,18 +88,9 @@ in
         useIgnoreFiles = true;
       };
 
-      # Gitlens: automatic addition
-      gitlens = {
-        codeconnections.showInStatusBar = "auto";
-        plusFeatures.enabled = false;
-        showWelcomeOnInstall = false;
-        showWhatsNewAfterUpgrades = false;
-        telemetry.enabled = false;
-      };
-
       accessibility.voice = {
         speechLanguage = "ja-JP";
-        autoSynthesize = true;
+        autoSynthesize = "on";
         ignoreCodeBlocks = true;
       };
       chat = {

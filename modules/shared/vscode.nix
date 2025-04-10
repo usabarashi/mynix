@@ -158,6 +158,7 @@ in
 
     # https://marketplace.visualstudio.com/vscode
     # https://marketplace.visualstudio.com/_apis/public/gallery/publishers/<publisher>/vsextensions/<extension-name>/<version>/vspackage
+    # https://www.vsixhub.com/
     extensions = pkgs.vscode-utils.extensionsFromVscodeMarketplace ([
       ###############
       # Base Settings

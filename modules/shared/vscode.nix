@@ -40,6 +40,10 @@ in
 
     userSettings = {
       "update.mode" = "none";
+      telemetry = {
+        telemetryLevel = "off";
+        feedback.enabled = false;
+      };
 
       "[nix]" = {
         editor.formatOnSave = true;
@@ -87,6 +91,8 @@ in
         useGlobalIgnoreFiles = true;
         useIgnoreFiles = true;
       };
+
+      remote.SSH.configFile = "~/.ssh/config";
 
       accessibility.voice = {
         speechLanguage = "ja-JP";

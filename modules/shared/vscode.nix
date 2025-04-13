@@ -263,6 +263,13 @@ in
         version = "2.34.2025012311";
         sha256 = "SmADVhgysDDvmI2/FZHoNWfgSrcxQfJTJj4ZgxOxjhc=";
       }
+      # Python
+      {
+        name = "python";
+        publisher = "ms-python";
+        version = "2025.4.0";
+        sha256 = "sha256-/yQbmZTnkks1gvMItEApRzfk8Lczjq+JC5rnyJxr6fo=";
+      }
       # Scala
       {
         name = "metals";

@@ -259,6 +259,25 @@ in
       ######################
       # Programming Language
 
+      # Elm
+      {
+        name = "elm-ls-vscode";
+        publisher = "elmtooling";
+        version = "2.8.0";
+        sha256 = "sha256-81tHgNjYc0LJjsgsQfo5xyh20k/i3PKcgYp9GZTvwfs=";
+      }
+      {
+        name = "vscode-test-explorer";
+        publisher = "hbenl";
+        version = "2.22.1";
+        sha256 = "sha256-+vW/ZpOQXI7rDUAdWfNOb2sAGQQEolXjSMl2tc/Of8M=";
+      }
+      {
+        name = "test-adapter-converter";
+        publisher = "ms-vscode";
+        version = "0.2.1";
+        sha256 = "sha256-gyyl379atZLgtabbeo26xspdPjLvNud3cZ6kEmAbAjU=";
+      }
       # HashiCorp Configuration Language
       {
         name = "terraform";

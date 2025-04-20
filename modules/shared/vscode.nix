@@ -13,6 +13,10 @@ let
       mkdir -p $out/bin
       echo '#!/bin/sh' > $out/bin/codefd
       echo 'original_dir=$(pwd)' >> $out/bin/codefd
+      echo 'if [ ! -d "$1" ]; then' >> $out/bin/codefd
+      echo '  echo "Error: $1 is not a directory" >&2' >> $out/bin/codefd
+      echo '  exit 1' >> $out/bin/codefd
+      echo 'fi' >> $out/bin/codefd
       echo 'cd "$1"' >> $out/bin/codefd
       echo 'shift' >> $out/bin/codefd
       echo 'code . "$@"' >> $out/bin/codefd

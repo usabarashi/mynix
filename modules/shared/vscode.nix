@@ -1,34 +1,28 @@
-# see: https://github.com/nix-community/home-manager/blob/master/modules/programs/vscode.nix
+# See: https://github.com/nix-community/home-manager/blob/master/modules/programs/vscode.nix
 { config, pkgs, lib, ... }:
+
 let
-  vscode-from-devshell = pkgs.stdenv.mkDerivation {
-    pname = "vscode-from-devshell";
-    version = "1.0.0";
+  vscode-from-devshell = pkgs.writeShellScriptBin "codefd" ''
+    #!/bin/sh
 
-    src = ./.;
+    # codefd - Code From DevShell
+    # This script launches VS Code while preserving the environment variables from the current devShell environment.
+    # When working in a Nix devShell, launching VS Code normally might not inherit all the necessary environment variables.
+    # This script allows you to pass the devShell environment variables directly to VS Code.
+    #
+    # Usage: codefd <project_directory> [VSCode options]
+    # Example: codefd ~/projects/my-nix-project
 
-    buildInputs = [ ];
+    if [ ! -d "$1" ]; then
+      echo "Error: $1 is not a directory" >&2
+      echo "Usage: codefd <project_directory> [VSCode options]" >&2
+      exit 1
+    fi
 
-    installPhase = ''
-      mkdir -p $out/bin
-      echo '#!/bin/sh' > $out/bin/codefd
-      echo 'original_dir=$(pwd)' >> $out/bin/codefd
-      echo 'if [ ! -d "$1" ]; then' >> $out/bin/codefd
-      echo '  echo "Error: $1 is not a directory" >&2' >> $out/bin/codefd
-      echo '  exit 1' >> $out/bin/codefd
-      echo 'fi' >> $out/bin/codefd
-      echo 'cd "$1"' >> $out/bin/codefd
-      echo 'shift' >> $out/bin/codefd
-      echo 'code . "$@"' >> $out/bin/codefd
-      chmod +x $out/bin/codefd
-    '';
-
-    meta = with lib; {
-      description = "vscode wrapper for devshell";
-      homepage = "https://github.com/usabarashi/mynix";
-      license = licenses.mit;
-    };
-  };
+    cd "$1"
+    shift
+    code . "$@"
+  '';
 in
 {
   home.packages = with pkgs; [ vscode-from-devshell ];

@@ -38,7 +38,7 @@ jobs:
 
         find . -name "*.nix" -type f | sort | while read -r file; do
           echo "Checking syntax: $file"
-          if nix-instantiate --parse "$file"; then
+          if nix-instantiate --parse "$file" &> /dev/null; then
             echo "✓ $file - Syntax OK"
           else
             echo "❌ $file - Syntax Error!"

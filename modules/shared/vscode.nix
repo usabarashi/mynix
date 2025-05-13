@@ -172,6 +172,12 @@ in
         sha256 = "r5xXR4rDbP+2bk66yqPoLod8IZXFrntcKHuWbAiFWwE=";
       }
       {
+        name = "geminicodeassist";
+        publisher = "google";
+        version = "2.32.0";
+        sha256 = "sha256-FRf1DdcDvlxds0RPM8f7kV7cGomJVVM8gx3Mg7O8ALQ=";
+      }
+      {
         name = "gitlens";
         publisher = "eamodio";
         version = "2025.4.905";

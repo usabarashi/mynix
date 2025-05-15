@@ -327,8 +327,8 @@ in
       {
         name = "metals";
         publisher = "scalameta";
-        version = "1.48.0";
-        sha256 = "GtlVj/XvnlsLQb8PwXl6S2OW0mOl8SCR3N76zhZBwxA=";
+        version = "1.50.1";
+        sha256 = "sha256-gOC3YLOLtb3+sTeSoLfZrOsLjNtLOyR2Nk7a7KLhDiU=";
       }
       {
         name = "scala";

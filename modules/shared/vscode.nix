@@ -256,6 +256,19 @@ in
       ######################
       # Programming Language
 
+      # Alloy
+      {
+        name = "alloy";
+        publisher = "ArashSahebolamri";
+        version = "0.7.1";
+        sha256 = "sha256-svHFOCEDZHSLKzLUU2ojDVkbLTJ7hJ75znWuBV5GFQM=";
+      }
+      {
+        name = "alloy-vscode";
+        publisher = "DongyuZhao";
+        version = "0.1.6";
+        sha256 = "sha256-wYMxjMY7colRKWb0qDpMC07+hYhIxh5KcibO43yczPs=";
+      }
       # Elm
       {
         name = "elm-ls-vscode";

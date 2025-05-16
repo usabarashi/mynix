@@ -146,10 +146,15 @@ in
         # https://docs.github.com/en/copilot/troubleshooting-github-copilot/troubleshooting-issues-with-github-copilot-chat#troubleshooting-issues-caused-by-version-incompatibility
         # > every new version of Copilot Chat is only compatible with the latest release of Visual Studio Code.
         # > This means that if you are using an older version of Visual Studio Code, you will not be able to use the latest Copilot Chat.
+        #
+        # update procedures
+        # 1. comment out `github.copilot-chat` and apply.
+        # 2. Check the version of `github.copilot-chat` from VSCode GUI.
+        # 2. Update the version of `github-copilot-chat` and apply.
         name = "copilot-chat";
         publisher = "github";
-        version = "0.26.2";
-        sha256 = "sha256-TgfzaX+CPUYST6+JG4RGcUl3e8G2lev3iJOXDPNpBuQ=";
+        version = "0.27.0";
+        sha256 = "sha256-i7KKW+aM8P1nrgnLZssgAlKm1kaQyeh285EnoN9Bwps=";
       }
       {
         name = "vscode-speech";

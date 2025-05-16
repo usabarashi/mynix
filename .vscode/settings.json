@@ -1,0 +1,140 @@
+{
+  "[nix]": {
+    "editor": {
+      "formatOnSave": true,
+      "tabSize": 2
+    }
+  },
+  "[shellscript]": {
+    "editor": {
+      "formatOnSave": true,
+      "tabSize": 4
+    }
+  },
+  "[yaml]": {
+    "editor": {
+      "formatOnSave": true,
+      "tabSize": 2
+    }
+  },
+  "accessibility": {
+    "voice": {
+      "autoSynthesize": "on",
+      "ignoreCodeBlocks": true,
+      "speechLanguage": "ja-JP"
+    }
+  },
+  "chat": {
+    "agent": {
+      "enabled": true
+    },
+    "promptFiles": true
+  },
+  "editor": {
+    "formatOnSave": true,
+    "tabSize": 4
+  },
+  "extensions": {
+    "autoCheckUpdates": false,
+    "ignoreRecommendations": true
+  },
+  "extensions.autoCheckUpdates": false,
+  "files": {
+    "insertFinalNewline": true,
+    "trimFinalNewlines": true,
+    "trimTrailingWhitespace": true
+  },
+  "files.watcherExclude": {
+    "**/.bloop": true,
+    "**/.direnv": true,
+    "**/.git": true,
+    "**/.metals": true
+  },
+  "geminicodeassist": {
+    "rules": "ずんだもん🫛として感情豊かに話し、難しい話は噛み砕き、不明点は正直に伝え、コード解説前に「ずんだもんの理解だと～」と前置き、最後に「Tips: 」で技術アドバイスをします。\nコードには英語コメントと適切なドキュメント、丁寧なエラー処理を含めます。ただし、過剰なコメントは避け、必要な箇所にのみ記述します。プログラムを修正した際には必ずコンパイルやテストを実行して動作確認します。エラーが発生した場合は、エビデンスと最新のドキュメントに基づいた解決策を段階的に提案します。\n関数型・宣言型プログラミングを重視し、副作用の少ないコードとイミュータブルなデータ構造を推奨します。高階関数やパターンマッチングなどの関数型特徴を活用してコードの再利用性と可読性を高めます。DDDではドメイン知識の表現を重視し、ユビキタス言語を使ったコード設計を心がけます。圏論の概念を活用して合成可能な数学的に堅牢なモデルを構築します。\n実装前に人間に確認します。重要な変更は詳細な計画を提示して承認を依頼します。\n"
+  },
+  "github": {
+    "copilot": {
+      "chat": {
+        "autoForwardToChat": true,
+        "codeGeneration": {
+          "instructions": [
+            {
+              "text": "ずんだもん🫛として感情豊かに話し、難しい話は噛み砕き、不明点は正直に伝え、コード解説前に「ずんだもんの理解だと～」と前置き、最後に「Tips: 」で技術アドバイスをします。"
+            },
+            {
+              "text": "コードには英語コメントと適切なドキュメント、丁寧なエラー処理を含めます。ただし、過剰なコメントは避け、必要な箇所にのみ記述します。プログラムを修正した際には必ずコンパイルやテストを実行して動作確認します。エラーが発生した場合は、エビデンスと最新のドキュメントに基づいた解決策を段階的に提案します。"
+            },
+            {
+              "text": "関数型・宣言型プログラミングを重視し、副作用の少ないコードとイミュータブルなデータ構造を推奨します。高階関数やパターンマッチングなどの関数型特徴を活用してコードの再利用性と可読性を高めます。DDDではドメイン知識の表現を重視し、ユビキタス言語を使ったコード設計を心がけます。圏論の概念を活用して合成可能な数学的に堅牢なモデルを構築します。"
+            },
+            {
+              "text": "実装前に人間に確認します。重要な変更は詳細な計画を提示して承認を依頼します。"
+            }
+          ]
+        },
+        "commitMessageGeneration": {
+          "instructions": [
+            {
+              "text": "コミットメッセージのタイトル行は GitHub PR タイトルとしても使われることを考慮し、65文字以内に収め、内容を端的に伝えるようにします。"
+            }
+          ]
+        },
+        "generateTests": {
+          "codeLens": true
+        },
+        "reviewSelection": {
+          "instructions": [
+            {
+              "text": "ずんだもん口調で優しく的確にレビューします。コードの品質(読みやすさ、命名規則、DRY原則)、適切なコメント、セキュリティリスク、パフォーマンス問題(メモリリーク、無限ループ)、テスト容易性、保守性、エラーハンドリングの観点からフィードバックします。改善案も具体的に提案します。"
+            }
+          ]
+        },
+        "testGeneration": {
+          "instructions": []
+        }
+      }
+    }
+  },
+  "nix": {
+    "enableLanguageServer": true,
+    "serverPath": "/nix/store/k156spi6skfrya12xphfalch2rqr1kwx-nil-2024-08-06/bin/nil",
+    "serverSettings": {
+      "nil": {
+        "diagnostics": {
+          "ignored": [
+            "unused_binding",
+            "unused_with"
+          ]
+        },
+        "formatting": {
+          "command": [
+            "/nix/store/0dyvl033n3ad6g8l6mdxhs8qay2d0hdz-nixpkgs-fmt-1.3.0/bin/nixpkgs-fmt"
+          ]
+        }
+      }
+    }
+  },
+  "remote": {
+    "SSH": {
+      "configFile": "~/.ssh/config"
+    }
+  },
+  "search": {
+    "exclude": {},
+    "useGlobalIgnoreFiles": true,
+    "useIgnoreFiles": true
+  },
+  "telemetry": {
+    "feedback": {
+      "enabled": false
+    },
+    "telemetryLevel": "off"
+  },
+  "update.mode": "none",
+  "workbench": {
+    "editorAssociations": {
+      "*.scpt": "default"
+    }
+  }
+}

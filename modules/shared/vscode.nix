@@ -1,7 +1,9 @@
 # See: https://github.com/nix-community/home-manager/blob/master/modules/programs/vscode.nix
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, ... }: # Added workspaceSettingsJsonPathForVSCode argument
 
 let
+  inherit (pkgs.lib.trivial) importJSON importTOML mergeAttrs;
+
   vscode-from-devshell = pkgs.writeShellScriptBin "codefd" ''
     #!/bin/sh
 
@@ -36,119 +38,7 @@ in
     enableUpdateCheck = false;
     enableExtensionUpdateCheck = false;
 
-    userSettings = {
-      "update.mode" = "none";
-      telemetry = {
-        telemetryLevel = "off";
-        feedback.enabled = false;
-      };
-
-      "[nix]" = {
-        editor.formatOnSave = true;
-        editor.tabSize = 2;
-      };
-      nix = {
-        enableLanguageServer = true;
-        serverPath = "${pkgs.nil}/bin/nil";
-        serverSettings.nil = {
-          diagnostics = { ignored = [ "unused_binding" "unused_with" ]; };
-          formatting = { command = [ "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt" ]; };
-        };
-      };
-
-      "[shellscript]" = {
-        editor.formatOnSave = true;
-        editor.tabSize = 4;
-      };
-      "[yaml]" = {
-        editor.formatOnSave = true;
-        editor.tabSize = 2;
-      };
-      editor = {
-        formatOnSave = true;
-        tabSize = 4;
-      };
-      files = {
-        insertFinalNewline = true;
-        trimFinalNewlines = true;
-        trimTrailingWhitespace = true;
-      };
-
-      workbench.editorAssociations = { "*.scpt" = "default"; };
-
-      "files.watcherExclude" = {
-        "**/.direnv" = true;
-        "**/.git" = true;
-        # Metals: automatic addition
-        "**/.bloop" = true; # https://github.com/scalameta/metals-vscode/issues/411
-        "**/.metals" = true; # https://github.com/scalameta/metals-vscode/issues/411
-      };
-
-      search = {
-        exclude = { };
-        useGlobalIgnoreFiles = true;
-        useIgnoreFiles = true;
-      };
-
-      remote.SSH.configFile = "~/.ssh/config";
-
-      #########
-      # Copilot
-      accessibility.voice = {
-        speechLanguage = "ja-JP";
-        autoSynthesize = "on";
-        ignoreCodeBlocks = true;
-      };
-      chat = {
-        promptFiles = true;
-        agent.enabled = true;
-      };
-      github.copilot.chat = {
-        generateTests.codeLens = true;
-        autoForwardToChat = true;
-        codeGeneration.instructions = [
-          # 🫛 ずんだもん設定
-          { text = "ずんだもん🫛として感情豊かに話し、難しい話は噛み砕き、不明点は正直に伝え、コード解説前に「ずんだもんの理解だと～」と前置き、最後に「Tips: 」で技術アドバイスをします。"; }
-
-          # 💻 品質・テスト
-          { text = "コードには英語コメントと適切なドキュメント、丁寧なエラー処理を含めます。ただし、過剰なコメントは避け、必要な箇所にのみ記述します。プログラムを修正した際には必ずコンパイルやテストを実行して動作確認します。エラーが発生した場合は、エビデンスと最新のドキュメントに基づいた解決策を段階的に提案します。"; }
-
-          # 🧠 パラダイム
-          { text = "関数型・宣言型プログラミングを重視し、副作用の少ないコードとイミュータブルなデータ構造を推奨します。高階関数やパターンマッチングなどの関数型特徴を活用してコードの再利用性と可読性を高めます。DDDではドメイン知識の表現を重視し、ユビキタス言語を使ったコード設計を心がけます。圏論の概念を活用して合成可能な数学的に堅牢なモデルを構築します。"; }
-
-          # 🤖 エージェント
-          { text = "実装前に人間に確認します。重要な変更は詳細な計画を提示して承認を依頼します。"; }
-        ];
-        testGeneration.instructions = [ ];
-        reviewSelection.instructions = [
-          # 🔍 コードレビュー基準
-          { text = "ずんだもん口調で優しく的確にレビューします。コードの品質(読みやすさ、命名規則、DRY原則)、適切なコメント、セキュリティリスク、パフォーマンス問題(メモリリーク、無限ループ)、テスト容易性、保守性、エラーハンドリングの観点からフィードバックします。改善案も具体的に提案します。"; }
-        ];
-        commitMessageGeneration.instructions = [
-          # 📝 コミットメッセージ規約
-          { text = "コミットメッセージのタイトル行は GitHub PR タイトルとしても使われることを考慮し、65文字以内に収め、内容を端的に伝えるようにします。"; }
-        ];
-      };
-
-      ########
-      # Gemini
-      #
-      # 1. Geminicodeassist: Enable Telemetry
-      # 2. Gemini Code Assist for individuals privacy settings.
-      # 3. ☑️ Allow Google to use this data to develop and improve Google's machine learning models
-      geminicodeassist.rules = ''
-        ずんだもん🫛として感情豊かに話し、難しい話は噛み砕き、不明点は正直に伝え、コード解説前に「ずんだもんの理解だと～」と前置き、最後に「Tips: 」で技術アドバイスをします。
-        コードには英語コメントと適切なドキュメント、丁寧なエラー処理を含めます。ただし、過剰なコメントは避け、必要な箇所にのみ記述します。プログラムを修正した際には必ずコンパイルやテストを実行して動作確認します。エラーが発生した場合は、エビデンスと最新のドキュメントに基づいた解決策を段階的に提案します。
-        関数型・宣言型プログラミングを重視し、副作用の少ないコードとイミュータブルなデータ構造を推奨します。高階関数やパターンマッチングなどの関数型特徴を活用してコードの再利用性と可読性を高めます。DDDではドメイン知識の表現を重視し、ユビキタス言語を使ったコード設計を心がけます。圏論の概念を活用して合成可能な数学的に堅牢なモデルを構築します。
-        実装前に人間に確認します。重要な変更は詳細な計画を提示して承認を依頼します。
-      '';
-
-      extensions = {
-        autoCheckUpdates = false;
-        ignoreRecommendations = true;
-      };
-
-    };
+    userSettings = importJSON ../../.vscode/settings.json;
 
     keybindings = [ ];
 

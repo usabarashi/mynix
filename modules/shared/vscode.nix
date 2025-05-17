@@ -27,7 +27,11 @@ let
   '';
 in
 {
-  home.packages = with pkgs; [ vscode-from-devshell ];
+  home.packages = with pkgs; [
+    nil
+    nixpkgs-fmt
+    vscode-from-devshell
+  ];
 
   programs.vscode = {
     enable = true;
@@ -38,7 +42,16 @@ in
     enableUpdateCheck = false;
     enableExtensionUpdateCheck = false;
 
-    userSettings = importJSON ../../.vscode/settings.json;
+    userSettings = lib.recursiveUpdate (importJSON ../../.vscode/settings.json) {
+      nix = {
+        enableLanguageServer = true;
+        serverPath = "${pkgs.nil}/bin/nil";
+        serverSettings.nil = {
+          diagnostics = { ignored = [ "unused_binding" "unused_with" ]; };
+          formatting = { command = [ "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt" ]; };
+        };
+      };
+    };
 
     keybindings = [ ];
 

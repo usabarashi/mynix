@@ -1,29 +1,25 @@
 { lib, pkgs, ... }:
 
 let
-  unstable_20240709 = import
+  cyberduck = (import
     (builtins.fetchGit {
-      name = "unstable-20240709";
+      # See: https://www.nixhub.io/packages/cyberduck
+      name = "unstable-9.1.2.42722";
       url = "https://github.com/NixOS/nixpkgs/";
       ref = "refs/heads/nixpkgs-unstable";
-      rev = "05bbf675397d5366259409139039af8077d695ce";
+      rev = "eaeed9530c76ce5f1d2d8232e08bec5e26f18ec1";
     })
-    {
-      system = "aarch64-darwin";
-    };
-  cyberduck = unstable_20240709.cyberduck;
+    { system = "aarch64-darwin"; }).cyberduck;
 
-  unstable_20240514 = import
+  dbeaver = (import
     (builtins.fetchGit {
-      name = "unstable-20240514";
+      # See: https://www.nixhub.io/packages/dbeaver
+      name = "unstable-22.2.2";
       url = "https://github.com/NixOS/nixpkgs/";
       ref = "refs/heads/nixpkgs-unstable";
-      rev = "0c19708cf035f50d28eb4b2b8e7a79d4dc52f6bb";
+      rev = "3281bec7174f679eabf584591e75979a258d8c40";
     })
-    {
-      system = "aarch64-darwin";
-    };
-  dbeaver = unstable_20240514.dbeaver;
+    { system = "aarch64-darwin"; }).dbeaver;
 in
 {
   programs.home-manager.enable = true;
@@ -35,6 +31,7 @@ in
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
     "vscode"
+    "vscode-insiders"
   ];
 
   home.packages = with pkgs; [

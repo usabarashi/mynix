@@ -4,6 +4,17 @@
 let
   inherit (pkgs.lib.trivial) importJSON importTOML mergeAttrs;
 
+  # See: https://nixos.wiki/wiki/Visual_Studio_Code
+  vscode-insiders = (pkgs.vscode.override { isInsiders = true; }).overrideAttrs (oldAttrs: rec {
+    src = (builtins.fetchTarball {
+      url = "https://code.visualstudio.com/sha/download?build=insider&os=darwin-universal";
+      sha256 = "sha256:05i1mlzhbpjz7397rrdyqw9v9gcihvxqzj3hf0al6c770dmswgfy";
+    });
+    version = "latest";
+
+    #buildInputs = oldAttrs.buildInputs ++ [ pkgs.krb5 ];
+  });
+
   vscode-from-devshell = pkgs.writeShellScriptBin "codefd" ''
     #!/bin/sh
 
@@ -36,6 +47,7 @@ in
   programs.vscode = {
     enable = true;
     mutableExtensionsDir = false;
+    package = pkgs.vscode;
   };
 
   programs.vscode.profiles.default = {

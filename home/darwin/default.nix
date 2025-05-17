@@ -15,6 +15,7 @@ in
     "discord"
     "slack"
     "vscode"
+    "vscode-insiders"
     "zoom"
   ];
 

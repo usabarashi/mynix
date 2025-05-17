@@ -50,6 +50,7 @@ in
       ".DS_Store"
       ".direnv"
       ".env"
+      ".envrc"
     ];
   };
 }

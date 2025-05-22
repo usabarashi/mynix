@@ -212,8 +212,8 @@ in
       {
         name = "metals";
         publisher = "scalameta";
-        version = "1.50.1";
-        sha256 = "sha256-gOC3YLOLtb3+sTeSoLfZrOsLjNtLOyR2Nk7a7KLhDiU=";
+        version = "1.51.1";
+        sha256 = "sha256-ychm4/ikE1VMj+y4gj153VJeBDZGb65AeITteXs58aQ=";
       }
       {
         name = "scala";
@@ -229,8 +229,8 @@ in
       {
         name = "geminicodeassist";
         publisher = "google";
-        version = "2.32.0";
-        sha256 = "sha256-FRf1DdcDvlxds0RPM8f7kV7cGomJVVM8gx3Mg7O8ALQ=";
+        version = "2.33.0";
+        sha256 = "sha256-xs5fPMvTK67EvZ3A4sSMyv9+Pb5ZvO4osgW5mCuF+IE=";
       }
       # Copilot
       {

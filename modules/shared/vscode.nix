@@ -208,6 +208,13 @@ in
         version = "2025.4.0";
         sha256 = "sha256-/yQbmZTnkks1gvMItEApRzfk8Lczjq+JC5rnyJxr6fo=";
       }
+      # Rust
+      {
+        name = "rust-analyzer";
+        publisher = "rust-lang";
+        version = "0.3.2474";
+        sha256 = "sha256-I/4vwTeJwDsj0R51nvuCZrB0BGSR7CtE0DVi3R6jVsA";
+      }
       # Scala
       {
         name = "metals";

@@ -236,8 +236,8 @@ in
       {
         name = "geminicodeassist";
         publisher = "google";
-        version = "2.33.0";
-        sha256 = "sha256-xs5fPMvTK67EvZ3A4sSMyv9+Pb5ZvO4osgW5mCuF+IE=";
+        version = "2.35.0";
+        sha256 = "sha256-4l1YKwYPkSShEJVoN+4m8SUQXLC5V3ioPNAKDuTVDsk=";
       }
       # Copilot
       {

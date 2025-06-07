@@ -1,5 +1,7 @@
 { ... }:
 {
+  nixpkgs.config.allowUnfree = true;
+  
   users.users.gen = {
     home = "/Users/gen";
   };

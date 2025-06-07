@@ -5,6 +5,8 @@ let
   inherit (pkgs.lib.trivial) importJSON mergeAttrs;
   inherit (pkgs.vscode-utils) extensionFromVscodeMarketplace extensionsFromVscodeMarketplace;
 
+  claudeCodeExtension = pkgs.claude-code-vscode-extension;
+
   nixpkgsExtensions = with pkgs.vscode-extensions; [
     # Basic extensions
     streetsidesoftware.code-spell-checker
@@ -90,13 +92,7 @@ let
       sha256 = "sha256-XW7BiUtqFH758I5DDRU2NPdESJC6RfTDAuUA4myY734=";
     }
 
-    # LLM
-    {
-      name = "geminicodeassist";
-      publisher = "google";
-      version = "2.35.0";
-      sha256 = "sha256-4l1YKwYPkSShEJVoN+4m8SUQXLC5V3ioPNAKDuTVDsk=";
-    }
+    # LLM - GitHub Copilot
     {
       name = "copilot";
       publisher = "github";
@@ -121,10 +117,19 @@ let
       version = "0.5.0";
       sha256 = "sha256-gbesiqyKWPlEPDyAmTgDSbMN9rWRkq1Trsih0gLgPr0=";
     }
+    # LLM - Google Gemini
+    {
+      name = "geminicodeassist";
+      publisher = "google";
+      version = "2.35.0";
+      sha256 = "sha256-4l1YKwYPkSShEJVoN+4m8SUQXLC5V3ioPNAKDuTVDsk=";
+    }
+
+
   ];
 
   # Combine all extensions
-  extensions = nixpkgsExtensions ++ marketplaceExtensions;
+  extensions = nixpkgsExtensions ++ marketplaceExtensions ++ [ claudeCodeExtension ];
 
   # See: https://nixos.wiki/wiki/Visual_Studio_Code
   vscode-insiders = (pkgs.vscode.override { isInsiders = true; }).overrideAttrs (oldAttrs: rec {

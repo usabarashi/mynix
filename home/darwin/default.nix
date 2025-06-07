@@ -17,6 +17,7 @@ in
     "slack"
     "vscode"
     "vscode-insiders"
+    "vscode-extension-claude-code"
     "zoom"
   ];
 

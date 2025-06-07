@@ -12,6 +12,7 @@ in
   };
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "claude-code"
     "discord"
     "slack"
     "vscode"
@@ -19,11 +20,14 @@ in
     "zoom"
   ];
 
+  nixpkgs.overlays = [ (import ../../modules/shared/llm.nix) ];
+
   home.packages = with pkgs;
     [
+      customed-url-schema-iina
       discord
       iina
-      customed-url-schema-iina
+      overlay-claude-code # 1.0.11
       scala-cli
       slack
       zoom-us

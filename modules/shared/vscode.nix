@@ -2,7 +2,7 @@
 { config, pkgs, lib, ... }:
 
 let
-  inherit (pkgs.lib.trivial) importJSON importTOML mergeAttrs;
+  inherit (pkgs.lib.trivial) importJSON mergeAttrs;
   inherit (pkgs.vscode-utils) extensionFromVscodeMarketplace extensionsFromVscodeMarketplace;
 
   nixpkgsExtensions = with pkgs.vscode-extensions; [

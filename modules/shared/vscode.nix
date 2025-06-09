@@ -5,7 +5,24 @@ let
   inherit (pkgs.lib.trivial) importJSON mergeAttrs;
   inherit (pkgs.vscode-utils) extensionFromVscodeMarketplace extensionsFromVscodeMarketplace;
 
-  claudeCodeExtension = pkgs.claude-code-vscode-extension;
+  alloyExtensionV6 = import ../../packages/alloy-extension-v6/default.nix { inherit pkgs; };
+  claudeCodeExtension = pkgs.vscode-utils.buildVscodeExtension {
+    pname = "claude-code";
+    version = pkgs.claude-code.version;
+    src = pkgs.runCommand "claude-code.zip" { } ''
+      cp "${pkgs.claude-code}/lib/node_modules/@anthropic-ai/claude-code/vendor/claude-code.vsix" $out
+    '';
+    vscodeExtUniqueId = "Anthropic.claude-code";
+    vscodeExtPublisher = "Anthropic";
+    vscodeExtName = "claude-code";
+
+    meta = {
+      description = "Claude Code VS Code Extension";
+      homepage = "https://claude.ai/code";
+      license = pkgs.lib.licenses.unfree;
+      platforms = pkgs.lib.platforms.all;
+    };
+  };
 
   nixpkgsExtensions = with pkgs.vscode-extensions; [
     # Basic extensions
@@ -45,13 +62,7 @@ let
       sha256 = "sha256-i4r6tZtOdt1ZzTeITUprtOQl6RncKMhnd4m+BqYqgBk=";
     }
 
-    # Programming Languages - Alloy
-    {
-      name = "alloy";
-      publisher = "ArashSahebolamri";
-      version = "0.7.1";
-      sha256 = "sha256-svHFOCEDZHSLKzLUU2ojDVkbLTJ7hJ75znWuBV5GFQM=";
-    }
+    # Programming Languages - Alloy (replaced with custom v6 package)
     {
       name = "alloy-vscode";
       publisher = "DongyuZhao";
@@ -129,7 +140,7 @@ let
   ];
 
   # Combine all extensions
-  extensions = nixpkgsExtensions ++ marketplaceExtensions ++ [ claudeCodeExtension ];
+  extensions = nixpkgsExtensions ++ marketplaceExtensions ++ [ alloyExtensionV6 claudeCodeExtension ];
 
   # See: https://nixos.wiki/wiki/Visual_Studio_Code
   vscode-insiders = (pkgs.vscode.override { isInsiders = true; }).overrideAttrs (oldAttrs: rec {

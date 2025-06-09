@@ -21,14 +21,13 @@ in
     "zoom"
   ];
 
-  nixpkgs.overlays = [ (import ../../modules/shared/llm.nix) ];
 
   home.packages = with pkgs;
     [
+      claude-code
       customed-url-schema-iina
       discord
       iina
-      overlay-claude-code # 1.0.11
       scala-cli
       slack
       zoom-us

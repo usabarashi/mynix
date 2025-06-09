@@ -30,11 +30,14 @@ in
   };
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "claude-code"
     "vscode"
     "vscode-insiders"
+    "vscode-extension-claude-code"
   ];
 
   home.packages = with pkgs; [
+    claude-code
     cyberduck
     dbeaver
     scala-cli
@@ -43,6 +46,7 @@ in
   imports = [
     ../../modules/shared/container.nix
     ../../modules/darwin/karabiner.nix
+    ../../modules/shared/claude-code.nix
     ../../modules/shared/git.nix
     ../../modules/shared/neovim.nix
     ../../modules/shared/ssh.nix

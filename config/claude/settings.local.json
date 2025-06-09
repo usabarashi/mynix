@@ -1,0 +1,27 @@
+{
+  "cleanupPeriodDays": 30,
+  "env": {
+    "BASH_DEFAULT_TIMEOUT_MS": "300000",
+    "BASH_MAX_TIMEOUT_MS": "1200000",
+    "DISABLE_AUTOUPDATER": "1"
+  },
+  "includeCoAuthoredBy": true,
+  "permissions": {
+    "allow": [
+      "Bash(cat:*)",
+      "Bash(find:*)",
+      "Bash(git:*)",
+      "Bash(ls:*)",
+      "WebFetch(domain:github.com)"
+    ],
+    "deny": [
+      "Bash(rm -rf /)",
+      "Bash(rm -rf ~)",
+      "Bash(sudo rm -rf *)",
+      "Edit(~/.ssh/*)",
+      "Edit(/etc/*)",
+      "Write(~/.ssh/*)",
+      "Write(/etc/*)"
+    ]
+  }
+}

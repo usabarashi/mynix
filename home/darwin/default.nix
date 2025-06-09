@@ -36,6 +36,7 @@ in
   imports = [
     #../../modules/shared/container.nix
     ../../modules/darwin/karabiner.nix
+    ../../modules/shared/claude-code.nix
     ../../modules/shared/git.nix
     ../../modules/shared/neovim.nix
     ../../modules/shared/shell.nix

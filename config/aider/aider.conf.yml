@@ -1,0 +1,9 @@
+# ~/.aider.conf.yml
+
+# See: https://aider.chat/docs/llms/gemini.html
+model: gemini
+
+# See: https://aider.chat/docs/config/aider_conf.html
+chat-language: japanese
+stream: true
+verify-ssl: true

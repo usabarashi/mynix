@@ -100,7 +100,7 @@ let
       name = "remote-ssh";
       publisher = "ms-vscode-remote";
       version = "0.120.0";
-      sha256 = "sha256-XW7BiUtqFH758I5DDRU2NPdESJC6RfTDAuUA4myY734=";
+      sha256 = "sha256-D9YmLKGDtIb2wGfLNRbczqL4fzLASbZC/563ewzqGV0=";
     }
 
     # LLM - GitHub Copilot

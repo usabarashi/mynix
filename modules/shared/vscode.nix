@@ -16,7 +16,6 @@ let
     sha256 = "sha256-svHFOCEDZHSLKzLUU2ojDVkbLTJ7hJ75znWuBV5GFQM=";
   }).overrideAttrs (oldAttrs: {
     postPatch = (oldAttrs.postPatch or "") + ''
-      # Replace the original JAR with Alloy 6.2.0
       if [ -f org.alloytools.alloy.dist.jar ]; then
         cp ${alloyJar} org.alloytools.alloy.dist.jar
       fi
@@ -77,6 +76,14 @@ let
       publisher = "hediet";
       version = "1.9.0";
       sha256 = "sha256-i4r6tZtOdt1ZzTeITUprtOQl6RncKMhnd4m+BqYqgBk=";
+    }
+
+    # Programming Languages - Alloy
+    {
+      name = "alloy-vscode";
+      publisher = "DongyuZhao";
+      version = "0.1.1";
+      sha256 = "sha256-KhotnrJdW6i0X+sEbzfxSfVQ8CYQrWt2wpW5igZkCn8=";
     }
 
     # Programming Languages - Elm
@@ -145,8 +152,6 @@ let
       version = "2.35.0";
       sha256 = "sha256-4l1YKwYPkSShEJVoN+4m8SUQXLC5V3ioPNAKDuTVDsk=";
     }
-
-
   ];
 
   # Combine all extensions

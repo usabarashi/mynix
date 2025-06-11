@@ -5,7 +5,24 @@ let
   inherit (pkgs.lib.trivial) importJSON mergeAttrs;
   inherit (pkgs.vscode-utils) extensionFromVscodeMarketplace extensionsFromVscodeMarketplace;
 
-  alloyExtensionV6 = import ../../packages/alloy-extension-v6/default.nix { inherit pkgs; };
+  alloyJar = pkgs.fetchurl {
+    url = "https://github.com/AlloyTools/org.alloytools.alloy/releases/download/v6.2.0/org.alloytools.alloy.dist.jar";
+    sha256 = "13dpxl0ri6ldcaaa60n75lj8ls3fmghw8d8lqv3xzglkpjsir33b";
+  };
+  alloyExtension = (pkgs.vscode-utils.extensionFromVscodeMarketplace {
+    name = "alloy";
+    publisher = "ArashSahebolamri";
+    version = "0.7.1";
+    sha256 = "sha256-svHFOCEDZHSLKzLUU2ojDVkbLTJ7hJ75znWuBV5GFQM=";
+  }).overrideAttrs (oldAttrs: {
+    postPatch = (oldAttrs.postPatch or "") + ''
+      # Replace the original JAR with Alloy 6.2.0
+      if [ -f org.alloytools.alloy.dist.jar ]; then
+        cp ${alloyJar} org.alloytools.alloy.dist.jar
+      fi
+    '';
+  });
+
   claudeCodeExtension = pkgs.vscode-utils.buildVscodeExtension {
     pname = "claude-code";
     version = pkgs.claude-code.version;
@@ -62,13 +79,6 @@ let
       sha256 = "sha256-i4r6tZtOdt1ZzTeITUprtOQl6RncKMhnd4m+BqYqgBk=";
     }
 
-    # Programming Languages - Alloy (replaced with custom v6 package)
-    {
-      name = "alloy-vscode";
-      publisher = "DongyuZhao";
-      version = "0.1.6";
-      sha256 = "sha256-wYMxjMY7colRKWb0qDpMC07+hYhIxh5KcibO43yczPs=";
-    }
     # Programming Languages - Elm
     {
       name = "vscode-test-explorer";
@@ -140,7 +150,7 @@ let
   ];
 
   # Combine all extensions
-  extensions = nixpkgsExtensions ++ marketplaceExtensions ++ [ alloyExtensionV6 claudeCodeExtension ];
+  extensions = nixpkgsExtensions ++ marketplaceExtensions ++ [ alloyExtension claudeCodeExtension ];
 
   # See: https://nixos.wiki/wiki/Visual_Studio_Code
   vscode-insiders = (pkgs.vscode.override { isInsiders = true; }).overrideAttrs (oldAttrs: rec {

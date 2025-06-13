@@ -2,7 +2,7 @@
 { config, pkgs, ... }:
 
 let
-  local-cleanup = pkgs.writeShellScriptBin "git-local-cleanup" ''
+  git-clean = pkgs.writeShellScriptBin "git-clean" ''
     #!/bin/sh
 
     # Identify merged branches that can be deleted
@@ -33,7 +33,7 @@ let
 in
 {
   home.packages = [
-    local-cleanup
+    git-clean
   ];
 
   programs.git = {
@@ -50,7 +50,6 @@ in
       ".DS_Store"
       ".direnv"
       ".env"
-      ".envrc"
     ];
   };
 }

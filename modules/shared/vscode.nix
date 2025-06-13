@@ -191,6 +191,7 @@ let
   '';
 in
 {
+
   home.packages = with pkgs; [
     nil
     nixpkgs-fmt
@@ -216,6 +217,9 @@ in
           formatting = { command = [ "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt" ]; };
         };
       };
+      # MCP configuration
+      "chat.mcp.discovery.enabled" = true;
+      "chat.agent.enabled" = true;
     };
 
     keybindings = [ ];

@@ -24,7 +24,6 @@ in
 
   home.packages = with pkgs;
     [
-      claude-code
       customed-url-schema-iina
       discord
       iina
@@ -36,12 +35,13 @@ in
   imports = [
     #../../modules/shared/container.nix
     ../../modules/darwin/karabiner.nix
-    ../../modules/shared/claude-code.nix
     ../../modules/shared/git.nix
+    ../../modules/shared/llm.nix
     ../../modules/shared/neovim.nix
     ../../modules/shared/shell.nix
     ../../modules/shared/ssh.nix
     ../../modules/shared/vscode.nix
   ];
+
 
 }

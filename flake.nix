@@ -31,6 +31,7 @@
               ];
               home-manager.useGlobalPkgs = false;
               home-manager.useUserPackages = true;
+              home-manager.backupFileExtension = "backup";
               home-manager.users.gen = import ./home/darwin;
             }
             mac-app-util.darwinModules.default
@@ -48,6 +49,7 @@
               ];
               home-manager.useGlobalPkgs = false;
               home-manager.useUserPackages = true;
+              home-manager.backupFileExtension = "backup";
               home-manager.users.motoki_kamimura = import ./home/work;
             }
             mac-app-util.darwinModules.default

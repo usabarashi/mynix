@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, vdh-cli, ... }:
 
 let
   customed-url-schema-iina = import ../../packages/custom-url-schema-iina/default.nix { inherit (pkgs) stdenv; };
@@ -29,6 +29,7 @@ in
       iina
       scala-cli
       slack
+      vdh-cli.packages.aarch64-darwin.default
       zoom-us
     ];
 
@@ -38,6 +39,7 @@ in
     ../../modules/shared/git.nix
     ../../modules/shared/llm.nix
     ../../modules/shared/neovim.nix
+    ../../modules/shared/nix.nix
     ../../modules/shared/shell.nix
     ../../modules/shared/ssh.nix
     ../../modules/shared/vscode.nix

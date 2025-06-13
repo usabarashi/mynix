@@ -15,9 +15,13 @@
       url = "github:hraban/mac-app-util";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    vdh-cli = {
+      url = "github:usabarashi/vdh-cli";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, nix-darwin, home-manager, mac-app-util, ... }:
+  outputs = { self, nixpkgs, nix-darwin, home-manager, mac-app-util, vdh-cli, ... }:
     {
       darwinConfigurations = {
         H3JN70RHWY = nix-darwin.lib.darwinSystem {
@@ -33,6 +37,7 @@
               home-manager.useUserPackages = true;
               home-manager.backupFileExtension = "backup";
               home-manager.users.gen = import ./home/darwin;
+              home-manager.extraSpecialArgs = { inherit vdh-cli; };
             }
             mac-app-util.darwinModules.default
           ];

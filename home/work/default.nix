@@ -22,7 +22,6 @@
   imports = [
     ../../modules/shared/container.nix
     ../../modules/darwin/karabiner.nix
-    ../../modules/shared/aider.nix
     ../../modules/shared/llm.nix
     ../../modules/shared/git.nix
     ../../modules/shared/neovim.nix

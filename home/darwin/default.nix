@@ -28,7 +28,6 @@ in
       discord
       iina
       slack
-      tmux
       vdh-cli.packages.aarch64-darwin.default
       zoom-us
     ];

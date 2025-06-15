@@ -27,8 +27,8 @@ in
       customed-url-schema-iina
       discord
       iina
-      scala-cli
       slack
+      tmux
       vdh-cli.packages.aarch64-darwin.default
       zoom-us
     ];

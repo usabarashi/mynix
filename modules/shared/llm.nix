@@ -11,6 +11,12 @@
     opencode
   ];
 
+  home.file = {
+    ".aider.conf.yml" = {
+      source = ../../config/aider/aider.conf.yml;
+    };
+  };
+
   # Claude Code Configuration
   #
   # Note: MCP servers cannot be configured via JSON files.
@@ -40,4 +46,10 @@
     };
   };
 
+  home.file = {
+    # See: https://github.com/opencode-ai/opencode
+    "config/opencode/.opencode.json" = {
+      source = ./../../config/opencode/.opencode.json;
+    };
+  };
 }

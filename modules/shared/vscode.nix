@@ -125,14 +125,14 @@ let
     {
       name = "copilot";
       publisher = "github";
-      version = "1.297.0";
-      sha256 = "sha256-UVL0Yf8MSY7ETOxmEK+dljrOQL9ctUWVhbYdr0v00b0=";
+      version = "1.335.0";
+      sha256 = "sha256-GqUegNF1XIpEaQy+0v+TTyIR+EPaeXKVpH4QnvxXt9c=";
     }
     {
       name = "copilot-chat";
       publisher = "github";
-      version = "0.27.0";
-      sha256 = "sha256-i7KKW+aM8P1nrgnLZssgAlKm1kaQyeh285EnoN9Bwps=";
+      version = "0.28.0";
+      sha256 = "sha256-Pc04vtCSPlXALPnFtgQcEVa+exzfkYqFh/b8K3bUBJg=";
     }
     {
       name = "vscode-speech";
@@ -150,8 +150,8 @@ let
     {
       name = "geminicodeassist";
       publisher = "google";
-      version = "2.35.0";
-      sha256 = "sha256-4l1YKwYPkSShEJVoN+4m8SUQXLC5V3ioPNAKDuTVDsk=";
+      version = "2.36.0";
+      sha256 = "sha256-9qNYsTCc7NiWPP9fW2GNHNglRA/wo4eYYtbB9j9RaM4=";
     }
   ];
 

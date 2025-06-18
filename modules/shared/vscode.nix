@@ -191,17 +191,14 @@ in
   programs.vscode.profiles.default = {
     enableUpdateCheck = false;
     enableExtensionUpdateCheck = false;
-    userSettings = { }; # Settings managed by symlinked file
+    # userSettings = { }; # Settings managed by symlinked file
     keybindings = [ ];
     extensions = extensions;
   };
 
-  home.file.".vscode/settings.json" =
-    if useSymlinks then {
-      source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/.vscode/settings.json";
-    } else {
-      source = ../../.vscode/settings.json;
-    };
+  home.file."Library/Application Support/Code/User/settings.json" = lib.mkForce {
+    source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/Code/User/settings.json";
+  };
 
   home.activation.vscodeVimConfig = config.lib.dag.entryAfter [ "writeBoundary" ] ''
     echo "Setting VSCode Vim Extension configuration..."

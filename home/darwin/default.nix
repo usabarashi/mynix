@@ -1,4 +1,4 @@
-{ lib, pkgs, vdh-cli, ... }:
+{ lib, pkgs, vdh-cli, repoPath ? null, ... }:
 
 let
   customed-url-schema-iina = import ../../packages/custom-url-schema-iina/default.nix { inherit (pkgs) stdenv; };

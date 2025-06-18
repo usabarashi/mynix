@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, repoPath ? null, ... }:
 
 {
   programs.home-manager.enable = true;

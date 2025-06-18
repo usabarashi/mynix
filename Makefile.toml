@@ -1,5 +1,6 @@
 [env]
 HOST = { script = ['if [[ $(uname) == "Darwin" ]]; then scutil --get ComputerName; else hostname; fi'] }
+MYNIX_REPO_PATH = { script = ["pwd"] }
 
 [tasks.apply]
 mac_alias = "darwin:apply"
@@ -14,6 +15,6 @@ env = { HOST = "Mac093" }
 
 [tasks."darwin:apply"]
 script = '''
-nix build .#darwinConfigurations.${HOST}.system --extra-experimental-features 'nix-command flakes' --debug
-sudo ./result/sw/bin/darwin-rebuild switch --flake ".#${HOST}"
+nix build .#darwinConfigurations.${HOST}.system --extra-experimental-features 'nix-command flakes' --impure
+MYNIX_REPO_PATH="${MYNIX_REPO_PATH}" sudo -E ./result/sw/bin/darwin-rebuild switch --flake ".#${HOST}" --impure
 '''

@@ -1,9 +1,10 @@
 # See: https://github.com/nix-community/home-manager/blob/master/modules/programs/vscode.nix
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, repoPath ? null, ... }:
 
 let
-  inherit (pkgs.lib.trivial) importJSON mergeAttrs;
   inherit (pkgs.vscode-utils) extensionFromVscodeMarketplace extensionsFromVscodeMarketplace;
+
+  useSymlinks = repoPath != null && repoPath != "";
 
   alloyJar = pkgs.fetchurl {
     url = "https://github.com/AlloyTools/org.alloytools.alloy/releases/download/v6.2.0/org.alloytools.alloy.dist.jar";
@@ -157,27 +158,11 @@ let
   # Combine all extensions
   extensions = nixpkgsExtensions ++ marketplaceExtensions ++ [ alloyExtension claudeCodeExtension ];
 
-  # See: https://nixos.wiki/wiki/Visual_Studio_Code
-  vscode-insiders = (pkgs.vscode.override { isInsiders = true; }).overrideAttrs (oldAttrs: rec {
-    src = (builtins.fetchTarball {
-      url = "https://code.visualstudio.com/sha/download?build=insider&os=darwin-universal";
-      sha256 = "sha256:05i1mlzhbpjz7397rrdyqw9v9gcihvxqzj3hf0al6c770dmswgfy";
-    });
-    version = "latest";
-
-    #buildInputs = oldAttrs.buildInputs ++ [ pkgs.krb5 ];
-  });
-
   vscode-from-devshell = pkgs.writeShellScriptBin "codefd" ''
     #!/bin/sh
-
     # codefd - Code From DevShell
-    # This script launches VS Code while preserving the environment variables from the current devShell environment.
-    # When working in a Nix devShell, launching VS Code normally might not inherit all the necessary environment variables.
-    # This script allows you to pass the devShell environment variables directly to VS Code.
-    #
+    # Launches VS Code while preserving devShell environment variables
     # Usage: codefd <project_directory> [VSCode options]
-    # Example: codefd ~/projects/my-nix-project
 
     if [ ! -d "$1" ]; then
       echo "Error: $1 is not a directory" >&2
@@ -191,7 +176,6 @@ let
   '';
 in
 {
-
   home.packages = with pkgs; [
     nil
     nixpkgs-fmt
@@ -207,30 +191,17 @@ in
   programs.vscode.profiles.default = {
     enableUpdateCheck = false;
     enableExtensionUpdateCheck = false;
-
-    userSettings = lib.recursiveUpdate (importJSON ../../.vscode/settings.json) {
-      nix = {
-        enableLanguageServer = true;
-        serverPath = "${pkgs.nil}/bin/nil";
-        serverSettings.nil = {
-          diagnostics = { ignored = [ "unused_binding" "unused_with" ]; };
-          formatting = { command = [ "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt" ]; };
-        };
-      };
-      # MCP configuration
-      "chat.mcp.discovery.enabled" = true;
-      "chat.agent.enabled" = true;
-    };
-
+    userSettings = { }; # Settings managed by symlinked file
     keybindings = [ ];
-
-    # https://marketplace.visualstudio.com/vscode
-    # https://marketplace.visualstudio.com/_apis/public/gallery/publishers/<publisher>/vsextensions/<extension-name>/<version>/vspackage
-    # https://www.vsixhub.com/
-    # Extensions are now automatically loaded from config/vscode/extensions.toml
-    # No need to specify versions or hashes manually
     extensions = extensions;
   };
+
+  home.file.".vscode/settings.json" =
+    if useSymlinks then {
+      source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/.vscode/settings.json";
+    } else {
+      source = ../../.vscode/settings.json;
+    };
 
   home.activation.vscodeVimConfig = config.lib.dag.entryAfter [ "writeBoundary" ] ''
     echo "Setting VSCode Vim Extension configuration..."

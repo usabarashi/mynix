@@ -55,6 +55,27 @@
       "tabSize": 2
     }
   },
+  "// Programming Languages": "$comment",
+  "//// Nix": "$comment",
+  "nix": {
+    "enableLanguageServer": true,
+    "serverPath": "nil",
+    "serverSettings": {
+      "nil": {
+        "diagnostics": {
+          "ignored": [
+            "unused_binding",
+            "unused_with"
+          ]
+        },
+        "formatting": {
+          "command": [
+            "nixpkgs-fmt"
+          ]
+        }
+      }
+    }
+  },
   "// Remote": "$comment",
   "remote": {
     "SSH": {
@@ -62,6 +83,18 @@
     }
   },
   "// LLM": "$comment",
+  "//// MCP (Model Context Protocol)": "$comment",
+  "chat": {
+    "mcp": {
+      "discovery": {
+        "enabled": true
+      }
+    },
+    "agent": {
+      "enabled": true
+    },
+    "promptFiles": true
+  },
   "//// Gemini": "$comment",
   "// Gemini Code Assist for individuals Privacy Notice": "$comment",
   "// 1. Geminicodeassist: Enable Telemetry": "$comment",
@@ -77,12 +110,6 @@
       "ignoreCodeBlocks": true,
       "speechLanguage": "ja-JP"
     }
-  },
-  "chat": {
-    "agent": {
-      "enabled": true
-    },
-    "promptFiles": true
   },
   "github": {
     "copilot": {

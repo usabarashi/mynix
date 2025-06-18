@@ -1,12 +1,12 @@
-{ ... }:
+{ userName, homeDirectory, ... }:
 {
-  users.users.motoki_kamimura = {
-    home = "/Users/motoki_kamimura";
+  users.users.${userName} = {
+    home = homeDirectory;
   };
 
   # See: https://daiderd.com/nix-darwin/manual/
   system = {
-    primaryUser = "motoki_kamimura";
+    primaryUser = userName;
     # See: https://github.com/LnL7/nix-darwin/pull/1069
     stateVersion = 5;
 

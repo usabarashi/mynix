@@ -1,10 +1,10 @@
-{ lib, pkgs, repoPath ? null, ... }:
+{ lib, pkgs, repoPath ? null, userName, homeDirectory, ... }:
 
 {
   programs.home-manager.enable = true;
   home = {
-    username = "motoki_kamimura";
-    homeDirectory = "/Users/motoki_kamimura";
+    username = userName;
+    homeDirectory = homeDirectory;
     stateVersion = "25.05";
   };
 

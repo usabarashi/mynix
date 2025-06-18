@@ -1,4 +1,4 @@
-{ lib, pkgs, vdh-cli, repoPath ? null, ... }:
+{ lib, pkgs, vdh-cli, repoPath ? null, userName, homeDirectory, ... }:
 
 let
   customed-url-schema-iina = import ../../packages/custom-url-schema-iina/default.nix { inherit (pkgs) stdenv; };
@@ -6,8 +6,8 @@ in
 {
   programs.home-manager.enable = true;
   home = {
-    username = "gen";
-    homeDirectory = "/Users/gen";
+    username = userName;
+    homeDirectory = homeDirectory;
     stateVersion = "24.05";
   };
 

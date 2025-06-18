@@ -31,12 +31,15 @@
         if repoPath != "" then repoPath
         else builtins.throw "🫛 MYNIX_REPO_PATH environment variable must be set for multi-user sharing. Please set it to your repository path.";
 
-      # Create darwin system configuration with required parameters for multi-user sharing
       mkDarwinSystem = { system, hostPath, homeModule, userName, includeVdhCli ? true }:
+        let
+          homeDirectory = "/Users/${userName}";
+          hostConfig = import hostPath { inherit userName homeDirectory; };
+        in
         nix-darwin.lib.darwinSystem {
           inherit system;
           modules = [
-            hostPath
+            hostConfig
             home-manager.darwinModules.home-manager
             {
               home-manager.sharedModules = [
@@ -48,6 +51,7 @@
               home-manager.users.${userName} = homeModule;
               home-manager.extraSpecialArgs = {
                 repoPath = actualRepoPath;
+                inherit userName homeDirectory;
               } // (if includeVdhCli then { inherit vdh-cli; } else { });
             }
             mac-app-util.darwinModules.default

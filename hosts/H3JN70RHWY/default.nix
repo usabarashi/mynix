@@ -1,14 +1,14 @@
-{ ... }:
+{ userName, homeDirectory, ... }:
 {
   nixpkgs.config.allowUnfree = true;
-  
-  users.users.gen = {
-    home = "/Users/gen";
+
+  users.users.${userName} = {
+    home = homeDirectory;
   };
 
   # See: https://daiderd.com/nix-darwin/manual/
   system = {
-    primaryUser = "gen";
+    primaryUser = userName;
     # See: https://github.com/LnL7/nix-darwin/pull/1069
     stateVersion = 5;
 

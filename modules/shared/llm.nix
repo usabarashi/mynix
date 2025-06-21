@@ -1,4 +1,4 @@
-{ config, pkgs, lib, repoPath ? null, ... }:
+{ config, pkgs, lib, repoPath, ... }:
 
 {
   home.packages = with pkgs; [
@@ -12,56 +12,37 @@
     opencode
   ];
 
-  # Claude Code Configuration & Dynamic file management
-  #
-  # Note: MCP servers cannot be configured via JSON files.
-  # After applying this configuration, manually add MCP servers using CLI commands.
-  #
-  # MCP Server Scopes (https://docs.anthropic.com/en/docs/claude-code/mcp):
-  # - Local (default): Available only to you in the current project
-  # - Project (-s project): Shared with everyone in the project (stored in .mcp.json)
-  # - User (-s user): Available to you across all projects
-  #
-  # User scope is recommended for personal tools like GitHub access that you want
-  # to use across all your projects without sharing credentials with team members.
-  #
-  # Add GitHub MCP server (user scope):
-  # claude mcp add github -e GITHUB_PERSONAL_ACCESS_TOKEN=$GITHUB_PERSONAL_ACCESS_TOKEN -s user -- github-mcp-server stdio
-  #
-  # List configured MCP servers:
-  # claude mcp list
-  #
-  # Remove MCP server:
-  # claude mcp remove github
+  home.file = {
+    # Aider configuration
+    ".aider.conf.yml" = { source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/aider/aider.conf.yml"; };
 
-  home.file =
-    let
-      # Use symlinks if repoPath is provided, otherwise use source copies
-      useSymlinks = repoPath != null && repoPath != "";
-    in
-    {
-      # Aider configuration - conditional configuration
-      ".aider.conf.yml" =
-        if useSymlinks then {
-          source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/aider/aider.conf.yml";
-        } else {
-          source = ../../config/aider/aider.conf.yml;
-        };
+    # Claude Code Configuration & Dynamic file management
+    #
+    # Note: MCP servers cannot be configured via JSON files.
+    # After applying this configuration, manually add MCP servers using CLI commands.
+    #
+    # MCP Server Scopes (https://docs.anthropic.com/en/docs/claude-code/mcp):
+    # - Local (default): Available only to you in the current project
+    # - Project (-s project): Shared with everyone in the project (stored in .mcp.json)
+    # - User (-s user): Available to you across all projects
+    #
+    # User scope is recommended for personal tools like GitHub access that you want
+    # to use across all your projects without sharing credentials with team members.
+    #
+    # Add GitHub MCP server (user scope):
+    # claude mcp add github -e GITHUB_PERSONAL_ACCESS_TOKEN=$GITHUB_PERSONAL_ACCESS_TOKEN -s user -- github-mcp-server stdio
+    #
+    # List configured MCP servers:
+    # claude mcp list
+    #
+    # Remove MCP server:
+    # claude mcp remove github
 
-      # Claude settings - conditional configuration
-      ".claude/settings.json" =
-        if useSymlinks then {
-          source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/claude/settings.json";
-        } else {
-          source = ../../config/claude/settings.json;
-        };
+    # Claude settings
+    ".claude/CLAUDE.md" = { source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/claude/CLAUDE.md"; };
+    ".claude/settings.json" = { source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/claude/settings.json"; };
 
-      # OpenCode settings - conditional configuration
-      "config/opencode/.opencode.json" =
-        if useSymlinks then {
-          source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/opencode/.opencode.json";
-        } else {
-          source = ../../config/opencode/.opencode.json;
-        };
-    };
+    # OpenCode settings
+    "config/opencode/.opencode.json" = { source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/opencode/.opencode.json"; };
+  };
 }

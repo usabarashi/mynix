@@ -1,10 +1,8 @@
 # See: https://github.com/nix-community/home-manager/blob/master/modules/programs/vscode.nix
-{ config, pkgs, lib, repoPath ? null, ... }:
+{ config, pkgs, lib, repoPath, ... }:
 
 let
   inherit (pkgs.vscode-utils) extensionFromVscodeMarketplace extensionsFromVscodeMarketplace;
-
-  useSymlinks = repoPath != null && repoPath != "";
 
   alloyJar = pkgs.fetchurl {
     url = "https://github.com/AlloyTools/org.alloytools.alloy/releases/download/v6.2.0/org.alloytools.alloy.dist.jar";

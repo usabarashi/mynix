@@ -135,8 +135,8 @@ let
     {
       name = "vscode-speech";
       publisher = "ms-vscode";
-      version = "0.12.1";
-      sha256 = "sha256-fxmaPI7uq7DQlzgJc8RcZzHDOwMuodSCf9TkLU9+/+k=";
+      version = "0.16.0";
+      sha256 = "sha256-JhZWNlGXljsjmT3/xDi9Z7I4a2vsi/9EkWYbnlteE98=";
     }
     {
       name = "vscode-speech-language-pack-ja-jp";
@@ -148,8 +148,8 @@ let
     {
       name = "geminicodeassist";
       publisher = "google";
-      version = "2.36.0";
-      sha256 = "sha256-9qNYsTCc7NiWPP9fW2GNHNglRA/wo4eYYtbB9j9RaM4=";
+      version = "2.37.0";
+      sha256 = "sha256-oJmWxdEN2uTo5Ms3WFrTbosd+DKQq4jrOtPChQjaWe0=";
     }
   ];
 

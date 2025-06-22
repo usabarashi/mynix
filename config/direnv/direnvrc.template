@@ -1,18 +1,14 @@
 # MCP (Model Context Protocol) Environment Variables Template
-# 
+#
 # This file serves as a template for setting up MCP server environment variables.
 # Copy this file to your project root as `.envrc` and fill in the actual values.
-# 
+#
 # Usage:
 #   1. Copy to project root: cp config/mcp/.envrc.template .envrc
 #   2. Fill in your actual API keys and tokens
 #   3. Run: direnv allow
 #
 # Note: Never commit actual API keys to version control!
-
-# Brave Search API Key
-# Get from: https://brave.com/search/api/
-export BRAVE_API_KEY=""
 
 # GitHub Personal Access Token (Classic)
 # Get from: GitHub Settings > Developer settings > Personal access tokens > Tokens (classic)
@@ -22,13 +18,5 @@ export GITHUB_PERSONAL_ACCESS_TOKEN=""
 # Slack Bot Token
 # Get from: https://api.slack.com/apps > Your App > OAuth & Permissions > Bot User OAuth Token
 export SLACK_BOT_TOKEN=""
-
-# Google Drive OAuth2 Credentials
-# Get from: Google Cloud Console > APIs & Services > Credentials
-export GOOGLE_DRIVE_CLIENT_ID=""
-export GOOGLE_DRIVE_CLIENT_SECRET=""
-export GOOGLE_DRIVE_REDIRECT_URI="http://localhost:3000/auth/callback"
-
-# Additional MCP server environment variables can be added here
-# Example:
-# export CUSTOM_MCP_SERVER_API_KEY=""
+export SLACK_TEAM_ID=""
+export SLACK_CHANNEL_IDS=""

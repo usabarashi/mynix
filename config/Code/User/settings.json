@@ -83,7 +83,6 @@
     }
   },
   "// LLM": "$comment",
-  "//// MCP (Model Context Protocol)": "$comment",
   "chat": {
     "mcp": {
       "discovery": {
@@ -97,6 +96,34 @@
     "extensionTools.enabled": true,
     "promptFiles": true,
     "tools.autoApprove": false,
+  },
+  "//// MCP (Model Context Protocol)": "$comment",
+  "mcp": {
+    "servers": {
+      "github": {
+        "type": "stdio",
+        "command": "github-mcp-server",
+        "args": [
+          "stdio"
+        ],
+      },
+      "slack": {
+        "type": "stdio",
+        "command": "docker",
+        "args": [
+          "run",
+          "-i",
+          "--rm",
+          "-e",
+          "SLACK_BOT_TOKEN",
+          "-e",
+          "SLACK_TEAM_ID",
+          "-e",
+          "SLACK_CHANNEL_IDS",
+          "mcp/slack"
+        ],
+      }
+    }
   },
   "//// Gemini": "$comment",
   "// Gemini Code Assist for individuals Privacy Notice": "$comment",

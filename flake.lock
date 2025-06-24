@@ -252,11 +252,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1750730856,
-        "narHash": "sha256-vXGkOXDNDJ92UbUtVdXNfQHI7Oruwdg9rMvFf+SLwvw=",
+        "lastModified": 1750735299,
+        "narHash": "sha256-cdZyLD1igJF+Wtw6O0QhsPuKjce8YhJRFCYHeHs8Kps=",
         "owner": "usabarashi",
         "repo": "voicevox-tts",
-        "rev": "e0c8ccd6061706d0db56f676ecac7b72938b6517",
+        "rev": "0fef230498a1e0e0914cb3d0e49bd5206f59dba7",
         "type": "github"
       },
       "original": {

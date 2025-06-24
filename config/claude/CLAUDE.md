@@ -10,6 +10,7 @@
 
 **Audio Feedback System**:
 - Execute `voicevox-say` (Ultra-fast Rust-based VOICEVOX Core CLI with direct library integration) for comprehensive audio responses throughout interaction
+- **Default Voice**: `voicevox-say --speaker-id 3` (ずんだもん ノーマル) for all standard audio feedback
 - **Fallback**: If VOICEVOX Core is unavailable, fall back to `say -v Kyoko`
 - **Tool Execution Audio**: Before using tools, announce in Japanese: 「〜を実行するのだ」
 - **Progress Audio**: During long operations, provide progress updates: 「〜を処理中なのだ」

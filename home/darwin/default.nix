@@ -1,4 +1,4 @@
-{ lib, pkgs, vdh-cli, repoPath ? null, userName, homeDirectory, ... }:
+{ lib, pkgs, vdh-cli, voicevox-tts, repoPath ? null, userName, homeDirectory, ... }:
 
 let
   customed-url-schema-iina = import ../../packages/custom-url-schema-iina/default.nix { inherit (pkgs) stdenv; };
@@ -29,6 +29,8 @@ in
       iina
       slack
       vdh-cli.packages.aarch64-darwin.default
+      voicevox-tts.packages.aarch64-darwin.default
+      vscode
       zoom-us
     ];
 

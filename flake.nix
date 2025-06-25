@@ -15,8 +15,8 @@
       url = "github:hraban/mac-app-util";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    voicevox-tts = {
-      url = "github:usabarashi/voicevox-tts";
+    voicevox-cli = {
+      url = "github:usabarashi/voicevox-cli";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     vdh-cli = {
@@ -25,7 +25,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nix-darwin, home-manager, mac-app-util, vdh-cli, voicevox-tts, ... }:
+  outputs = { self, nixpkgs, nix-darwin, home-manager, mac-app-util, vdh-cli, voicevox-cli, ... }:
     let
       # Read environment variable for repository path
       # Note: Requires --impure flag for nix build/eval commands to access environment variables
@@ -56,7 +56,7 @@
               home-manager.extraSpecialArgs = {
                 repoPath = actualRepoPath;
                 inherit userName homeDirectory;
-              } // (if includeVdhCli then { inherit vdh-cli; } else { }) // (if includeVoicevoxTts then { inherit voicevox-tts; } else { });
+              } // (if includeVdhCli then { inherit vdh-cli; } else { }) // (if includeVoicevoxTts then { inherit voicevox-cli; } else { });
             }
             mac-app-util.darwinModules.default
           ];

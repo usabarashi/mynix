@@ -1,4 +1,4 @@
-{ lib, pkgs, voicevox-tts, repoPath ? null, userName, homeDirectory, ... }:
+{ lib, pkgs, voicevox-cli, repoPath ? null, userName, homeDirectory, ... }:
 
 {
   programs.home-manager.enable = true;
@@ -17,7 +17,7 @@
 
   home.packages = with pkgs; [
     cyberduck
-    voicevox-tts.packages.aarch64-darwin.default
+    voicevox-cli.packages.aarch64-darwin.default
   ];
 
   imports = [

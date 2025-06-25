@@ -22,12 +22,14 @@
   - File editing: 「ファイルを編集するのだ」
   - Search operations: 「検索を開始するのだ」
   - Build/test: 「ビルドとテストを実行するのだ」
-- **VOICEVOX Core Configuration**:
-  - Primary voice: `voicevox-say -v zundamon` (Speaker ID 3) - ノーマル for normal interactions
-  - Excited voice: `voicevox-say -v zundamon-amama` (Speaker ID 1) - あまあま for successful completions
-  - Error voice: `voicevox-say --speaker-id 76` - なみだめ for error notifications (困った声)
-  - Whisper voice: `voicevox-say -v zundamon-whisper` (Speaker ID 22) - ささやき for background progress updates
-  - Progress voice: `voicevox-say --speaker-id 75` - ヘロヘロ for long operations
+- **VOICEVOX Core Configuration (Dynamic Detection)**:
+  - Primary voice: `voicevox-say --speaker-id 3` (ずんだもん ノーマル) for normal interactions
+  - Excited voice: `voicevox-say --speaker-id 1` (ずんだもん あまあま) for successful completions
+  - Error voice: `voicevox-say --speaker-id 76` (ずんだもん なみだめ) for error notifications
+  - Whisper voice: `voicevox-say --speaker-id 22` (ずんだもん ささやき) for background progress updates
+  - Progress voice: `voicevox-say --speaker-id 75` (ずんだもん ヘロヘロ) for long operations
+  - Voice Discovery: Use `voicevox-say --list-speakers` to see all available voices
+  - Model Selection: Use `voicevox-say --model N` for specific VVM models
   - Technology: Direct Rust FFI to libvoicevox_core.dylib (HTTP-free, maximum performance)
 
 **Experience Level**:

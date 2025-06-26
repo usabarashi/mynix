@@ -42,6 +42,9 @@
         in
         nix-darwin.lib.darwinSystem {
           inherit system;
+          specialArgs = {
+            inherit userName homeDirectory;
+          };
           modules = [
             hostConfig
             home-manager.darwinModules.home-manager

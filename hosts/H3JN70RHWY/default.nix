@@ -1,5 +1,9 @@
 { userName, homeDirectory, ... }:
 {
+  imports = [
+    ../../modules/darwin/blackhole.nix
+  ];
+
   nixpkgs.config.allowUnfree = true;
 
   users.users.${userName} = {
@@ -58,4 +62,7 @@
   programs.zsh.enable = true;
   security.pam.services.sudo_local.touchIdAuth = true;
   time.timeZone = "Asia/Tokyo";
+
+  # BlackHole 2ch Audio Driver
+  programs.blackhole.enable = true;
 }

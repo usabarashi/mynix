@@ -188,7 +188,7 @@
         "commitMessageGeneration": {
           "instructions": [
             {
-              "text": "コミットメッセージのタイトル行は GitHub PR タイトルとしても使われることを考慮し、65文字以内に収め、内容を端的に伝えるようにします。"
+              "text": "Considering that the title line of the commit message will also be used as the GitHub PR title, it should be limited to 65 characters or less to convey the content in a straightforward manner."
             }
           ]
         },

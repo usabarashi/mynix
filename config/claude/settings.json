@@ -8,20 +8,31 @@
   "includeCoAuthoredBy": true,
   "permissions": {
     "allow": [
-      "Bash(cat:*)",
-      "Bash(find:*)",
-      "Bash(git:*)",
-      "Bash(ls:*)",
+      "Bash(voicevox-say:*)",
       "WebFetch(domain:github.com)"
     ],
     "deny": [
-      "Bash(rm -rf /)",
-      "Bash(rm -rf ~)",
-      "Bash(sudo rm -rf *)",
-      "Edit(~/.ssh/*)",
-      "Edit(/etc/*)",
+      "Bash(sudo:*)",
+      "Bash(rm:*)",
+      "Bash(rm -rf:*)",
+      "Bash(git push:*)",
+      "Bash(git commit:*)",
+      "Bash(git reset:*)",
+      "Bash(git rebase:*)",
+      //
+      "Read(.env.*)",
+      "Read(id_rsa)",
+      "Read(id_ed25519)",
+      "Read(**/*token*)",
+      "Read(**/*key*)",
+      //
+      "Write(.env*)",
+      "Write(**/secrets/**)",
       "Write(~/.ssh/*)",
-      "Write(/etc/*)"
+      "Write(/etc/*)",
+      //
+      "Edit(~/.ssh/*)",
+      "Edit(/etc/*)"
     ]
   }
 }

@@ -14,6 +14,4 @@ in
   currentUser = getEnvOrThrow "CURRENT_USER" "CURRENT_USER environment variable must be set. Please ensure whoami is available.";
 
   hostPurpose = builtins.getEnv "HOST_PURPOSE";
-  systemType = builtins.getEnv "SYSTEM_TYPE";
-  arch = builtins.getEnv "MACHINE_ARCH";
 }

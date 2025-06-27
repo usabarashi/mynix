@@ -58,12 +58,12 @@ nix flake show
 | `CURRENT_USER` | ❌ | Auto-detected | Auto-detected via `whoami` | Current user for home directory setup |
 | `MYNIX_REPO_PATH` | ❌ | Auto-detected | Auto-detected via `pwd` | Repository path for config references |
 | `SYSTEM_TYPE` | ❌ | Auto-detected | Auto-detected via `uname -s` | OS type (e.g., `Darwin`) |
-| `MACHINE_ARCH` | ❌ | Auto-detected | Auto-detected via `uname -m` | Architecture (e.g., `arm64`) |
+| `MACHINE_ARCH` | ❌ | Auto-detected | Auto-detected via `uname -m` | Architecture (`arm64`) |
 
 ### Build Requirements
 
 - **Build Flag**: `--impure` (required for environment variable access)
-- **Platform**: macOS (Darwin) with Apple Silicon (aarch64) or Intel (x86_64)
+- **Platform**: macOS (Darwin) with Apple Silicon (aarch64)
 - **Nix Version**: Compatible with flakes and experimental features
 
 ## References

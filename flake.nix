@@ -39,17 +39,10 @@
       lib = nixpkgs.lib;
 
       env = import ./lib/env.nix { inherit lib; };
-      systems = import ./lib/systems.nix { inherit lib; };
-      forAllSystems = lib.genAttrs [
-        "aarch64-darwin"
-        "x86_64-darwin"
-      ];
-      customPackages = forAllSystems (
-        system: import ./packages { pkgs = nixpkgs.legacyPackages.${system}; }
-      );
+      customPackages = import ./packages { pkgs = nixpkgs.legacyPackages.aarch64-darwin; };
 
-      # Pre-process system-specific packages for builders
-      mkCustomPackages = system: customPackages.${system};
+      # Pre-process packages for builders
+      mkCustomPackages = system: customPackages;
       mkFlakeInputs =
         system:
         builtins.mapAttrs (
@@ -81,10 +74,7 @@
       selectedConfig =
         if (builtins.tryEval env.hostPurpose).success then configs.selectConfig env.hostPurpose else null;
 
-      system = systems.detectSystem {
-        systemType = env.systemType;
-        arch = env.arch;
-      };
+      system = builtins.currentSystem;
     in
     {
 

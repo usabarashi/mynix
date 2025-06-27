@@ -1,20 +1,18 @@
 [env]
-HOST = { script = ['if [[ $(uname) == "Darwin" ]]; then scutil --get ComputerName; else hostname; fi'] }
+# Required environment variables (no default values)
+CURRENT_USER = { script = ["whoami"] }
 MYNIX_REPO_PATH = { script = ["pwd"] }
+HOST_PURPOSE = { script = ["echo ${HOST_PURPOSE}"] }
+
+# System detection (for future cross-platform support)
+SYSTEM_TYPE = { script = ["uname -s"] }
+ARCH = { script = ["uname -m"] }
 
 [tasks.apply]
 mac_alias = "darwin:apply"
 
-[tasks."H3JN70RHWY:apply"]
-extend = "darwin:apply"
-env = { HOST = "H3JN70RHWY" }
-
-[tasks."Mac093:apply"]
-extend = "darwin:apply"
-env = { HOST = "Mac093" }
-
 [tasks."darwin:apply"]
 script = '''
-nix build .#darwinConfigurations.${HOST}.system --extra-experimental-features 'nix-command flakes' --impure
-MYNIX_REPO_PATH="${MYNIX_REPO_PATH}" sudo -E ./result/sw/bin/darwin-rebuild switch --flake ".#${HOST}" --impure
+nix build .#darwinConfigurations.default.system --extra-experimental-features 'nix-command flakes' --impure
+MYNIX_REPO_PATH="${MYNIX_REPO_PATH}" sudo -E ./result/sw/bin/darwin-rebuild switch --flake ".#default" --impure
 '''

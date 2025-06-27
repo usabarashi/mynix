@@ -1,8 +1,5 @@
-{ lib, pkgs, vdh-cli, voicevox-cli, repoPath ? null, userName, homeDirectory, ... }:
+{ lib, pkgs, repoPath ? null, userName, homeDirectory, ... }:
 
-let
-  customed-url-schema-iina = import ../../packages/custom-url-schema-iina/default.nix { inherit (pkgs) stdenv; };
-in
 {
   programs.home-manager.enable = true;
   home = {
@@ -11,31 +8,22 @@ in
     stateVersion = "24.05";
   };
 
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "claude-code"
-    "discord"
-    "slack"
-    "vscode"
-    "vscode-insiders"
-    "vscode-extension-claude-code"
-    "zoom"
+
+
+  home.packages = with pkgs; [
+    discord
+    iina
+    slack
+    vscode
+    zoom-us
+    
+    flakeInputs.vdh-cli
+    flakeInputs.voicevox-cli
+    customPackages.custom-url-schema-iina
   ];
 
 
-  home.packages = with pkgs;
-    [
-      customed-url-schema-iina
-      discord
-      iina
-      slack
-      vdh-cli.packages.aarch64-darwin.default
-      voicevox-cli.packages.aarch64-darwin.default
-      vscode
-      zoom-us
-    ];
-
   imports = [
-    #../../modules/shared/container.nix
     ../../modules/darwin/karabiner.nix
     ../../modules/shared/git.nix
     ../../modules/shared/llm.nix

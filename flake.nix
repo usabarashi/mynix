@@ -1,5 +1,5 @@
 {
-  description = "Composition Root";
+  description = "Declarative user environment that eliminates manual setup by defining your entire development and daily-use software stack as code.";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
@@ -23,64 +23,54 @@
       url = "github:usabarashi/vdh-cli";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    customPackages = {
+      url = "./packages";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, nix-darwin, home-manager, mac-app-util, vdh-cli, voicevox-cli, ... }:
+  outputs = inputs@{ nixpkgs, nix-darwin, home-manager, mac-app-util, vdh-cli, voicevox-cli, customPackages, ... }:
     let
-      # Read environment variable for repository path
-      # Note: Requires --impure flag for nix build/eval commands to access environment variables
-      # Usage: nix build .#darwinConfigurations.HOST.system --impure
-      repoPath = builtins.getEnv "MYNIX_REPO_PATH";
-      actualRepoPath =
-        if repoPath != "" then repoPath
-        else builtins.throw "🫛 MYNIX_REPO_PATH environment variable must be set for multi-user sharing. Please set it to your repository path.";
+      lib = nixpkgs.lib;
 
-      mkDarwinSystem = { system, hostPath, homeModule, userName, includeVdhCli ? true, includeVoicevoxTts ? true }:
-        let
-          homeDirectory = "/Users/${userName}";
-          hostConfig = import hostPath { inherit userName homeDirectory; };
-        in
-        nix-darwin.lib.darwinSystem {
-          inherit system;
-          specialArgs = {
-            inherit userName homeDirectory;
-          };
-          modules = [
-            hostConfig
-            home-manager.darwinModules.home-manager
-            {
-              home-manager.sharedModules = [
-                mac-app-util.homeManagerModules.default
-              ];
-              home-manager.useGlobalPkgs = false;
-              home-manager.useUserPackages = true;
-              home-manager.backupFileExtension = "backup";
-              home-manager.users.${userName} = homeModule;
-              home-manager.extraSpecialArgs = {
-                repoPath = actualRepoPath;
-                inherit userName homeDirectory;
-              } // (if includeVdhCli then { inherit vdh-cli; } else { }) // (if includeVoicevoxTts then { inherit voicevox-cli; } else { });
-            }
-            mac-app-util.darwinModules.default
-          ];
-        };
+      env = import ./lib/env.nix { inherit lib; };
+      systems = import ./lib/systems.nix { inherit lib; };
+      builders = import ./lib/builders.nix { inherit lib nix-darwin home-manager mac-app-util inputs customPackages; };
+
+      homeModules = {
+        darwin = import ./home/darwin;
+        work = import ./home/work;
+      };
+      hostPaths = {
+        private = ./hosts/private;
+        work = ./hosts/work;
+      };
+
+      configs = import ./lib/configs.nix { inherit lib homeModules hostPaths; };
+
+      selectedConfig =
+        if (builtins.tryEval env.hostPurpose).success
+        then configs.selectConfig env.hostPurpose
+        else null;
+
+      system = systems.detectSystem {
+        systemType = env.systemType;
+        arch = env.arch;
+      };
     in
     {
-      darwinConfigurations = {
-        H3JN70RHWY = mkDarwinSystem {
-          system = "aarch64-darwin";
-          hostPath = ./hosts/H3JN70RHWY;
-          homeModule = import ./home/darwin;
-          userName = "gen";
-        };
 
-        Mac093 = mkDarwinSystem {
-          system = "aarch64-darwin";
-          hostPath = ./hosts/Mac093;
-          homeModule = import ./home/work;
-          userName = "motoki_kamimura";
-          includeVdhCli = false;
-        };
-      };
+      darwinConfigurations =
+        if selectedConfig != null then {
+          default = builders.mkDarwinSystem {
+            inherit system;
+            userName = env.currentUser;
+            repoPath = env.repoPath;
+            inherit (selectedConfig) homeModule;
+          };
+        } else { };
+
+      nixosConfigurations = { };
+
     };
 }

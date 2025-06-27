@@ -1,4 +1,4 @@
-{ lib, pkgs, voicevox-cli, repoPath ? null, userName, homeDirectory, ... }:
+{ lib, pkgs, repoPath ? null, userName, homeDirectory, ... }:
 
 {
   programs.home-manager.enable = true;
@@ -8,17 +8,13 @@
     stateVersion = "25.05";
   };
 
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "claude-code"
-    "vscode"
-    "vscode-insiders"
-    "vscode-extension-claude-code"
-  ];
 
   home.packages = with pkgs; [
     cyberduck
-    voicevox-cli.packages.aarch64-darwin.default
+    
+    flakeInputs.voicevox-cli
   ];
+
 
   imports = [
     ../../modules/shared/container.nix

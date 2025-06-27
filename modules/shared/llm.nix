@@ -5,19 +5,16 @@ let
 in
 {
   home.packages = with pkgs; [
-    # MCP Server
-    nodejs_24
+    nodejs # npx
     github-mcp-server
     kibela-mcp-server
 
-    # LLM Client
     aider-chat
     claude-code
     opencode
   ];
 
   home.file = {
-    # Aider configuration
     ".aider.conf.yml" = { source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/aider/aider.conf.yml"; };
 
     # Claude Code Configuration & Dynamic file management
@@ -50,7 +47,6 @@ in
     ".claude/CLAUDE.md" = { source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/claude/CLAUDE.md"; };
     ".claude/settings.json" = { source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/claude/settings.json"; };
 
-    # OpenCode settings
     "config/opencode/.opencode.json" = { source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/opencode/.opencode.json"; };
   };
 }

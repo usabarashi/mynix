@@ -1,11 +1,11 @@
 { lib }:
 
 {
-  # Detect system architecture from environment variables
+  # Detect system architecture from environment variables (Darwin only)
   detectSystem =
     { systemType, arch }:
-    if systemType == "Darwin" then
-      (if arch == "arm64" then "aarch64-darwin" else "x86_64-darwin")
+    if systemType == "Darwin" || systemType == "" then
+      (if arch == "arm64" || arch == "" then "aarch64-darwin" else "x86_64-darwin")
     else
-      (if arch == "aarch64" then "aarch64-linux" else "x86_64-linux");
+      builtins.throw "This flake only supports Darwin systems. Detected system: ${systemType}";
 }

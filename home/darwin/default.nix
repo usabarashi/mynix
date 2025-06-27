@@ -4,6 +4,8 @@
   repoPath ? null,
   userName,
   homeDirectory,
+  customPackages,
+  flakeInputs,
   ...
 }:
 
@@ -21,10 +23,11 @@
     slack
     vscode
     zoom-us
-
+  ] ++ [
+    customPackages.custom-url-schema-iina
+  ] ++ [
     flakeInputs.vdh-cli
     flakeInputs.voicevox-cli
-    customPackages.custom-url-schema-iina
   ];
 
   imports = [

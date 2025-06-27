@@ -23,10 +23,6 @@
       url = "github:usabarashi/vdh-cli";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    customPackages = {
-      url = "./packages";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
@@ -37,7 +33,6 @@
       mac-app-util,
       vdh-cli,
       voicevox-cli,
-      customPackages,
       ...
     }:
     let
@@ -45,14 +40,25 @@
 
       env = import ./lib/env.nix { inherit lib; };
       systems = import ./lib/systems.nix { inherit lib; };
+      forAllSystems = lib.genAttrs [ "aarch64-darwin" "x86_64-darwin" ];
+      customPackages = forAllSystems (system: 
+        import ./packages { pkgs = nixpkgs.legacyPackages.${system}; }
+      );
+
+      # Pre-process system-specific packages for builders
+      mkCustomPackages = system: customPackages.${system};
+      mkFlakeInputs = system: builtins.mapAttrs (name: input: 
+        if input ? packages.${system}.default then input.packages.${system}.default else input
+      ) inputs;
+
       builders = import ./lib/builders.nix {
         inherit
           lib
           nix-darwin
           home-manager
           mac-app-util
-          inputs
-          customPackages
+          mkCustomPackages
+          mkFlakeInputs
           ;
       };
 

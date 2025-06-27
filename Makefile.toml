@@ -6,7 +6,7 @@ HOST_PURPOSE = { script = ["echo ${HOST_PURPOSE}"] }
 
 # System detection (for future cross-platform support)
 SYSTEM_TYPE = { script = ["uname -s"] }
-ARCH = { script = ["uname -m"] }
+ARCH_TYPE = { script = ["uname -m"] }
 
 [tasks.apply]
 mac_alias = "darwin:apply"

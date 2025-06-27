@@ -4,6 +4,8 @@
   repoPath ? null,
   userName,
   homeDirectory,
+  customPackages,
+  flakeInputs,
   ...
 }:
 
@@ -17,7 +19,7 @@
 
   home.packages = with pkgs; [
     cyberduck
-
+  ] ++ [
     flakeInputs.voicevox-cli
   ];
 

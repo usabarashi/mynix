@@ -15,5 +15,5 @@ in
 
   hostPurpose = builtins.getEnv "HOST_PURPOSE";
   systemType = builtins.getEnv "SYSTEM_TYPE";
-  arch = builtins.getEnv "ARCH";
+  arch = builtins.getEnv "ARCH_TYPE";
 }

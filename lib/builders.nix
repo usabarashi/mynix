@@ -3,8 +3,8 @@
   nix-darwin,
   home-manager,
   mac-app-util,
-  inputs,
-  customPackages,
+  mkCustomPackages,
+  mkFlakeInputs,
 }:
 
 {
@@ -24,24 +24,13 @@
           pkgs,
           ...
         }:
-        let
-          currentNixbldGid =
-            let
-              gidCheck = pkgs.runCommand "check-nixbld-gid" { } ''
-                if /usr/bin/dscl . -read /Groups/nixbld PrimaryGroupID 2>/dev/null | ${pkgs.gnugrep}/bin/grep -o '[0-9]*' > $out; then
-                  echo "Found existing nixbld GID: $(cat $out)" >&2
-                else
-                  echo "350" > $out
-                  echo "Using default GID 350" >&2
-                fi
-              '';
-            in
-            lib.toInt (lib.removeSuffix "\n" (builtins.readFile gidCheck));
-        in
         {
           system.stateVersion = 4;
-          ids.gids.nixbld = currentNixbldGid;
-          nixpkgs.overlays = import ../lib/overlays.nix { inherit inputs customPackages; };
+          ids.gids.nixbld = 350; # Use fixed GID instead of runtime detection
+          nixpkgs.overlays = import ../lib/overlays.nix {
+            customPackages = mkCustomPackages system;
+            flakeInputs = mkFlakeInputs system;
+          };
           nixpkgs.config.allowUnfree = true;
           users.users.${userName} = {
             home = homeDirectory;
@@ -67,6 +56,8 @@
           home-manager.users.${userName} = homeModule;
           home-manager.extraSpecialArgs = {
             inherit repoPath userName homeDirectory;
+            customPackages = mkCustomPackages system;
+            flakeInputs = mkFlakeInputs system;
           };
         }
         mac-app-util.darwinModules.default

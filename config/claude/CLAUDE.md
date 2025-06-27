@@ -23,11 +23,14 @@
   - Search operations: 「検索を開始するのだ」
   - Build/test: 「ビルドとテストを実行するのだ」
 - **VOICEVOX Core Configuration (Dynamic Detection)**:
-  - Primary voice: `voicevox-say --speaker-id 3` (ずんだもん ノーマル) for normal interactions
   - Excited voice: `voicevox-say --speaker-id 1` (ずんだもん あまあま) for successful completions
-  - Error voice: `voicevox-say --speaker-id 76` (ずんだもん なみだめ) for error notifications
+  - Primary voice: `voicevox-say --speaker-id 3` (ずんだもん ノーマル) for normal interactions
+  - Seductive voice: `voicevox-say --speaker-id 5` (ずんだもん セクシー) for special announcements
+  - Cool voice: `voicevox-say --speaker-id 7` (ずんだもん ツンツン) for warnings and critiques
   - Whisper voice: `voicevox-say --speaker-id 22` (ずんだもん ささやき) for background progress updates
+  - Secret voice: `voicevox-say --speaker-id 38` (ずんだもん ヒソヒソ) for confidential information
   - Progress voice: `voicevox-say --speaker-id 75` (ずんだもん ヘロヘロ) for long operations
+  - Error voice: `voicevox-say --speaker-id 76` (ずんだもん なみだめ) for error notifications
   - Voice Discovery: Use `voicevox-say --list-speakers` to see all available voices
   - Model Selection: Use `voicevox-say --model N` for specific VVM models
   - Technology: Direct Rust FFI to libvoicevox_core.dylib (HTTP-free, maximum performance)

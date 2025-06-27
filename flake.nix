@@ -40,16 +40,21 @@
 
       env = import ./lib/env.nix { inherit lib; };
       systems = import ./lib/systems.nix { inherit lib; };
-      forAllSystems = lib.genAttrs [ "aarch64-darwin" "x86_64-darwin" ];
-      customPackages = forAllSystems (system: 
-        import ./packages { pkgs = nixpkgs.legacyPackages.${system}; }
+      forAllSystems = lib.genAttrs [
+        "aarch64-darwin"
+        "x86_64-darwin"
+      ];
+      customPackages = forAllSystems (
+        system: import ./packages { pkgs = nixpkgs.legacyPackages.${system}; }
       );
 
       # Pre-process system-specific packages for builders
       mkCustomPackages = system: customPackages.${system};
-      mkFlakeInputs = system: builtins.mapAttrs (name: input: 
-        if input ? packages.${system}.default then input.packages.${system}.default else input
-      ) inputs;
+      mkFlakeInputs =
+        system:
+        builtins.mapAttrs (
+          name: input: if input ? packages.${system}.default then input.packages.${system}.default else input
+        ) inputs;
 
       builders = import ./lib/builders.nix {
         inherit

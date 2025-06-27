@@ -57,25 +57,15 @@ jobs:
         echo "Found $total_files .nix files to check formatting!"
         
         # Check if any files need formatting
-        unformatted_files=""
         find . -name "*.nix" -type f | sort | while read -r file; do
           echo "Checking formatting: $file"
           
-          # Create temporary file with formatted content
-          temp_file=$(mktemp)
-          nix shell nixpkgs#nixfmt-rfc-style -c nixfmt --output "$temp_file" "$file"
-          
-          # Compare original with formatted
-          if ! diff -q "$file" "$temp_file" > /dev/null; then
+          if ! nix shell nixpkgs#nixfmt-rfc-style -c nixfmt --check "$file" > /dev/null 2>&1; then
             echo "❌ $file - Needs formatting!"
-            echo "Diff:"
-            diff -u "$file" "$temp_file" || true
             echo "$file" >> /tmp/unformatted_files
           else
             echo "✓ $file - Formatting OK"
           fi
-          
-          rm -f "$temp_file"
         done
         
         # Check if any files were unformatted
@@ -85,7 +75,7 @@ jobs:
           cat /tmp/unformatted_files
           echo ""
           echo "To fix formatting, run:"
-          echo "  nix shell nixpkgs#nixfmt-rfc-style -c find . -name '*.nix' -type f -exec nixfmt {} \\;"
+          echo "  nix shell nixpkgs#cargo-make -c makers fmt"
           exit 1
         fi
         

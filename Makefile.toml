@@ -2,11 +2,10 @@
 # Required environment variables (no default values)
 CURRENT_USER = { script = ["whoami"] }
 MYNIX_REPO_PATH = { script = ["pwd"] }
-HOST_PURPOSE = { script = ["echo ${HOST_PURPOSE}"] }
 
 # System detection (for future cross-platform support)
 SYSTEM_TYPE = { script = ["uname -s"] }
-ARCH_TYPE = { script = ["uname -m"] }
+MACHINE_ARCH = { script = ["uname -m"] }
 
 [tasks.apply]
 mac_alias = "darwin:apply"
@@ -15,4 +14,34 @@ mac_alias = "darwin:apply"
 script = '''
 nix build .#darwinConfigurations.default.system --extra-experimental-features 'nix-command flakes' --impure
 MYNIX_REPO_PATH="${MYNIX_REPO_PATH}" sudo -E ./result/sw/bin/darwin-rebuild switch --flake ".#default" --impure
+'''
+
+[tasks.ci]
+description = "Run CI checks (syntax, formatting)"
+script = '''
+nix flake show > /dev/null
+find . -name "*.nix" -type f | sort | while read -r file; do
+  if ! nix-instantiate --parse "$file" &> /dev/null; then
+    echo "❌ Syntax error in $file"
+    exit 1
+  fi
+done
+find . -name "*.nix" -type f | sort | while read -r file; do
+  if ! nix shell nixpkgs#nixfmt-rfc-style -c nixfmt --check "$file" > /dev/null 2>&1; then
+    echo "❌ $file needs formatting"
+    echo "$file" >> /tmp/unformatted_files
+  fi
+done
+if [ -f /tmp/unformatted_files ]; then
+  echo "Unformatted files:"
+  cat /tmp/unformatted_files
+  echo "Run: makers fmt"
+  exit 1
+fi
+'''
+
+[tasks.fmt]
+description = "Format all Nix files"
+script = '''
+nix shell nixpkgs#nixfmt-rfc-style -c find . -name "*.nix" -type f -exec nixfmt {} \;
 '''

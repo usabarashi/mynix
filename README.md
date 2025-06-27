@@ -5,56 +5,47 @@
 ## Quick Start
 
 ```bash
-# Install Nix (see: https://github.com/DeterminateSystems/nix-installer)
+# Install Nix
 curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
 
-# Clone and apply configuration
-nix shell nixpkgs#git -c git clone https://github.com/usabarashi/mynix.git
+# Clone and apply
+git clone https://github.com/usabarashi/mynix.git
 cd mynix
-
-# Set environment variables and apply
-export HOST_PURPOSE=PRIVATE  # or WORK (required)
+export HOST_PURPOSE=PRIVATE  # or WORK
 nix shell nixpkgs#cargo-make -c makers apply
 ```
 
 ## Commands
 
-### Testing and Validation
+### Development
 ```bash
-# Test configuration without applying
-export HOST_PURPOSE=PRIVATE
+# Run CI checks (syntax, formatting)
+nix shell nixpkgs#cargo-make -c makers ci
+
+# Format Nix files (if needed)
+nix shell nixpkgs#cargo-make -c makers fmt
+
+# Test configuration (dry-run)
+export HOST_PURPOSE=PRIVATE  # or WORK
 nix build .#darwinConfigurations.default.system --impure --dry-run
 
-# Switch between environments
-export HOST_PURPOSE=WORK && makers apply
-export HOST_PURPOSE=PRIVATE && makers apply
-
-# Development environments
-nix develop .#default    # Standard development shell
-nix develop .#debug      # Debug shell with additional tools
+# Apply configuration
+nix shell nixpkgs#cargo-make -c makers apply
 ```
 
-### Update Dependencies
+### Maintenance
 ```bash
-nix flake update               # Update all inputs
-nix flake lock --update-input nixpkgs --override-input nixpkgs github:nixos/nixpkgs/<REVISION>
-```
+# Update dependencies
+nix flake update
 
-### Cleanup
-```bash
-# Remove old generations
+# Remove old generations and cleanup
 nix shell github:nix-community/home-manager -c home-manager expire-generations now
 nix-env --delete-generations old
 sudo nix-env --profile /nix/var/nix/profiles/system --delete-generations old
-
-# Garbage collection
 nix-collect-garbage -d && nix-store --gc
-```
 
-### Validation
-```bash
-nix flake show                 # Show configuration
-find . -name "*.nix" -type f -exec nix-instantiate --parse {} \;  # Syntax check
+# Show current configuration
+nix flake show
 ```
 
 ## Configuration
@@ -67,7 +58,7 @@ find . -name "*.nix" -type f -exec nix-instantiate --parse {} \;  # Syntax check
 | `CURRENT_USER` | ❌ | Auto-detected | Auto-detected via `whoami` | Current user for home directory setup |
 | `MYNIX_REPO_PATH` | ❌ | Auto-detected | Auto-detected via `pwd` | Repository path for config references |
 | `SYSTEM_TYPE` | ❌ | Auto-detected | Auto-detected via `uname -s` | OS type (e.g., `Darwin`) |
-| `ARCH` | ❌ | Auto-detected | Auto-detected via `uname -m` | Architecture (e.g., `arm64`) |
+| `MACHINE_ARCH` | ❌ | Auto-detected | Auto-detected via `uname -m` | Architecture (e.g., `arm64`) |
 
 ### Build Requirements
 

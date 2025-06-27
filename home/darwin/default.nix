@@ -17,18 +17,22 @@
     stateVersion = "25.05";
   };
 
-  home.packages = with pkgs; [
-    discord
-    iina
-    slack
-    vscode
-    zoom-us
-  ] ++ [
-    customPackages.custom-url-schema-iina
-  ] ++ [
-    flakeInputs.vdh-cli
-    flakeInputs.voicevox-cli
-  ];
+  home.packages =
+    with pkgs;
+    [
+      discord
+      iina
+      slack
+      vscode
+      zoom-us
+    ]
+    ++ [
+      customPackages.custom-url-schema-iina
+    ]
+    ++ [
+      flakeInputs.vdh-cli
+      flakeInputs.voicevox-cli
+    ];
 
   imports = [
     ../../modules/darwin/karabiner.nix

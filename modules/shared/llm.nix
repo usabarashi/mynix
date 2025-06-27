@@ -15,15 +15,10 @@ in
     github-mcp-server
     kibela-mcp-server
 
-    aider-chat
     claude-code
-    opencode
   ];
 
   home.file = {
-    ".aider.conf.yml" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/aider/aider.conf.yml";
-    };
 
     # Claude Code Configuration & Dynamic file management
     #
@@ -57,10 +52,6 @@ in
     };
     ".claude/settings.json" = {
       source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/claude/settings.json";
-    };
-
-    "config/opencode/.opencode.json" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/opencode/.opencode.json";
     };
   };
 }

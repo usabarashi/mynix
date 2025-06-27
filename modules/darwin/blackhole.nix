@@ -1,40 +1,46 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   cfg = config.programs.blackhole;
-  
+
   # Import the BlackHole package using relative path
   blackhole-2ch = pkgs.callPackage ../../packages/blackhole-2ch/default.nix { };
-  
-in {
+
+in
+{
   # Module options definition
   options.programs.blackhole = {
     enable = lib.mkEnableOption "BlackHole 2ch audio loopback driver";
-    
+
     package = lib.mkOption {
       type = lib.types.package;
       default = blackhole-2ch;
       description = "BlackHole package to use";
     };
-    
+
     autoInstall = lib.mkOption {
       type = lib.types.bool;
       default = false;
       description = ''
         WARNING: This option requires manual confirmation and is NOT recommended.
-        
+
         When enabled, this will attempt to automatically install the BlackHole driver
         to the system location during nix-darwin activation. This requires:
         - Administrator privileges during build
         - Manual intervention for system security
         - Potential conflicts with existing installations
-        
+
         It is strongly recommended to keep this disabled and use manual installation:
         1. Build the package: programs.blackhole.enable = true;
         2. Run: sudo blackhole-install
       '';
     };
-    
+
     enableUserInstructions = lib.mkOption {
       type = lib.types.bool;
       default = true;
@@ -44,17 +50,17 @@ in {
 
   # Module implementation
   config = lib.mkIf cfg.enable {
-    
+
     # Add BlackHole package to system packages for easy access
     environment.systemPackages = [ cfg.package ];
-    
+
     # Create helpful aliases for installation/uninstallation
     environment.shellAliases = {
       blackhole-install = "sudo ${cfg.package}/bin/blackhole-install";
       blackhole-uninstall = "sudo ${cfg.package}/bin/blackhole-uninstall";
       blackhole-status = "ls -la /Library/Audio/Plug-Ins/HAL/BlackHole2ch.driver 2>/dev/null && echo 'BlackHole 2ch: Installed' || echo 'BlackHole 2ch: Not installed'";
     };
-    
+
     # Show user instructions on activation (only if enabled)
     system.activationScripts.blackhole-instructions = lib.mkIf cfg.enableUserInstructions ''
       echo ""
@@ -83,14 +89,14 @@ in {
       echo "   3. Configure your audio applications to use BlackHole 2ch"
       echo ""
     '';
-    
+
     # Optional automatic installation (NOT RECOMMENDED)
     system.activationScripts.blackhole-auto-install = lib.mkIf cfg.autoInstall ''
       echo ""
       echo "⚠️  WARNING: Attempting automatic BlackHole installation..."
       echo "This is experimental and may require manual intervention."
       echo ""
-      
+
       # Check if already installed
       if [ -d "/Library/Audio/Plug-Ins/HAL/BlackHole2ch.driver" ]; then
         echo "ℹ️  BlackHole 2ch already installed, skipping."
@@ -114,6 +120,6 @@ in {
       fi
       echo ""
     '';
-    
+
   };
 }

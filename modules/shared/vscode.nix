@@ -1,5 +1,11 @@
 # See: https://github.com/nix-community/home-manager/blob/master/modules/programs/vscode.nix
-{ config, pkgs, lib, repoPath, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  repoPath,
+  ...
+}:
 
 let
   inherit (pkgs.vscode-utils) extensionFromVscodeMarketplace extensionsFromVscodeMarketplace;
@@ -8,18 +14,22 @@ let
     url = "https://github.com/AlloyTools/org.alloytools.alloy/releases/download/v6.2.0/org.alloytools.alloy.dist.jar";
     sha256 = "13dpxl0ri6ldcaaa60n75lj8ls3fmghw8d8lqv3xzglkpjsir33b";
   };
-  alloyExtension = (pkgs.vscode-utils.extensionFromVscodeMarketplace {
-    name = "alloy";
-    publisher = "ArashSahebolamri";
-    version = "0.7.1";
-    sha256 = "sha256-svHFOCEDZHSLKzLUU2ojDVkbLTJ7hJ75znWuBV5GFQM=";
-  }).overrideAttrs (oldAttrs: {
-    postPatch = (oldAttrs.postPatch or "") + ''
-      if [ -f org.alloytools.alloy.dist.jar ]; then
-        cp ${alloyJar} org.alloytools.alloy.dist.jar
-      fi
-    '';
-  });
+  alloyExtension =
+    (pkgs.vscode-utils.extensionFromVscodeMarketplace {
+      name = "alloy";
+      publisher = "ArashSahebolamri";
+      version = "0.7.1";
+      sha256 = "sha256-svHFOCEDZHSLKzLUU2ojDVkbLTJ7hJ75znWuBV5GFQM=";
+    }).overrideAttrs
+      (oldAttrs: {
+        postPatch =
+          (oldAttrs.postPatch or "")
+          + ''
+            if [ -f org.alloytools.alloy.dist.jar ]; then
+              cp ${alloyJar} org.alloytools.alloy.dist.jar
+            fi
+          '';
+      });
 
   claudeCodeExtension = pkgs.vscode-utils.buildVscodeExtension {
     pname = "claude-code";
@@ -154,7 +164,13 @@ let
   ];
 
   # Combine all extensions
-  extensions = nixpkgsExtensions ++ marketplaceExtensions ++ [ alloyExtension claudeCodeExtension ];
+  extensions =
+    nixpkgsExtensions
+    ++ marketplaceExtensions
+    ++ [
+      alloyExtension
+      claudeCodeExtension
+    ];
 
   vscode-from-devshell = pkgs.writeShellScriptBin "codefd" ''
     #!/bin/sh
@@ -176,7 +192,7 @@ in
 {
   home.packages = with pkgs; [
     nil
-    nixpkgs-fmt
+    nixfmt-rfc-style
     vscode-from-devshell
   ];
 

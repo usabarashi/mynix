@@ -1,5 +1,13 @@
-{ config, pkgs, lib, repoPath, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  repoPath,
+  ...
+}:
 
 {
-  home.file.".config/karabiner/karabiner.json" = { source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/karabiner/karabiner.json"; };
+  home.file.".config/karabiner/karabiner.json" = {
+    source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/karabiner/karabiner.json";
+  };
 }

@@ -1,19 +1,33 @@
-{ lib, nix-darwin, home-manager, mac-app-util, inputs, customPackages }:
+{
+  lib,
+  nix-darwin,
+  home-manager,
+  mac-app-util,
+  inputs,
+  customPackages,
+}:
 
 {
-  mkDarwinSystem = { 
-    system, 
-    userName, 
-    homeModule, 
-    repoPath
-  }:
+  mkDarwinSystem =
+    {
+      system,
+      userName,
+      homeModule,
+      repoPath,
+    }:
     let
       homeDirectory = "/Users/${userName}";
-      hostConfig = { config, lib, pkgs, ... }: 
+      hostConfig =
+        {
+          config,
+          lib,
+          pkgs,
+          ...
+        }:
         let
-          currentNixbldGid = 
+          currentNixbldGid =
             let
-              gidCheck = pkgs.runCommand "check-nixbld-gid" {} ''
+              gidCheck = pkgs.runCommand "check-nixbld-gid" { } ''
                 if /usr/bin/dscl . -read /Groups/nixbld PrimaryGroupID 2>/dev/null | ${pkgs.gnugrep}/bin/grep -o '[0-9]*' > $out; then
                   echo "Found existing nixbld GID: $(cat $out)" >&2
                 else
@@ -22,7 +36,7 @@
                 fi
               '';
             in
-              lib.toInt (lib.removeSuffix "\n" (builtins.readFile gidCheck));
+            lib.toInt (lib.removeSuffix "\n" (builtins.readFile gidCheck));
         in
         {
           system.stateVersion = 4;

@@ -1,14 +1,19 @@
-{ lib, pkgs, repoPath ? null, userName, homeDirectory, ... }:
+{
+  lib,
+  pkgs,
+  repoPath ? null,
+  userName,
+  homeDirectory,
+  ...
+}:
 
 {
   programs.home-manager.enable = true;
   home = {
     username = userName;
     homeDirectory = homeDirectory;
-    stateVersion = "24.05";
+    stateVersion = "25.05";
   };
-
-
 
   home.packages = with pkgs; [
     discord
@@ -16,12 +21,11 @@
     slack
     vscode
     zoom-us
-    
+
     flakeInputs.vdh-cli
     flakeInputs.voicevox-cli
     customPackages.custom-url-schema-iina
   ];
-
 
   imports = [
     ../../modules/darwin/karabiner.nix
@@ -33,6 +37,4 @@
     ../../modules/shared/ssh.nix
     ../../modules/shared/vscode.nix
   ];
-
-
 }

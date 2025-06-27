@@ -1,0 +1,92 @@
+name: "Nix Flake Syntax Check"
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "**" ]
+  workflow_dispatch:
+
+jobs:
+  syntax-check:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+    - name: Install Nix
+      uses: DeterminateSystems/nix-installer-action@21a544727d0c62386e78b4befe52d19ad12692e3 # v17
+      with:
+        extra-conf: |
+          connect-timeout = 60
+          stalled-download-timeout = 90
+
+    - name: Validate Nix flake syntax and show outputs
+      run: |
+        echo "=== Nix Flake Outputs ==="
+        nix flake show
+        echo "=== Detailed Flake Structure (JSON) ==="
+        nix flake show --json
+        echo "✅ flake.nix syntax is valid!"
+
+    - name: Check modules syntax
+      run: |
+        echo "=== Checking Nix Module Files ==="
+        echo "Finding all .nix files in the repository..."
+
+        total_files=$(find . -name "*.nix" -type f | wc -l)
+        echo "Found $total_files .nix files to check!"
+
+        find . -name "*.nix" -type f | sort | while read -r file; do
+          echo "Checking syntax: $file"
+          if nix-instantiate --parse "$file" &> /dev/null; then
+            echo "✓ $file - Syntax OK"
+          else
+            echo "❌ $file - Syntax Error!"
+            exit 1
+          fi
+        done
+
+        echo "✅ All .nix files have valid syntax!"
+
+    - name: Check Nix code formatting
+      run: |
+        echo "=== Checking Nix Code Formatting ==="
+        echo "Installing nixfmt-rfc-style..."
+        
+        total_files=$(find . -name "*.nix" -type f | wc -l)
+        echo "Found $total_files .nix files to check formatting!"
+        
+        # Check if any files need formatting
+        unformatted_files=""
+        find . -name "*.nix" -type f | sort | while read -r file; do
+          echo "Checking formatting: $file"
+          
+          # Create temporary file with formatted content
+          temp_file=$(mktemp)
+          nix shell nixpkgs#nixfmt-rfc-style -c nixfmt --output "$temp_file" "$file"
+          
+          # Compare original with formatted
+          if ! diff -q "$file" "$temp_file" > /dev/null; then
+            echo "❌ $file - Needs formatting!"
+            echo "Diff:"
+            diff -u "$file" "$temp_file" || true
+            echo "$file" >> /tmp/unformatted_files
+          else
+            echo "✓ $file - Formatting OK"
+          fi
+          
+          rm -f "$temp_file"
+        done
+        
+        # Check if any files were unformatted
+        if [ -f /tmp/unformatted_files ]; then
+          echo ""
+          echo "❌ The following files need formatting:"
+          cat /tmp/unformatted_files
+          echo ""
+          echo "To fix formatting, run:"
+          echo "  nix shell nixpkgs#nixfmt-rfc-style -c find . -name '*.nix' -type f -exec nixfmt {} \\;"
+          exit 1
+        fi
+        
+        echo "✅ All .nix files are properly formatted!"

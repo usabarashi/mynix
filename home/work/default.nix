@@ -1,4 +1,11 @@
-{ lib, pkgs, repoPath ? null, userName, homeDirectory, ... }:
+{
+  lib,
+  pkgs,
+  repoPath ? null,
+  userName,
+  homeDirectory,
+  ...
+}:
 
 {
   programs.home-manager.enable = true;
@@ -8,13 +15,11 @@
     stateVersion = "25.05";
   };
 
-
   home.packages = with pkgs; [
     cyberduck
-    
+
     flakeInputs.voicevox-cli
   ];
-
 
   imports = [
     ../../modules/shared/container.nix
@@ -26,6 +31,4 @@
     ../../modules/shared/vscode.nix
     ../../modules/shared/shell.nix
   ];
-
-
 }

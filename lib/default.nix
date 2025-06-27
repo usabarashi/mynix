@@ -2,7 +2,7 @@ inputs@{ nixpkgs, ... }:
 
 let
   lib = nixpkgs.lib;
-  
+
   # Import independent modules
   envModule = import ./env.nix;
   configsModule = import ./configs.nix;
@@ -11,5 +11,10 @@ let
 in
 {
   # Pure library functions - no dependencies
-  inherit envModule configsModule systemsModule buildersModule;
+  inherit
+    envModule
+    configsModule
+    systemsModule
+    buildersModule
+    ;
 }

@@ -1,4 +1,11 @@
-{ lib, stdenv, fetchurl, cpio, gzip, xar }:
+{
+  lib,
+  stdenv,
+  fetchurl,
+  cpio,
+  gzip,
+  xar,
+}:
 
 # ⚠️ WARNING: Manual uninstallation required
 # This package installs system-level audio drivers that are NOT
@@ -16,7 +23,11 @@ stdenv.mkDerivation rec {
     sha256 = "c829afa041a9f6e1b369c01953c8f079740dd1f02421109855829edc0d3c1988";
   };
 
-  nativeBuildInputs = [ cpio gzip xar ];
+  nativeBuildInputs = [
+    cpio
+    gzip
+    xar
+  ];
 
   # PKG file extraction and driver file preparation
   unpackPhase = ''

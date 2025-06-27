@@ -29,13 +29,32 @@
     };
   };
 
-  outputs = inputs@{ nixpkgs, nix-darwin, home-manager, mac-app-util, vdh-cli, voicevox-cli, customPackages, ... }:
+  outputs =
+    inputs@{
+      nixpkgs,
+      nix-darwin,
+      home-manager,
+      mac-app-util,
+      vdh-cli,
+      voicevox-cli,
+      customPackages,
+      ...
+    }:
     let
       lib = nixpkgs.lib;
 
       env = import ./lib/env.nix { inherit lib; };
       systems = import ./lib/systems.nix { inherit lib; };
-      builders = import ./lib/builders.nix { inherit lib nix-darwin home-manager mac-app-util inputs customPackages; };
+      builders = import ./lib/builders.nix {
+        inherit
+          lib
+          nix-darwin
+          home-manager
+          mac-app-util
+          inputs
+          customPackages
+          ;
+      };
 
       homeModules = {
         darwin = import ./home/darwin;
@@ -49,9 +68,7 @@
       configs = import ./lib/configs.nix { inherit lib homeModules hostPaths; };
 
       selectedConfig =
-        if (builtins.tryEval env.hostPurpose).success
-        then configs.selectConfig env.hostPurpose
-        else null;
+        if (builtins.tryEval env.hostPurpose).success then configs.selectConfig env.hostPurpose else null;
 
       system = systems.detectSystem {
         systemType = env.systemType;
@@ -61,14 +78,17 @@
     {
 
       darwinConfigurations =
-        if selectedConfig != null then {
-          default = builders.mkDarwinSystem {
-            inherit system;
-            userName = env.currentUser;
-            repoPath = env.repoPath;
-            inherit (selectedConfig) homeModule;
-          };
-        } else { };
+        if selectedConfig != null then
+          {
+            default = builders.mkDarwinSystem {
+              inherit system;
+              userName = env.currentUser;
+              repoPath = env.repoPath;
+              inherit (selectedConfig) homeModule;
+            };
+          }
+        else
+          { };
 
       nixosConfigurations = { };
 

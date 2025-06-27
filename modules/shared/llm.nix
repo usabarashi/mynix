@@ -1,4 +1,10 @@
-{ config, pkgs, lib, repoPath, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  repoPath,
+  ...
+}:
 
 let
   kibela-mcp-server = pkgs.callPackage (repoPath + "/packages/kibela-mcp-server/default.nix") { };
@@ -15,7 +21,9 @@ in
   ];
 
   home.file = {
-    ".aider.conf.yml" = { source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/aider/aider.conf.yml"; };
+    ".aider.conf.yml" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/aider/aider.conf.yml";
+    };
 
     # Claude Code Configuration & Dynamic file management
     #
@@ -44,9 +52,15 @@ in
     # claude mcp remove kibela
 
     # Claude settings
-    ".claude/CLAUDE.md" = { source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/claude/CLAUDE.md"; };
-    ".claude/settings.json" = { source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/claude/settings.json"; };
+    ".claude/CLAUDE.md" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/claude/CLAUDE.md";
+    };
+    ".claude/settings.json" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/claude/settings.json";
+    };
 
-    "config/opencode/.opencode.json" = { source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/opencode/.opencode.json"; };
+    "config/opencode/.opencode.json" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/opencode/.opencode.json";
+    };
   };
 }

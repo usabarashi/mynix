@@ -1,8 +1,9 @@
-{ lib
-, stdenv
-, fetchFromGitHub
-, nodejs_24
-, makeWrapper
+{
+  lib,
+  stdenv,
+  fetchFromGitHub,
+  nodejs_24,
+  makeWrapper,
 }:
 
 stdenv.mkDerivation {
@@ -16,7 +17,10 @@ stdenv.mkDerivation {
     hash = "sha256-j4oJW9qe88jyX7xYKYTgjgsfdFyeVgQYE6x0jesQNxs=";
   };
 
-  nativeBuildInputs = [ nodejs_24 makeWrapper ];
+  nativeBuildInputs = [
+    nodejs_24
+    makeWrapper
+  ];
 
   buildPhase = ''
     runHook preBuild

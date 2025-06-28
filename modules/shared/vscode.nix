@@ -158,8 +158,8 @@ let
     {
       name = "geminicodeassist";
       publisher = "google";
-      version = "2.37.0";
-      sha256 = "sha256-oJmWxdEN2uTo5Ms3WFrTbosd+DKQq4jrOtPChQjaWe0=";
+      version = "2.38.0";
+      sha256 = "sha256-B9YgvSAjvVc0CMt4JPkj0BqJdDG2Ie+DXC7Mv4O/ia8=";
     }
   ];
 

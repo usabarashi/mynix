@@ -3,20 +3,22 @@
   pkgs,
   lib,
   repoPath,
+  customPackages,
   ...
 }:
 
-let
-  kibela-mcp-server = pkgs.callPackage (repoPath + "/packages/kibela-mcp-server/default.nix") { };
-in
 {
-  home.packages = with pkgs; [
-    nodejs # npx
-    github-mcp-server
-    kibela-mcp-server
-
-    claude-code
-  ];
+  home.packages =
+    with pkgs;
+    [
+      nodejs # npx
+      github-mcp-server
+      claude-code
+    ]
+    ++ [
+      customPackages.kibela-mcp-server
+      customPackages.gemini-cli
+    ];
 
   home.file = {
 

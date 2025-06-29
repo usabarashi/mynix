@@ -49,6 +49,33 @@ let
     };
   };
 
+  claudeCodeUsageMonitorExtension =
+    let
+      version = "0.1.0";
+    in
+    pkgs.vscode-utils.buildVscodeExtension {
+      pname = "claude-code-usage-monitor";
+      inherit version;
+      src = pkgs.runCommand "claude-code-usage-monitor.zip" { } ''
+        cp "${
+          pkgs.fetchurl {
+            url = "https://github.com/usabarashi/vscode-extension-claude-code-usage-monitor/releases/download/v${version}/claude-code-usage-monitor-v${version}.vsix";
+            sha256 = "sha256-ixxxyW0TsxlhPThTekO456+fhf8jsXQrxsWB7iSIx7w=";
+          }
+        }" $out
+      '';
+      vscodeExtUniqueId = "usabarashi.claude-code-usage-monitor";
+      vscodeExtPublisher = "usabarashi";
+      vscodeExtName = "claude-code-usage-monitor";
+
+      meta = {
+        description = "Claude Code Usage Monitor VS Code Extension";
+        homepage = "https://github.com/usabarashi/vscode-extension-claude-code-usage-monitor";
+        license = pkgs.lib.licenses.mit;
+        platforms = pkgs.lib.platforms.all;
+      };
+    };
+
   nixpkgsExtensions = with pkgs.vscode-extensions; [
     # Basic extensions
     streetsidesoftware.code-spell-checker
@@ -170,6 +197,9 @@ let
     ++ [
       alloyExtension
       claudeCodeExtension
+    ]
+    ++ [
+      claudeCodeUsageMonitorExtension
     ];
 
   vscode-from-devshell = pkgs.writeShellScriptBin "codefd" ''

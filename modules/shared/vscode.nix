@@ -51,7 +51,7 @@ let
 
   claudeCodeUsageMonitorExtension =
     let
-      version = "0.1.0";
+      version = "0.1.1";
     in
     pkgs.vscode-utils.buildVscodeExtension {
       pname = "claude-code-usage-monitor";
@@ -60,7 +60,7 @@ let
         cp "${
           pkgs.fetchurl {
             url = "https://github.com/usabarashi/vscode-extension-claude-code-usage-monitor/releases/download/v${version}/claude-code-usage-monitor-v${version}.vsix";
-            sha256 = "sha256-ixxxyW0TsxlhPThTekO456+fhf8jsXQrxsWB7iSIx7w=";
+            sha256 = "sha256-YhHBQIX1uMVzMivUSy/9+UmUAu1eJmm1JMupnVCllm4=";
           }
         }" $out
       '';

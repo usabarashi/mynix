@@ -47,6 +47,7 @@
   - Check README.md
   - Check .github/copilot-instructions.md
   - Check CLAUDE.md
+  - Check GEMINI.md
 
 ## MCP Usage Policy
 

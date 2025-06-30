@@ -8,6 +8,7 @@
   "includeCoAuthoredBy": true,
   "permissions": {
     "allow": [
+      "Bash(gemini:*)",
       "Bash(voicevox-say:*)",
       "WebFetch(domain:github.com)"
     ],

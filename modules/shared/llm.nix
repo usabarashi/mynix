@@ -55,5 +55,17 @@
     ".claude/settings.json" = {
       source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/claude/settings.json";
     };
+    ".claude/commands" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/claude/commands";
+      recursive = true;
+    };
+
+    # Gemini CLI settings
+    ".gemini/GEMINI.md" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/gemini/GEMINI.md";
+    };
+    ".gemini/settings.json" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/gemini/settings.json";
+    };
   };
 }

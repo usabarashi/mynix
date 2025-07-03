@@ -16,7 +16,6 @@
       claude-code
     ]
     ++ [
-      customPackages.kibela-mcp-server
       customPackages.gemini-cli
     ];
 

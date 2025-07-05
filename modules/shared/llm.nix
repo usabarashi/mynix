@@ -14,6 +14,7 @@
       nodejs # npx
       github-mcp-server
       claude-code
+      terminal-notifier
     ]
     ++ [
       customPackages.gemini-cli
@@ -52,6 +53,10 @@
     };
     ".claude/commands" = {
       source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/claude/commands";
+      recursive = true;
+    };
+    ".claude/scripts" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/claude/scripts";
       recursive = true;
     };
 

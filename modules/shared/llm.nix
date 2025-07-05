@@ -37,15 +37,11 @@
     # Add GitHub MCP server (user scope):
     # claude mcp add github -e GITHUB_PERSONAL_ACCESS_TOKEN=$GITHUB_PERSONAL_ACCESS_TOKEN -s user -- github-mcp-server stdio
     #
-    # Add Kibela MCP server (user scope):
-    # claude mcp add kibela -e KIBELA_ORIGIN=https://your-subdomain.kibe.la -e KIBELA_ACCESS_TOKEN=$KIBELA_ACCESS_TOKEN -s user -- kibela-mcp-server
-    #
     # List configured MCP servers:
     # claude mcp list
     #
     # Remove MCP server:
     # claude mcp remove github
-    # claude mcp remove kibela
 
     # Claude settings
     ".claude/CLAUDE.md" = {

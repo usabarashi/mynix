@@ -4,6 +4,7 @@
   fetchFromGitHub,
   versionCheckHook,
   typescript,
+  makeWrapper,
 }:
 
 buildNpmPackage (finalAttrs: {
@@ -19,12 +20,19 @@ buildNpmPackage (finalAttrs: {
 
   npmDepsHash = "sha256-yoUAOo8OwUWG0gyI5AdwfRFzSZvSCd3HYzzpJRvdbiM=";
 
-  nativeBuildInputs = [ typescript ];
+  nativeBuildInputs = [
+    typescript
+    makeWrapper
+  ];
 
   fixupPhase = ''
     runHook preFixup
     find $out -type l -exec test ! -e {} \; -delete
     runHook postFixup
+  '';
+
+  postInstall = ''
+    wrapProgram $out/bin/gemini --add-flags "--sandbox"
   '';
 
   nativeInstallCheckInputs = [

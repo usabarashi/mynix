@@ -4,7 +4,6 @@
   repoPath ? null,
   userName,
   homeDirectory,
-  customPackages,
   flakeInputs,
   ...
 }:

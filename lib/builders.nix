@@ -3,7 +3,6 @@
   nix-darwin,
   home-manager,
   mac-app-util,
-  mkCustomPackages,
   mkFlakeInputs,
 }:
 
@@ -28,7 +27,6 @@
           system.stateVersion = 4;
           ids.gids.nixbld = 350; # Use fixed GID instead of runtime detection
           nixpkgs.overlays = import ../lib/overlays.nix {
-            customPackages = mkCustomPackages system;
             flakeInputs = mkFlakeInputs system;
           };
           nixpkgs.config.allowUnfree = true;
@@ -56,7 +54,6 @@
           home-manager.users.${userName} = homeModule;
           home-manager.extraSpecialArgs = {
             inherit repoPath userName homeDirectory;
-            customPackages = mkCustomPackages system;
             flakeInputs = mkFlakeInputs system;
           };
         }

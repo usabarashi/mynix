@@ -4,8 +4,6 @@
     ../../modules/darwin/blackhole.nix
   ];
 
-  nixpkgs.config.allowUnfree = true;
-
   users.users.${userName} = {
     home = homeDirectory;
   };

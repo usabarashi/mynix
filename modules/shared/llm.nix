@@ -3,7 +3,6 @@
   pkgs,
   lib,
   repoPath,
-  customPackages,
   ...
 }:
 
@@ -13,10 +12,10 @@
     [
       nodejs # npx
       github-mcp-server
-      claude-code
       terminal-notifier
     ]
     ++ [
+      customPackages.claude-code-sandboxed # Includes claude-code reference
       customPackages.gemini-cli
     ];
 
@@ -45,6 +44,9 @@
     # claude mcp remove github
 
     # Claude settings
+    ".claude/permissive-open.sb" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/claude/permissive-open.sb";
+    };
     ".claude/CLAUDE.md" = {
       source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/claude/CLAUDE.md";
     };

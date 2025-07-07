@@ -39,10 +39,6 @@
       lib = nixpkgs.lib;
 
       env = import ./lib/env.nix { inherit lib; };
-      customPackages = import ./packages { pkgs = nixpkgs.legacyPackages.aarch64-darwin; };
-
-      # Pre-process packages for builders
-      mkCustomPackages = system: customPackages;
       mkFlakeInputs =
         system:
         builtins.mapAttrs (
@@ -55,7 +51,6 @@
           nix-darwin
           home-manager
           mac-app-util
-          mkCustomPackages
           mkFlakeInputs
           ;
       };

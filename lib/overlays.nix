@@ -1,8 +1,9 @@
-{ customPackages, flakeInputs }:
+{ flakeInputs }:
 
 [
   (final: prev: {
-    inherit customPackages flakeInputs;
+    customPackages = import ../packages { pkgs = final; };
+    inherit flakeInputs;
   })
 
   (final: prev: {

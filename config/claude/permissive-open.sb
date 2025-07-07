@@ -1,0 +1,30 @@
+(version 1)
+
+(allow default)
+
+(deny file-write*)
+(allow file-write*
+    ;; (param “NAME”) reflects the value passed as -D NAME=VALUE at startup
+
+    ;; Specify the project directory as TARGET_DIR
+    (subpath (param "TARGET_DIR"))
+
+    ;; Locations other than the project directory where writes are allowed
+    (subpath (string-append (param "HOME_DIR") "/.claude"))
+    (literal (string-append (param "HOME_DIR") "/.claude.json"))
+    (literal (string-append (param "HOME_DIR") "/.claude.json.lock"))
+    (literal (string-append (param "HOME_DIR") "/.claude.json.backup"))
+
+    ;; Temporary file-related
+    (subpath "/tmp")
+    (subpath "/var/folders/sv")
+    (subpath (string-append (param "HOME_DIR") "/.cache"))
+
+    ;; Other tool-related. Please adjust according to the tool you are using
+    (subpath (string-append (param "HOME_DIR") "/.npm"))
+
+    ;; Like STDOUT.
+    (literal "/dev/stdout")
+    (literal "/dev/stderr")
+    (literal "/dev/null")
+)

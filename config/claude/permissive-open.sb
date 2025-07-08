@@ -17,7 +17,7 @@
 
     ;; Temporary file-related
     (subpath "/tmp")
-    (subpath "/var/folders/sv")
+    (subpath "/var/folders")
     (subpath (string-append (param "HOME_DIR") "/.cache"))
 
     ;; Other tool-related. Please adjust according to the tool you are using

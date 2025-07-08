@@ -22,7 +22,7 @@ nix flake update
 **3-Category Package Management:**
 1. Standard nixpkgs packages
 2. Custom packages (packages/flake.nix)
-3. External flake inputs (vdh-cli, voicevox-cli)
+3. External flake inputs
 
 **Key Files:**
 - `flake.nix`: Main entry point

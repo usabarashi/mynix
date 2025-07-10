@@ -10,5 +10,5 @@ terminal-notifier \
     -title "Claude Code 🤖" \
     -subtitle "Project: $PROJECT_NAME" \
     -message "Complete (Session: ${SESSION_ID:0:8})" \
-    -sound "Blow" \
+    -sound default \
     -group "claude-code-${SESSION_ID:0:8}"

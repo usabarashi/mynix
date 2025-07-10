@@ -10,5 +10,5 @@ terminal-notifier \
     -title "Claude Code 🤖" \
     -subtitle "Project: $PROJECT_NAME" \
     -message "Need your attention (Session: ${SESSION_ID:0:8})" \
-    -sound "default" \
+    -sound Sosumi \
     -group "claude-code-${SESSION_ID:0:8}"

@@ -5,5 +5,5 @@
   claude-code-sandboxed = pkgs.callPackage ./claude-code-sandboxed { };
   custom-url-schema-iina = pkgs.callPackage ./custom-url-schema-iina { };
   docker-compose = pkgs.callPackage ./docker-compose { };
-  gemini-cli = pkgs.callPackage ./gemini-cli.nix { };
+  gemini-cli-sandboxed = pkgs.callPackage ./gemini-cli-sandboxed { };
 }

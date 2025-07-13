@@ -16,7 +16,7 @@
     ]
     ++ [
       customPackages.claude-code-sandboxed # Includes claude-code reference
-      customPackages.gemini-cli
+      customPackages.gemini-cli-sandboxed
     ];
 
   home.file = {

@@ -2,6 +2,10 @@
   "theme": "Default",
   "selectedAuthType": "oauth-personal",
   "mcpServers": {
-    "servers": {}
+    "voicevox": {
+      "type": "stdio",
+      "command": "voicevox-mcp-server",
+      "args": []
+    }
   }
 }

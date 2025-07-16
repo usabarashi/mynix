@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  repoPath,
+  ...
+}:
 
 {
   home.packages = with pkgs; [
@@ -26,5 +31,11 @@
     '';
 
     syntaxHighlighting.enable = true;
+  };
+
+  home.file = {
+    ".config/tmux/tmux.conf" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/tmux/tmux.conf";
+    };
   };
 }

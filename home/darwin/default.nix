@@ -39,7 +39,7 @@
     ../../modules/shared/llm.nix
     ../../modules/shared/neovim.nix
     ../../modules/shared/nix.nix
-    ../../modules/shared/shell.nix
+    ../../modules/shared/terminal.nix
     ../../modules/shared/ssh.nix
     ../../modules/shared/vscode.nix
   ];

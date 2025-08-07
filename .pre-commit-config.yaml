@@ -3,12 +3,22 @@
 repos:
   - repo: local
     hooks:
-      - id: makers-validate
-        name: Run makers validate (syntax, formatting, flake validation)
+      - id: makers-validate-private
+        name: Run makers validate (PRIVATE config)
         entry: bash
         args:
           - -c
-          - nix shell nixpkgs#cargo-make -c makers validate
+          - export HOST_PURPOSE=PRIVATE && nix shell nixpkgs#cargo-make -c makers validate
+        language: system
+        files: '\.nix$'
+        pass_filenames: false
+
+      - id: makers-validate-work
+        name: Run makers validate (WORK config)
+        entry: bash
+        args:
+          - -c
+          - export HOST_PURPOSE=WORK && nix shell nixpkgs#cargo-make -c makers validate
         language: system
         files: '\.nix$'
         pass_filenames: false

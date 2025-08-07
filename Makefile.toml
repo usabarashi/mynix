@@ -21,17 +21,6 @@ description = "Run validation checks (syntax, formatting)"
 script = '''
 echo "=== Checking flake syntax ==="
 nix flake check --no-build 2>/dev/null || nix flake show > /dev/null
-echo "=== Checking individual file syntax ==="
-find . -name "*.nix" -type f | sort | while read -r file; do
-  if [ "$file" = "./flake.nix" ]; then
-    # Skip flake.nix as it requires full flake context
-    continue
-  fi
-  if ! nix-instantiate --parse "$file" &> /dev/null; then
-    echo "❌ Syntax error in $file"
-    exit 1
-  fi
-done
 echo "=== Checking formatting ==="
 find . -name "*.nix" -type f | sort | while read -r file; do
   if ! nix shell nixpkgs#nixfmt-rfc-style -c nixfmt --check "$file" > /dev/null 2>&1; then

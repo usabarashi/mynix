@@ -10,6 +10,9 @@ on:
 jobs:
   syntax-check:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        host_purpose: [PRIVATE, WORK]
     steps:
     - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
@@ -22,7 +25,10 @@ jobs:
 
     - name: Validate Nix flake syntax and show outputs
       run: |
-        echo "=== Nix Flake Outputs ==="
+        echo "=== Nix Flake Outputs (HOST_PURPOSE=${{ matrix.host_purpose }}) ==="
+        export HOST_PURPOSE=${{ matrix.host_purpose }}
+        export CURRENT_USER=$(whoami)
+        export MYNIX_REPO_PATH=$(pwd)
         nix flake show
         echo "=== Detailed Flake Structure (JSON) ==="
         nix flake show --json
@@ -30,7 +36,8 @@ jobs:
 
     - name: Run makers validate
       run: |
-        echo "=== Running validation with makers ==="
+        echo "=== Running validation with makers (HOST_PURPOSE=${{ matrix.host_purpose }}) ==="
         export CURRENT_USER=$(whoami)
         export MYNIX_REPO_PATH=$(pwd)
+        export HOST_PURPOSE=${{ matrix.host_purpose }}
         nix shell nixpkgs#cargo-make -c makers validate

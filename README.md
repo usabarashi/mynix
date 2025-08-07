@@ -19,8 +19,8 @@ nix shell nixpkgs#cargo-make -c makers apply
 
 ### Development
 ```bash
-# Run CI checks (syntax, formatting)
-nix shell nixpkgs#cargo-make -c makers ci
+# Run validation checks (syntax, formatting)
+nix shell nixpkgs#cargo-make -c makers validate
 
 # Format Nix files (if needed)
 nix shell nixpkgs#cargo-make -c makers fmt

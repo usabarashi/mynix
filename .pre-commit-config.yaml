@@ -1,0 +1,14 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+  - repo: local
+    hooks:
+      - id: makers-validate
+        name: Run makers validate (syntax, formatting, flake validation)
+        entry: bash
+        args:
+          - -c
+          - nix shell nixpkgs#cargo-make -c makers validate
+        language: system
+        files: '\.nix$'
+        pass_filenames: false

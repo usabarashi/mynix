@@ -28,55 +28,7 @@ jobs:
         nix flake show --json
         echo "✅ flake.nix syntax is valid!"
 
-    - name: Check modules syntax
+    - name: Run makers validate
       run: |
-        echo "=== Checking Nix Module Files ==="
-        echo "Finding all .nix files in the repository..."
-
-        total_files=$(find . -name "*.nix" -type f | wc -l)
-        echo "Found $total_files .nix files to check!"
-
-        find . -name "*.nix" -type f | sort | while read -r file; do
-          echo "Checking syntax: $file"
-          if nix-instantiate --parse "$file" &> /dev/null; then
-            echo "✓ $file - Syntax OK"
-          else
-            echo "❌ $file - Syntax Error!"
-            exit 1
-          fi
-        done
-
-        echo "✅ All .nix files have valid syntax!"
-
-    - name: Check Nix code formatting
-      run: |
-        echo "=== Checking Nix Code Formatting ==="
-        echo "Installing nixfmt-rfc-style..."
-        
-        total_files=$(find . -name "*.nix" -type f | wc -l)
-        echo "Found $total_files .nix files to check formatting!"
-        
-        # Check if any files need formatting
-        find . -name "*.nix" -type f | sort | while read -r file; do
-          echo "Checking formatting: $file"
-          
-          if ! nix shell nixpkgs#nixfmt-rfc-style -c nixfmt --check "$file" > /dev/null 2>&1; then
-            echo "❌ $file - Needs formatting!"
-            echo "$file" >> /tmp/unformatted_files
-          else
-            echo "✓ $file - Formatting OK"
-          fi
-        done
-        
-        # Check if any files were unformatted
-        if [ -f /tmp/unformatted_files ]; then
-          echo ""
-          echo "❌ The following files need formatting:"
-          cat /tmp/unformatted_files
-          echo ""
-          echo "To fix formatting, run:"
-          echo "  nix shell nixpkgs#cargo-make -c makers fmt"
-          exit 1
-        fi
-        
-        echo "✅ All .nix files are properly formatted!"
+        echo "=== Running validation with makers ==="
+        nix shell nixpkgs#cargo-make -c makers validate

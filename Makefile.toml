@@ -16,8 +16,8 @@ nix build .#darwinConfigurations.default.system --extra-experimental-features 'n
 MYNIX_REPO_PATH="${MYNIX_REPO_PATH}" sudo -E ./result/sw/bin/darwin-rebuild switch --flake ".#default" --impure
 '''
 
-[tasks.ci]
-description = "Run CI checks (syntax, formatting)"
+[tasks.validate]
+description = "Run validation checks (syntax, formatting)"
 script = '''
 nix flake show > /dev/null
 find . -name "*.nix" -type f | sort | while read -r file; do

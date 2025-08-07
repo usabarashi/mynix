@@ -23,7 +23,7 @@ echo "=== Checking flake syntax ==="
 nix flake check --no-build 2>/dev/null || nix flake show > /dev/null
 echo "=== Checking individual file syntax ==="
 find . -name "*.nix" -type f | sort | while read -r file; do
-  if [[ "$file" == "./flake.nix" ]]; then
+  if [ "$file" = "./flake.nix" ]; then
     # Skip flake.nix as it requires full flake context
     continue
   fi

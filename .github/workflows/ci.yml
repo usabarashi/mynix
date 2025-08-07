@@ -31,4 +31,6 @@ jobs:
     - name: Run makers validate
       run: |
         echo "=== Running validation with makers ==="
+        export CURRENT_USER=$(whoami)
+        export MYNIX_REPO_PATH=$(pwd)
         nix shell nixpkgs#cargo-make -c makers validate

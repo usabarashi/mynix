@@ -62,14 +62,9 @@ in
     enable = true;
     mutableExtensionsDir = false;
     package = pkgs.vscode;
-  };
-
-  programs.vscode.profiles.default = {
-    enableUpdateCheck = false;
-    enableExtensionUpdateCheck = false;
-    # userSettings = { }; # Settings managed by symlinked file
-    keybindings = [ ];
-    extensions = allExtensions;
+    profiles.default = {
+      extensions = allExtensions;
+    };
   };
 
   home.file."Library/Application Support/Code/User/settings.json" = lib.mkForce {

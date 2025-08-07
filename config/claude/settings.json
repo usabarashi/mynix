@@ -9,12 +9,21 @@
   "permissions": {
     "allow": [
       "mcp__voicevox__text_to_speech",
-      "mcp__voicevox__get_voices",
+      "mcp__voicevox__list_voice_styles",
+      "mcp__github__get_pull_request",
+      "mcp__github__get_pull_request_diff",
+      "mcp__github__get_pull_request_files",
+      "mcp__github__get_pull_request_reviews",
       "Bash(gemini:*)",
       "Bash(gh:*)",
       "WebFetch(domain:github.com)"
     ],
     "deny": [
+      "mcp__github__add_comment_to_pending_review",
+      "mcp__github__add_issue_comment",
+      "mcp__github__create_and_submit_pull_request_review",
+      "mcp__github__create_pending_pull_request_review",
+      "mcp__github__submit_pending_pull_request_review",
       "Bash(sudo:*)",
       "Bash(rm:*)",
       "Bash(rm -rf:*)",

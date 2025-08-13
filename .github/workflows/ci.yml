@@ -9,7 +9,7 @@ on:
 
 jobs:
   syntax-check:
-    runs-on: ubuntu-latest
+    runs-on: macos-14
     strategy:
       matrix:
         host_purpose: [PRIVATE, WORK]

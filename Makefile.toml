@@ -22,8 +22,9 @@ script = '''
 echo "=== Checking flake syntax ==="
 nix flake check --no-build 2>/dev/null || nix flake show > /dev/null
 echo "=== Checking formatting ==="
+rm -f /tmp/unformatted_files
 find . -name "*.nix" -type f | sort | while read -r file; do
-  if ! nix shell nixpkgs#nixfmt-rfc-style -c nixfmt --check "$file" > /dev/null 2>&1; then
+  if ! nix shell nixpkgs#nixfmt-rfc-style -c nixfmt --check "$file" > /dev/null; then
     echo "❌ $file needs formatting"
     echo "$file" >> /tmp/unformatted_files
   fi

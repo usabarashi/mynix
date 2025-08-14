@@ -16,11 +16,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     voicevox-cli = {
-      url = "github:usabarashi/voicevox-cli";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    vdh-cli = {
-      url = "github:usabarashi/vdh-cli";
+      url = "github:usabarashi/voicevox-cli?ref=develop";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -31,7 +27,6 @@
       nix-darwin,
       home-manager,
       mac-app-util,
-      vdh-cli,
       voicevox-cli,
       ...
     }:

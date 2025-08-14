@@ -29,7 +29,6 @@
       customPackages.custom-url-schema-iina
     ]
     ++ [
-      flakeInputs.vdh-cli
       flakeInputs.voicevox-cli
     ];
 

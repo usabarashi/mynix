@@ -237,16 +237,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1755174900,
-        "narHash": "sha256-J2YtLZS+vKf2ZerRQLSauM+R9vRhIdicPzauhkhpl3I=",
+        "lastModified": 1755193810,
+        "narHash": "sha256-SVH3gTUUV+YAWKCky/nJpPbyvWz/C+hYrvz9/+defKA=",
         "owner": "usabarashi",
         "repo": "voicevox-cli",
-        "rev": "81a10c4b557ea87bb66bb2080b854b123d609457",
+        "rev": "096e6a2f0ccf2ddf1d00409f41bc9c3260749cd3",
         "type": "github"
       },
       "original": {
         "owner": "usabarashi",
-        "ref": "feat/mcp-server",
+        "ref": "develop",
         "repo": "voicevox-cli",
         "type": "github"
       }

@@ -13,8 +13,12 @@
   (regex (string-append "^" (param "HOME_DIR") "/.claude*"))
   (subpath (string-append (param "HOME_DIR") "/Library/Keychains"))
 
-  ;; Temporary file-related
+  ;; XDG Base Directory specification paths
   (subpath (string-append (param "HOME_DIR") "/.cache"))
+  (subpath (string-append (param "HOME_DIR") "/.config"))
+  (subpath (string-append (param "HOME_DIR") "/.local"))
+
+  ;; Temporary file-related
   (subpath (string-append (param "HOME_DIR") "/Library/Caches"))
   (subpath "/private/tmp")
   (subpath "/private/var/tmp")

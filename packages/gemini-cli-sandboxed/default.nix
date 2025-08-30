@@ -28,10 +28,10 @@ if [[ ! -f "$INSTALL_FLAG" ]]; then
   echo "Installing Gemini CLI on first use..." >&2
   mkdir -p "$CACHE_DIR"
   cd "$CACHE_DIR"
-  npm install @google/generative-ai-cli@0.2.1 --no-save --prefer-offline 2>/dev/null || {
+  npm install @google/gemini-cli@0.2.1 --no-save --prefer-offline 2>/dev/null || {
     echo "Warning: Could not install Gemini CLI. Using npx instead." >&2
     touch "$INSTALL_FLAG"
-    exec npx --yes @google/generative-ai-cli@0.2.1 --sandbox "$@"
+    exec npx --yes @google/gemini-cli@0.2.1 --sandbox "$@"
   }
   touch "$INSTALL_FLAG"
 fi
@@ -39,7 +39,7 @@ fi
 if [[ -f "$CACHE_DIR/node_modules/.bin/gemini" ]]; then
   exec "$CACHE_DIR/node_modules/.bin/gemini" --sandbox "$@"
 else
-  exec npx --yes @google/generative-ai-cli@0.2.1 --sandbox "$@"
+  exec npx --yes @google/gemini-cli@0.2.1 --sandbox "$@"
 fi
 EOF
     chmod +x $out/bin/gemini

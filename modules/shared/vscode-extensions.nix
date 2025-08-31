@@ -159,7 +159,7 @@ let
               postPatch =
                 (oldAttrs.postPatch or "")
                 + ''
-                  if [ -f org.alloytools.alloy.dist.jar ]; then
+                  if [ -f org.alloytools.alloy.alloy.dist.jar ]; then
                     cp ${alloyJar} org.alloytools.alloy.dist.jar
                   fi
                 '';

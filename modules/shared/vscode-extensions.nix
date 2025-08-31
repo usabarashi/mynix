@@ -209,6 +209,12 @@ let
           version = "2.38.0";
           sha256 = "sha256-B9YgvSAjvVc0CMt4JPkj0BqJdDG2Ie+DXC7Mv4O/ia8=";
         }
+        {
+          name = "gemini-cli-vscode-ide-companion";
+          publisher = "google";
+          version = "0.1.21";
+          sha256 = "sha256-ZWQEhxO2e9h3K2UbA2uWLL5WbndybsHTmSbaLvr9vIU=";
+        }
       ];
     };
 

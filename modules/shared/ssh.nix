@@ -19,7 +19,7 @@ in
         serverAliveInterval = 60;
         serverAliveCountMax = 3;
       };
-      
+
       "github.com" = {
         identityFile = "~/.ssh/github_rsa";
         identitiesOnly = true;

@@ -156,11 +156,13 @@ let
             sha256 = "sha256-svHFOCEDZHSLKzLUU2ojDVkbLTJ7hJ75znWuBV5GFQM=";
           }).overrideAttrs
             (oldAttrs: {
-              postPatch = (oldAttrs.postPatch or "") + ''
-                if [ -f org.alloytools.alloy.dist.jar ]; then
-                  cp ${alloyJar} org.alloytools.alloy.dist.jar
-                fi
-              '';
+              postPatch =
+                (oldAttrs.postPatch or "")
+                + ''
+                  if [ -f org.alloytools.alloy.dist.jar ]; then
+                    cp ${alloyJar} org.alloytools.alloy.dist.jar
+                  fi
+                '';
             })
         )
       ];

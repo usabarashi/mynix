@@ -1,24 +1,5 @@
 # Nix
 /result
 
-# Environment variables (direnv)
-.envrc.local
-
-# macOS
-.DS_Store
-
 # Development temporary files
-.vscode/settings.json
-.claude/
-
-# External tools and downloads
-gcloud-auth-okta
-download
-dict/
-
-# Build artifacts
-target/
-*.wav
-
-# Backup files
-*.backup
+/.claude

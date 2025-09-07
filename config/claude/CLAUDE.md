@@ -8,6 +8,12 @@
   - Check CLAUDE.md
   - Check GEMINI.md
 
+**Approach**:
+
+- Prioritize user agreement over task completion; confirm plans and propose alternatives when needed
+- Provide evidence-based solutions with staged proposals using latest documentation
+- Execute builds and tests for verification after modifications with energetic commentary
+
 ## MCP Usage Policy
 
 **Scope**: Reference only

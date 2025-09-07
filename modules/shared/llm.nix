@@ -10,13 +10,14 @@
   home.packages =
     with pkgs;
     [
+      gemini-cli
+
       nodejs # npx
       github-mcp-server
       terminal-notifier
     ]
     ++ [
-      customPackages.claude-code-sandboxed # Includes claude-code reference
-      customPackages.gemini-cli-sandboxed
+      customPackages.claude-code-sandboxed
     ];
 
   home.file = {

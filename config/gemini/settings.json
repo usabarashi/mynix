@@ -1,6 +1,7 @@
 {
   "theme": "Default",
   "selectedAuthType": "oauth-personal",
+  "sandbox": true,
   "mcpServers": {
     "voicevox": {
       "type": "stdio",

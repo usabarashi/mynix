@@ -1,5 +1,7 @@
 # Nix
 /result
 
+# submodule
+
 # Development temporary files
 /.claude

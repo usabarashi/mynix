@@ -1,0 +1,3 @@
+[submodule ".submodules/claude-code-spec"]
+	path = .submodules/claude-code-spec
+	url = https://github.com/gotalab/claude-code-spec.git

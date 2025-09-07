@@ -11,6 +11,7 @@
     // File Format
     "bierner.markdown-mermaid",
     "hediet.vscode-drawio",
+    "tamasfe.even-better-toml",
     // Remote
     "ms-vscode-remote.remote-ssh",
     "ms-vccode-remote.remote-container",

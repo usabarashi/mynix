@@ -69,5 +69,9 @@
     ".gemini/settings.json" = {
       source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/gemini/settings.json";
     };
+    ".gemini/commands" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/gemini/commands";
+      recursive = true;
+    };
   };
 }

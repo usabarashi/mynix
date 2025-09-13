@@ -1,7 +1,7 @@
 {
   "update.mode": "none",
   "extensions": {
-    "autoCheckUpdates": false,
+    "autoCheckUpdates": true,
     "ignoreRecommendations": true
   },
   "telemetry": {
@@ -164,5 +164,7 @@
     "-Xmx8G",
     "-Xms4G"
   ],
-  "githubPullRequests.pullBranch": "never"
+  "githubPullRequests.pullBranch": "never",
+  "diffEditor.codeLens": true,
+  "lean4.alwaysAskBeforeInstallingLeanVersions": true
 }

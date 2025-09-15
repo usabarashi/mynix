@@ -11,6 +11,7 @@ curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix 
 # Clone and apply
 git clone https://github.com/usabarashi/mynix.git
 cd mynix
+git submodule update --init --recursive
 export HOST_PURPOSE=PRIVATE  # or WORK
 nix shell nixpkgs#cargo-make -c makers apply
 ```
@@ -18,6 +19,7 @@ nix shell nixpkgs#cargo-make -c makers apply
 ## Commands
 
 ### Development
+
 ```bash
 # Run validation checks (syntax, formatting)
 nix shell nixpkgs#cargo-make -c makers validate
@@ -34,9 +36,12 @@ nix shell nixpkgs#cargo-make -c makers apply
 ```
 
 ### Maintenance
+
 ```bash
 # Update dependencies
 nix flake update
+git submodule sync --recursive
+git submodule update --init --recursive
 
 # Remove old generations and cleanup
 nix shell github:nix-community/home-manager -c home-manager expire-generations now

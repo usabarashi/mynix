@@ -19,6 +19,8 @@
     "jnoortheen.nix-ide",
     // AI Claude Code
     "anthropic.claude-code",
+    // AI Codex
+    "openai.chatgpt",
     // AI Copilot
     "github.copilot",
     "github.copilot-chat",

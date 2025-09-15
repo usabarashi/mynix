@@ -10,6 +10,7 @@
   home.packages =
     with pkgs;
     [
+      codex
       gemini-cli
 
       nodejs # npx
@@ -63,6 +64,14 @@
       recursive = true;
     };
 
+    # Codex CLI settings
+    ".codex/AGENTS.md" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/codex/AGENTS.md";
+    };
+    ".codex/config.toml" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/codex/config.toml";
+    };
+
     # Gemini CLI settings
     ".gemini/GEMINI.md" = {
       source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/gemini/GEMINI.md";
@@ -74,5 +83,6 @@
       source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/gemini/commands";
       recursive = true;
     };
+
   };
 }

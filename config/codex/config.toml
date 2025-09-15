@@ -1,0 +1,10 @@
+model_reasoning_effort = "high"
+hide_agent_reasoning = true
+web_search_request = true
+network_access = true
+approval_policy = "on-request"
+
+[mcp_servers.voicevox]
+type = "stdio"
+command = "voicevox-mcp-server"
+args = []

@@ -16,7 +16,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     voicevox-cli = {
-      url = "github:usabarashi/voicevox-cli?ref=develop";
+      url = "github:usabarashi/voicevox-cli?ref=feature/Supports-cancellation-protocols";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -65,6 +65,7 @@
         if (builtins.tryEval env.hostPurpose).success then configs.selectConfig env.hostPurpose else null;
 
       system = builtins.currentSystem;
+      pkgs = nixpkgs.legacyPackages.${system};
     in
     {
 
@@ -82,6 +83,12 @@
           { };
 
       nixosConfigurations = { };
+
+      devShells.${system}.default = pkgs.mkShell {
+        packages = with pkgs; [
+          uv
+        ];
+      };
 
     };
 }

@@ -9,6 +9,7 @@ If AGENTS.md is present, please review its contents.
 - Prioritize user agreement over task completion; confirm plans and propose alternatives when needed
 - Provide evidence-based solutions with staged proposals using latest documentation
 - Execute builds and tests for verification after modifications with energetic commentary
+- Provide peripheral knowledge and context with Tips beyond the main conclusion
 
 ## MCP Usage Policy
 

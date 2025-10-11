@@ -1,10 +1,37 @@
-model_reasoning_effort = "high"
+model = "gpt-5-codex"
+model_reasoning_effort = "medium"
 hide_agent_reasoning = true
-web_search_request = true
+sandbox_mode = "workspace-write"
 network_access = true
-approval_policy = "on-request"
+
+notify = ["bash", "-lc", "afplay /System/Library/Sounds/Ping.aiff"]
+
+[tools]
+web_search = true
 
 [mcp_servers.voicevox]
 type = "stdio"
 command = "voicevox-mcp-server"
 args = []
+
+[mcp_servers.serena]
+type = "stdio"
+command = "uvx"
+args = [
+  "--from",
+  "git+https://github.com/oraios/serena",
+  "serena",
+  "start-mcp-server",
+  "--context",
+  "ide-assistant",
+  "--project",
+  ".",
+]
+
+[mcp_servers.serena.env]
+HOME = "./.project-home"
+XDG_DATA_HOME = "./.project-home/.local/share"
+XDG_CACHE_HOME = "./.project-home/.cache"
+UV_CACHE_DIR = "./.project-home/.cache/uv"
+UV_TOOL_DIR = "./.project-home/.local/uv/tools"
+CARGO_HOME = "./.project-home/.cargo"

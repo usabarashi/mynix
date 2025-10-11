@@ -64,7 +64,7 @@
 
 ## Documentation Guidelines
 
-- **Language & Format**: Write in English; avoid emojis unless explicitly requested
+- **Language & Format**: Use English for program or file outputs; avoid emojis unless explicitly requested
 - **Structure & Clarity**: Use MECE principles with information compression for logical, readable documentation
 - **Implementation Consistency**: Prioritize implementation over documentation when conflicts arise
 

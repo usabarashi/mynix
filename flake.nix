@@ -15,8 +15,12 @@
       url = "github:hraban/mac-app-util";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    flake-utils = {
+      url = "github:numtide/flake-utils";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     voicevox-cli = {
-      url = "github:usabarashi/voicevox-cli?ref=feature/Supports-cancellation-protocols";
+      url = "github:usabarashi/voicevox-cli?";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -27,6 +31,7 @@
       nix-darwin,
       home-manager,
       mac-app-util,
+      flake-utils,
       voicevox-cli,
       ...
     }:
@@ -64,16 +69,28 @@
       selectedConfig =
         if (builtins.tryEval env.hostPurpose).success then configs.selectConfig env.hostPurpose else null;
 
-      system = builtins.currentSystem;
-      pkgs = nixpkgs.legacyPackages.${system};
+      currentSystem = builtins.currentSystem;
     in
-    {
-
+    flake-utils.lib.eachDefaultSystem (
+      system:
+      let
+        pkgs = nixpkgs.legacyPackages.${system};
+      in
+      {
+        devShells.default = pkgs.mkShell {
+          packages = with pkgs; [
+            nixd
+            uv
+          ];
+        };
+      }
+    )
+    // {
       darwinConfigurations =
         if selectedConfig != null then
           {
             default = builders.mkDarwinSystem {
-              inherit system;
+              system = currentSystem;
               userName = env.currentUser;
               repoPath = env.repoPath;
               inherit (selectedConfig) homeModule;
@@ -83,12 +100,5 @@
           { };
 
       nixosConfigurations = { };
-
-      devShells.${system}.default = pkgs.mkShell {
-        packages = with pkgs; [
-          uv
-        ];
-      };
-
     };
 }

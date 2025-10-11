@@ -5,3 +5,11 @@
 
 # Development temporary files
 /.claude
+
+# Local tool/state caches (uv, serena, XDG overrides)
+/.cache/
+/.data/
+/.project-home/
+/.serena/
+/.state/
+/.config/

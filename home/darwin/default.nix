@@ -21,6 +21,7 @@
     [
       discord
       iina
+      ripgrep
       slack
       vscode
       zoom-us

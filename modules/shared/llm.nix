@@ -14,7 +14,6 @@
       gemini-cli
 
       nodejs # npx
-      github-mcp-server
       terminal-notifier
     ]
     ++ [

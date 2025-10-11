@@ -20,6 +20,7 @@
     with pkgs;
     [
       cyberduck
+      gmailctl
     ]
     ++ [
       flakeInputs.voicevox-cli

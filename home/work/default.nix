@@ -33,6 +33,7 @@
     ../../modules/shared/git.nix
     ../../modules/shared/neovim.nix
     ../../modules/shared/ssh.nix
+    ../../modules/shared/terraform.nix
     ../../modules/shared/vscode.nix
     ../../modules/shared/terminal.nix
   ];

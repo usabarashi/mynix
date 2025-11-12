@@ -41,6 +41,7 @@
     ../../modules/shared/nix.nix
     ../../modules/shared/terminal.nix
     ../../modules/shared/ssh.nix
+    ../../modules/shared/terraform.nix
     ../../modules/shared/vscode.nix
   ];
 }

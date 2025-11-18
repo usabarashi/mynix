@@ -29,6 +29,7 @@ in
   programs.vscode = {
     enable = true;
     mutableExtensionsDir = true;
+    profiles.default.extensions = collectExtensions programmingLanguages.alloy;
   };
 
   home.file."Library/Application Support/Code/User/settings.json" = lib.mkForce {

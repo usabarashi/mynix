@@ -12,6 +12,7 @@
         maintainers = libPrev.maintainers // {
           usabarashi = {
             github = "usabarashi";
+            githubId = 19676305;
           };
         };
       }

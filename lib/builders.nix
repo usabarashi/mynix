@@ -2,7 +2,7 @@
   lib,
   nix-darwin,
   home-manager,
-  mac-app-util,
+  # mac-app-util,
   mkFlakeInputs,
 }:
 
@@ -46,7 +46,7 @@
         home-manager.darwinModules.home-manager
         {
           home-manager.sharedModules = [
-            mac-app-util.homeManagerModules.default
+            # mac-app-util.homeManagerModules.default
           ];
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
@@ -57,7 +57,7 @@
             flakeInputs = mkFlakeInputs system;
           };
         }
-        mac-app-util.darwinModules.default
+        # mac-app-util.darwinModules.default
       ];
     };
 }

@@ -39,9 +39,11 @@ in
 
   programs.git = {
     enable = true;
-    userName = "usabarashi";
-    userEmail = "19676305+usabarashi@users.noreply.github.com";
-    extraConfig = {
+    settings = {
+      user = {
+        name = "usabarashi";
+        email = "19676305+usabarashi@users.noreply.github.com";
+      };
       core.autocrlf = "input";
       credential.helper = "osxkeychain";
     };

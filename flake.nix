@@ -11,10 +11,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # mac-app-util = {
-    #   url = "github:hraban/mac-app-util";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    mac-app-util = {
+      url = "github:hraban/mac-app-util";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     flake-utils = {
       url = "github:numtide/flake-utils";
     };
@@ -29,7 +29,7 @@
       nixpkgs,
       nix-darwin,
       home-manager,
-      # mac-app-util,
+      mac-app-util,
       flake-utils,
       voicevox-cli,
       ...

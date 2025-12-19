@@ -1,13 +1,18 @@
-model = "gpt-5-codex"
+# See: https://developers.openai.com/codex/models/
+model = "gpt-5.2"
 model_reasoning_effort = "medium"
-hide_agent_reasoning = true
+model_reasoning_summary = "none"
+approval_policy = "on-request"
 sandbox_mode = "workspace-write"
-network_access = true
 
 notify = ["bash", "-lc", "afplay /System/Library/Sounds/Ping.aiff"]
 
-[tools]
-web_search = true
+# See: https://developers.openai.com/codex/cli/features
+[features]
+web_search_request = true
+
+[sandbox_workspace_write]
+network_access = true
 
 [mcp_servers.voicevox]
 type = "stdio"

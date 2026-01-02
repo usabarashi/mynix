@@ -19,7 +19,7 @@
       url = "github:numtide/flake-utils";
     };
     voicevox-cli = {
-      url = "github:usabarashi/voicevox-cli?";
+      url = "github:usabarashi/voicevox-cli";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

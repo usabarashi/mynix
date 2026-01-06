@@ -61,3 +61,9 @@ nix flake update
   - `nix shell nixpkgs#cargo-make -c makers fmt`
   - then re-run `makers validate`
 - CI runs the same validation; unformatted files will fail the build
+
+## Operational Notes
+
+- If `nix-store --gc` or `nix-collect-garbage -d` fails with "Operation not permitted",
+  run the GC commands from the Terminal app. Ensure Terminal has Full Disk Access
+  (System Settings -> Privacy & Security -> Full Disk Access).

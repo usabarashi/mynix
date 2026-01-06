@@ -49,6 +49,10 @@ nix-env --delete-generations old
 sudo nix-env --profile /nix/var/nix/profiles/system --delete-generations old
 nix-collect-garbage -d && nix-store --gc
 
+# If GC fails with "Operation not permitted", run the GC commands from the
+# Terminal app. Ensure Terminal has Full Disk Access
+# (System Settings -> Privacy & Security -> Full Disk Access).
+
 # Show current configuration
 nix flake show
 ```

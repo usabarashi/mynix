@@ -64,6 +64,7 @@ nix flake update
 
 ## Operational Notes
 
-- If `nix-store --gc` or `nix-collect-garbage -d` fails with "Operation not permitted",
-  run the GC commands from the Terminal app. Ensure Terminal has Full Disk Access
-  (System Settings -> Privacy & Security -> Full Disk Access).
+- On macOS, if `nix-store --gc` or `nix-collect-garbage -d` fails with
+  "Operation not permitted", run the GC commands from the Terminal app and
+  ensure Full Disk Access is enabled (System Settings -> Privacy & Security ->
+  Full Disk Access).

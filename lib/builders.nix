@@ -2,7 +2,6 @@
   lib,
   nix-darwin,
   home-manager,
-  # mac-app-util,
   mkFlakeInputs,
 }:
 
@@ -45,9 +44,6 @@
         hostConfig
         home-manager.darwinModules.home-manager
         {
-          home-manager.sharedModules = [
-            # mac-app-util.homeManagerModules.default
-          ];
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.backupFileExtension = "backup";
@@ -57,7 +53,6 @@
             flakeInputs = mkFlakeInputs system;
           };
         }
-        # mac-app-util.darwinModules.default
       ];
     };
 }

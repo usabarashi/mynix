@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-Personal Nix Flake configuration for macOS using **nix-darwin** + **home-manager** + **mac-app-util**.
+Personal Nix Flake configuration for macOS using **nix-darwin** + **home-manager**.
 
 ## Quick Commands
 

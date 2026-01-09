@@ -13,7 +13,12 @@
   home = {
     username = userName;
     homeDirectory = homeDirectory;
-    stateVersion = "25.05";
+    stateVersion = "25.11";
+  };
+
+  targets.darwin.copyApps = {
+    enable = true;
+    enableChecks = true;
   };
 
   home.packages =
@@ -23,7 +28,6 @@
       iina
       ripgrep
       slack
-      vscode
       zoom-us
     ]
     ++ [

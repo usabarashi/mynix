@@ -81,4 +81,3 @@ nix flake show
 - [NixOS Search](https://search.nixos.org/packages) | [NixHub](https://www.nixhub.io/) | [Versions](https://lazamar.co.uk/nix-versions/)
 - [home-manager](https://github.com/nix-community/home-manager) | [Manual](https://nix-community.github.io/home-manager/)
 - [nix-darwin](https://github.com/LnL7/nix-darwin) | [Options](https://daiderd.com/nix-darwin/manual/)
-- [mac-app-util](https://github.com/hraban/mac-app-util) | [Documentation](https://github.com/hraban/mac-app-util/blob/main/README.md)

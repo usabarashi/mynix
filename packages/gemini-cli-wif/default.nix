@@ -100,7 +100,7 @@ stdenv.mkDerivation {
   '';
 
   meta = with lib; {
-    description = "Gemini CLI wrapper that forces Vertex AI location to Tokyo";
+    description = "Gemini CLI wrapper with Workforce Identity Federation auth that forces Vertex AI location to Tokyo";
     license = licenses.mit;
     platforms = platforms.darwin;
     mainProgram = "gemini";

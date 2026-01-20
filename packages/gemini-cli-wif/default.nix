@@ -16,6 +16,7 @@ let
     export GOOGLE_CLOUD_LOCATION="${tokyoLocation}"
     export GOOGLE_GENAI_USE_VERTEXAI="true"
     unset GOOGLE_API_KEY GEMINI_API_KEY
+    CRED_PATH=""
 
     require_cmd() {
       [ -x "$1" ]

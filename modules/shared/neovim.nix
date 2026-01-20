@@ -97,24 +97,17 @@
 
       " Status line at bottom (standard placement)
       function! CurrentMode()
+        let l:modes = {
+        \ 'n': 'NORMAL',
+        \ 'i': 'INSERT',
+        \ 'v': 'VISUAL',
+        \ 'V': 'V-LINE',
+        \ "\<C-v>": 'V-BLOCK',
+        \ 'R': 'REPLACE',
+        \ 't': 'TERMINAL',
+        \ }
         let l:mode = mode()
-        if l:mode == 'n'
-          return 'NORMAL'
-        elseif l:mode == 'i'
-          return 'INSERT'
-        elseif l:mode == 'v'
-          return 'VISUAL'
-        elseif l:mode == 'V'
-          return 'V-LINE'
-        elseif l:mode == "\<C-v>"
-          return 'V-BLOCK'
-        elseif l:mode == 'R'
-          return 'REPLACE'
-        elseif l:mode == 't'
-          return 'TERMINAL'
-        else
-          return l:mode
-        endif
+        return get(l:modes, l:mode, l:mode)
       endfunction
       set statusline=%{CurrentMode()}\ \|\ %f\ %m%r%h%w\ [%Y]\ [%{&ff}]\ %=%l/%L:%c\ %p%%
       set laststatus=2

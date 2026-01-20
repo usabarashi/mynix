@@ -1,15 +1,27 @@
 {
-  "theme": "Default",
-  "selectedAuthType": "oauth-personal",
-  "sandbox": true,
+  "security": {
+    "auth": {
+      "selectedType": "vertex-ai"
+    }
+  },
+  "tools": {
+    "sandbox": true
+  },
+  "ui": {
+    "theme": "Default"
+  },
+  "ide": {
+    "hasSeenNudge": true,
+    "enabled": true
+  },
+  "ideIntegrationPort": 65432,
   "mcpServers": {
     "voicevox": {
-      "type": "stdio",
       "command": "voicevox-mcp-server",
       "args": []
     }
   },
-  "hasSeenIdeIntegrationNudge": true,
-  "ideMode": true,
-  "ideIntegrationPort": 65432
+  "general": {
+    "previewFeatures": true
+  }
 }

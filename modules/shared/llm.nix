@@ -11,13 +11,13 @@
     with pkgs;
     [
       codex
-      gemini-cli
 
       nodejs # npx
       terminal-notifier
     ]
     ++ [
       customPackages.claude-code-sandboxed
+      customPackages.gemini-cli-wif
     ];
 
   home.file = {
@@ -44,42 +44,52 @@
     # Remove MCP server:
     # claude mcp remove github
 
-    # Claude settings
+    # Claude Code settings
     ".claude/permissive-open.sb" = {
       source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/claude/permissive-open.sb";
+      force = true;
     };
     ".claude/CLAUDE.md" = {
       source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/claude/CLAUDE.md";
+      force = true;
     };
     ".claude/settings.json" = {
       source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/claude/settings.json";
+      force = true;
     };
     ".claude/commands" = {
       source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/claude/commands";
+      force = true;
       recursive = true;
     };
     ".claude/scripts" = {
       source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/claude/scripts";
+      force = true;
       recursive = true;
     };
 
     # Codex CLI settings
     ".codex/AGENTS.md" = {
       source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/codex/AGENTS.md";
+      force = true;
     };
     ".codex/config.toml" = {
       source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/codex/config.toml";
+      force = true;
     };
 
     # Gemini CLI settings
     ".gemini/GEMINI.md" = {
       source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/gemini/GEMINI.md";
+      force = true;
     };
     ".gemini/settings.json" = {
       source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/gemini/settings.json";
+      force = true;
     };
     ".gemini/commands" = {
       source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/gemini/commands";
+      force = true;
       recursive = true;
     };
 

@@ -2,6 +2,7 @@
   lib,
   buildNpmPackage,
   fetchurl,
+  jq,
 }:
 
 buildNpmPackage rec {
@@ -16,7 +17,8 @@ buildNpmPackage rec {
   postPatch = ''
     cp ${./package-lock.json} package-lock.json
     # Remove prepare script to avoid TypeScript build
-    sed -i 's/"prepare": "npm run build",//' package.json
+    ${jq}/bin/jq 'del(.scripts.prepare)' package.json > package.json.tmp
+    mv package.json.tmp package.json
   '';
 
   npmDepsHash = "sha256-hAi44Kvjvn65kwr2M+8pZw3l+ezOQbux9/7xkZtKS+I=";

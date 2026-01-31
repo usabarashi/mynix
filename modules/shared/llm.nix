@@ -11,13 +11,12 @@
     with pkgs;
     [
       codex
-
-      nodejs # npx
       terminal-notifier
     ]
     ++ [
       customPackages.claude-code-sandboxed
       customPackages.gemini-cli-wif
+      customPackages.mcp-server-memory
     ];
 
   home.file = {

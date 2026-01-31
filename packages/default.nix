@@ -6,4 +6,5 @@
   custom-url-schema-iina = pkgs.callPackage ./custom-url-schema-iina { };
   docker-compose = pkgs.callPackage ./docker-compose { };
   gemini-cli-wif = pkgs.callPackage ./gemini-cli-wif { };
+  mcp-server-memory = pkgs.callPackage ./mcp-server-memory { };
 }

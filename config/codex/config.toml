@@ -1,15 +1,16 @@
 # See: https://developers.openai.com/codex/models/
-model = "gpt-5.2"
+model = "gpt-5.2-codex"
 model_reasoning_effort = "medium"
 model_reasoning_summary = "none"
 approval_policy = "on-request"
 sandbox_mode = "workspace-write"
+web_search = "live"
 
 notify = ["bash", "-lc", "afplay /System/Library/Sounds/Ping.aiff"]
+personality = "pragmatic"
 
-# See: https://developers.openai.com/codex/cli/features
-[features]
-web_search_request = true
+[notice.model_migrations]
+"gpt-5.2" = "gpt-5.2-codex"
 
 [sandbox_workspace_write]
 network_access = true

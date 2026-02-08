@@ -21,28 +21,6 @@
 
   home.file = {
 
-    # Claude Code Configuration & Dynamic file management
-    #
-    # Note: MCP servers cannot be configured via JSON files.
-    # After applying this configuration, manually add MCP servers using CLI commands.
-    #
-    # MCP Server Scopes (https://docs.anthropic.com/en/docs/claude-code/mcp):
-    # - Local (default): Available only to you in the current project
-    # - Project (-s project): Shared with everyone in the project (stored in .mcp.json)
-    # - User (-s user): Available to you across all projects
-    #
-    # User scope is recommended for personal tools like GitHub access that you want
-    # to use across all your projects without sharing credentials with team members.
-    #
-    # Add GitHub MCP server (user scope):
-    # claude mcp add github -e GITHUB_PERSONAL_ACCESS_TOKEN=$GITHUB_PERSONAL_ACCESS_TOKEN -s user -- github-mcp-server stdio
-    #
-    # List configured MCP servers:
-    # claude mcp list
-    #
-    # Remove MCP server:
-    # claude mcp remove github
-
     # Claude Code settings
     ".claude/permissive-open.sb" = {
       source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/claude/permissive-open.sb";
@@ -56,13 +34,18 @@
       source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/claude/settings.json";
       force = true;
     };
-    ".claude/commands" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/claude/commands";
+    ".claude/scripts" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/claude/scripts";
       force = true;
       recursive = true;
     };
-    ".claude/scripts" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/claude/scripts";
+    ".claude/commands" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/agents/commands";
+      force = true;
+      recursive = true;
+    };
+    ".claude/skills" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/agents/skills";
       force = true;
       recursive = true;
     };
@@ -76,6 +59,16 @@
       source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/codex/config.toml";
       force = true;
     };
+    ".codex/commands" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/agents/commands";
+      force = true;
+      recursive = true;
+    };
+    ".codex/skills" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/agents/skills";
+      force = true;
+      recursive = true;
+    };
 
     # Gemini CLI settings
     ".gemini/GEMINI.md" = {
@@ -87,7 +80,12 @@
       force = true;
     };
     ".gemini/commands" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/gemini/commands";
+      source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/agents/commands";
+      force = true;
+      recursive = true;
+    };
+    ".gemini/skills" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/agents/skills";
       force = true;
       recursive = true;
     };

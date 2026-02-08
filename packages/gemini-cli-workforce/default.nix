@@ -7,20 +7,16 @@
 }:
 
 let
-  tokyoLocation = "asia-northeast1";
+  globalLocation = "global";
   geminiWrapper = writeShellScriptBin "gemini" ''
     GEMINI_BIN="${gemini-cli}/bin/gemini"
     GCLOUD_BIN_DIR="${google-cloud-sdk}/bin"
     GCLOUD_BIN="$GCLOUD_BIN_DIR/gcloud"
     export PATH="$GCLOUD_BIN_DIR:$PATH"
-    export GOOGLE_CLOUD_LOCATION="${tokyoLocation}"
+    export GOOGLE_CLOUD_LOCATION="${globalLocation}"
     export GOOGLE_GENAI_USE_VERTEXAI="true"
     unset GOOGLE_API_KEY GEMINI_API_KEY
     CRED_PATH=""
-
-    require_cmd() {
-      [ -x "$1" ]
-    }
 
     ensure_gcloud_login() {
       if [ -n "''${GOOGLE_WIF_LOGIN_CONFIG:-}" ]; then
@@ -35,7 +31,7 @@ let
     }
 
     ensure_adc() {
-      if ! require_cmd "$GCLOUD_BIN"; then
+      if [ ! -x "$GCLOUD_BIN" ]; then
         echo "Error: gcloud is required to create/refresh Application Default Credentials." >&2
         exit 1
       fi
@@ -56,6 +52,7 @@ let
 
     DEFAULT_ADC_PATH="$HOME/.config/gcloud/application_default_credentials.json"
     if [ -n "''${GOOGLE_APPLICATION_CREDENTIALS:-}" ]; then
+      # Explicit credentials: allow service_account in addition to federated types
       CRED_PATH="$GOOGLE_APPLICATION_CREDENTIALS"
       if [ ! -f "$CRED_PATH" ]; then
         echo "Error: GOOGLE_APPLICATION_CREDENTIALS not found: $CRED_PATH" >&2
@@ -66,6 +63,7 @@ let
         exit 1
       fi
     else
+      # Default ADC: reject service_account keys to prevent accidental long-lived key usage
       CRED_PATH="$DEFAULT_ADC_PATH"
       export GOOGLE_APPLICATION_CREDENTIALS="$CRED_PATH"
       ensure_adc
@@ -84,8 +82,8 @@ let
   '';
 in
 stdenv.mkDerivation {
-  pname = "gemini-cli-wif";
-  version = gemini-cli.version or "1.0.0";
+  pname = "gemini-cli-workforce";
+  version = gemini-cli.version;
 
   dontUnpack = true;
   dontBuild = true;
@@ -100,7 +98,7 @@ stdenv.mkDerivation {
   '';
 
   meta = with lib; {
-    description = "Gemini CLI wrapper with Workforce Identity Federation auth that forces Vertex AI location to Tokyo";
+    description = "Gemini CLI wrapper with Workforce Identity Federation auth that forces Vertex AI location to global";
     license = licenses.mit;
     platforms = platforms.darwin;
     mainProgram = "gemini";

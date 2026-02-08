@@ -15,7 +15,7 @@
     ]
     ++ [
       customPackages.claude-code-sandboxed
-      customPackages.gemini-cli-wif
+      customPackages.gemini-cli-workforce
       customPackages.mcp-server-memory
     ];
 
@@ -74,6 +74,10 @@
       };
       ".gemini/settings.json" = {
         source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/gemini/settings.json";
+        force = true;
+      };
+      ".gemini/policies" = {
+        source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/gemini/policies";
         force = true;
       };
       ".gemini/commands" = agentCommands;

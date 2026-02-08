@@ -19,7 +19,20 @@
       customPackages.mcp-server-memory
     ];
 
-  home.file = {
+  home.file =
+    let
+      agentCommands = {
+        source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/agents/commands";
+        force = true;
+        recursive = true;
+      };
+      agentSkills = {
+        source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/agents/skills";
+        force = true;
+        recursive = true;
+      };
+    in
+    {
 
     # Claude Code settings
     ".claude/permissive-open.sb" = {
@@ -39,16 +52,8 @@
       force = true;
       recursive = true;
     };
-    ".claude/commands" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/agents/commands";
-      force = true;
-      recursive = true;
-    };
-    ".claude/skills" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/agents/skills";
-      force = true;
-      recursive = true;
-    };
+    ".claude/commands" = agentCommands;
+    ".claude/skills" = agentSkills;
 
     # Codex CLI settings
     ".codex/AGENTS.md" = {
@@ -59,16 +64,8 @@
       source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/codex/config.toml";
       force = true;
     };
-    ".codex/commands" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/agents/commands";
-      force = true;
-      recursive = true;
-    };
-    ".codex/skills" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/agents/skills";
-      force = true;
-      recursive = true;
-    };
+    ".codex/commands" = agentCommands;
+    ".codex/skills" = agentSkills;
 
     # Gemini CLI settings
     ".gemini/GEMINI.md" = {
@@ -79,16 +76,8 @@
       source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/gemini/settings.json";
       force = true;
     };
-    ".gemini/commands" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/agents/commands";
-      force = true;
-      recursive = true;
-    };
-    ".gemini/skills" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/agents/skills";
-      force = true;
-      recursive = true;
-    };
+    ".gemini/commands" = agentCommands;
+    ".gemini/skills" = agentSkills;
 
   };
 }

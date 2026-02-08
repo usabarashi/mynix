@@ -34,50 +34,50 @@
     in
     {
 
-    # Claude Code settings
-    ".claude/permissive-open.sb" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/claude/permissive-open.sb";
-      force = true;
-    };
-    ".claude/CLAUDE.md" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/claude/CLAUDE.md";
-      force = true;
-    };
-    ".claude/settings.json" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/claude/settings.json";
-      force = true;
-    };
-    ".claude/scripts" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/claude/scripts";
-      force = true;
-      recursive = true;
-    };
-    ".claude/commands" = agentCommands;
-    ".claude/skills" = agentSkills;
+      # Claude Code settings
+      ".claude/permissive-open.sb" = {
+        source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/claude/permissive-open.sb";
+        force = true;
+      };
+      ".claude/CLAUDE.md" = {
+        source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/claude/CLAUDE.md";
+        force = true;
+      };
+      ".claude/settings.json" = {
+        source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/claude/settings.json";
+        force = true;
+      };
+      ".claude/scripts" = {
+        source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/claude/scripts";
+        force = true;
+        recursive = true;
+      };
+      ".claude/commands" = agentCommands;
+      ".claude/skills" = agentSkills;
 
-    # Codex CLI settings
-    ".codex/AGENTS.md" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/codex/AGENTS.md";
-      force = true;
-    };
-    ".codex/config.toml" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/codex/config.toml";
-      force = true;
-    };
-    ".codex/commands" = agentCommands;
-    ".codex/skills" = agentSkills;
+      # Codex CLI settings
+      ".codex/AGENTS.md" = {
+        source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/codex/AGENTS.md";
+        force = true;
+      };
+      ".codex/config.toml" = {
+        source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/codex/config.toml";
+        force = true;
+      };
+      ".codex/commands" = agentCommands;
+      ".codex/skills" = agentSkills;
 
-    # Gemini CLI settings
-    ".gemini/GEMINI.md" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/gemini/GEMINI.md";
-      force = true;
-    };
-    ".gemini/settings.json" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/gemini/settings.json";
-      force = true;
-    };
-    ".gemini/commands" = agentCommands;
-    ".gemini/skills" = agentSkills;
+      # Gemini CLI settings
+      ".gemini/GEMINI.md" = {
+        source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/gemini/GEMINI.md";
+        force = true;
+      };
+      ".gemini/settings.json" = {
+        source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/gemini/settings.json";
+        force = true;
+      };
+      ".gemini/commands" = agentCommands;
+      ".gemini/skills" = agentSkills;
 
-  };
+    };
 }

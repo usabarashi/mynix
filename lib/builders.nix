@@ -11,6 +11,7 @@
       system,
       userName,
       homeModule,
+      hostPath,
       repoPath,
     }:
     let
@@ -23,7 +24,6 @@
           ...
         }:
         {
-          system.stateVersion = 4;
           ids.gids.nixbld = 350; # Use fixed GID instead of runtime detection
           nixpkgs.overlays = import ../lib/overlays.nix {
             flakeInputs = mkFlakeInputs system;
@@ -42,6 +42,7 @@
       };
       modules = [
         hostConfig
+        hostPath
         home-manager.darwinModules.home-manager
         {
           home-manager.useGlobalPkgs = true;

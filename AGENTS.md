@@ -2,69 +2,73 @@
 
 Personal Nix Flake configuration for macOS using **nix-darwin** + **home-manager**.
 
-## Quick Commands
+## Commands
+
+| Command | Description |
+|---------|-------------|
+| `makers apply` | Build and deploy configuration |
+| `makers validate` | Check syntax and formatting (same as CI) |
+| `makers fmt` | Auto-format all `*.nix` files |
+| `nix flake update` | Update flake dependencies |
+
+All `makers` commands run via `nix shell nixpkgs#cargo-make -c`.
 
 ```bash
 # Deploy
 export HOST_PURPOSE=PRIVATE  # or WORK
 nix shell nixpkgs#cargo-make -c makers apply
 
-# Test
-export HOST_PURPOSE=PRIVATE
+# Build test (without applying)
+export HOST_PURPOSE=PRIVATE  # or WORK
 nix build .#darwinConfigurations.default.system --impure
-
-# Update
-nix flake update
 ```
 
 ## Architecture
 
-**3-Category Package Management:**
+```
+flake.nix              Entry point - reads HOST_PURPOSE, assembles system
+lib/
+  env.nix              Environment variable resolution
+  configs.nix          Purpose-based config selection (PRIVATE/WORK)
+  builders.nix         mkDarwinSystem - composes nix-darwin + home-manager
+  overlays.nix         Custom package overlays
+hosts/                 System-level nix-darwin config per environment
+  private/             PRIVATE: system defaults, blackhole, nix-maintenance
+  work/                WORK: system defaults, nix-maintenance
+home/                  User-level home-manager config per environment
+  darwin/              PRIVATE: personal packages and modules
+  work/                WORK: work packages and modules
+modules/
+  darwin/              nix-darwin modules (blackhole, karabiner, nix-maintenance)
+  shared/              home-manager modules (git, terminal, neovim, vscode, llm, ...)
+packages/              Custom package definitions
+```
+
+### Package Sources
 
 1. Standard nixpkgs packages
-2. Custom packages (packages/flake.nix)
-3. External flake inputs
-
-**Key Files:**
-
-- `flake.nix`: Main entry point
-- `lib/`: Independent modules (env, systems, configs, builders)
-- `home/`: Environment configs (darwin/, work/)
-- `modules/`: Shared functionality
-- `packages/`: Custom package definitions
+2. Custom packages (`packages/`)
+3. External flake inputs (voicevox-cli, etc.)
 
 ## Environment Variables
 
-- `HOST_PURPOSE` (required): `PRIVATE` or `WORK`
-- Auto-detected: `CURRENT_USER`, `MYNIX_REPO_PATH`, `SYSTEM_TYPE`, `ARCH`
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `HOST_PURPOSE` | Yes | `PRIVATE` or `WORK` |
+| `CURRENT_USER` | Auto | Via `whoami` |
+| `MYNIX_REPO_PATH` | Auto | Via `pwd` |
 
-## Nix File Formatting
+## Formatting
 
-- Formatter: `nixfmt-rfc-style` (aligns with CI validate workflow)
-- Scope: Format all `*.nix` files in this repository
-- Validate (same as GitHub Actions):
-  - `nix shell nixpkgs#cargo-make -c makers validate`
-- Format locally:
-  - `nix shell nixpkgs#cargo-make -c makers fmt`
-  - or directly: `nix shell nixpkgs#nixfmt-rfc-style -c find . -name "*.nix" -type f -exec nixfmt {} \;`
-- Check a single file:
-  - `nix shell nixpkgs#nixfmt-rfc-style -c nixfmt --check path/to/file.nix`
-- Commit policy:
-  - Keep formatting-only changes separate from semantic changes
-  - Ensure PRs pass `makers validate` before review
-
-### Post-Change Checklist
-
-- After any change (before commit/push), run:
-  - `nix shell nixpkgs#cargo-make -c makers validate`
-- If validation fails due to formatting, fix with:
-  - `nix shell nixpkgs#cargo-make -c makers fmt`
-  - then re-run `makers validate`
-- CI runs the same validation; unformatted files will fail the build
+- Formatter: `nixfmt-rfc-style`
+- Run `makers validate` before commit/push
+- If validation fails: run `makers fmt`, then re-validate
+- Keep formatting-only changes separate from semantic changes
 
 ## Operational Notes
 
-- On macOS, if `nix-store --gc` or `nix-collect-garbage -d` fails with
-  "Operation not permitted", run the GC commands from the Terminal app and
-  ensure Full Disk Access is enabled (System Settings -> Privacy & Security ->
-  Full Disk Access).
+- Build requires `--impure` flag for environment variable access
+- Nix store GC runs automatically via launchd (weekly, configured in `modules/darwin/nix-maintenance.nix`)
+- If manual `nix-store --gc` fails with "Operation not permitted", run from
+  Terminal.app with Full Disk Access enabled
+  (System Settings > Privacy & Security > Full Disk Access)

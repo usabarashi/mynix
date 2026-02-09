@@ -1,6 +1,7 @@
 # mynix
 
-**Declarative user environment that eliminates manual setup by defining your entire development and daily-use software stack as code.**
+Declarative macOS environment using **nix-darwin** + **home-manager**.
+Define your entire development and daily-use software stack as code.
 
 ## Quick Start
 
@@ -11,69 +12,58 @@ curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix 
 # Clone and apply
 git clone https://github.com/usabarashi/mynix.git
 cd mynix
-git submodule update --init --recursive
 export HOST_PURPOSE=PRIVATE  # or WORK
 nix shell nixpkgs#cargo-make -c makers apply
 ```
 
 ## Commands
 
-### Development
+| Command | Description |
+|---------|-------------|
+| `makers apply` | Build and apply configuration |
+| `makers validate` | Check syntax and formatting |
+| `makers fmt` | Auto-format all Nix files |
+| `nix flake update` | Update flake dependencies |
+| `nix flake show` | Show current configuration |
+
+All `makers` commands run via `nix shell nixpkgs#cargo-make -c`.
+
+### Dry Run
 
 ```bash
-# Run validation checks (syntax, formatting)
-nix shell nixpkgs#cargo-make -c makers validate
-
-# Format Nix files (if needed)
-nix shell nixpkgs#cargo-make -c makers fmt
-
-# Test configuration (dry-run)
 export HOST_PURPOSE=PRIVATE  # or WORK
 nix build .#darwinConfigurations.default.system --impure --dry-run
-
-# Apply configuration
-nix shell nixpkgs#cargo-make -c makers apply
 ```
 
-### Maintenance
+### Manual GC
+
+Automatic GC runs weekly via launchd (`nix.gc`). To run manually:
 
 ```bash
-# Update dependencies
-nix flake update
-git submodule sync --recursive
-git submodule update --init --recursive
-
-# Remove old generations and cleanup
 nix shell github:nix-community/home-manager -c home-manager expire-generations now
 nix-env --delete-generations old
 sudo nix-env --profile /nix/var/nix/profiles/system --delete-generations old
 nix-collect-garbage -d && nix-store --gc
-
-# On macOS, if GC fails with "Operation not permitted", run the GC commands
-# from the Terminal app and ensure Full Disk Access is enabled
-# (System Settings -> Privacy & Security -> Full Disk Access).
-
-# Show current configuration
-nix flake show
 ```
 
-## Configuration
+> On macOS, if GC fails with "Operation not permitted", run from the Terminal app
+> with Full Disk Access enabled (System Settings > Privacy & Security > Full Disk Access).
 
-### Environment Variables
+## Environment Variables
 
-| Variable | Required | Values | Makefile.toml | Description |
-|----------|----------|--------|---------------|-------------|
-| `HOST_PURPOSE` | ✅ | `PRIVATE`, `WORK` | Must be set manually | Determines configuration profile |
-| `CURRENT_USER` | ❌ | Auto-detected | Auto-detected via `whoami` | Current user for home directory setup |
-| `MYNIX_REPO_PATH` | ❌ | Auto-detected | Auto-detected via `pwd` | Repository path for config references |
-| `SYSTEM_TYPE` | ❌ | Auto-detected | Auto-detected via `uname -s` | OS type (e.g., `Darwin`) |
-| `MACHINE_ARCH` | ❌ | Auto-detected | Auto-detected via `uname -m` | Architecture (`arm64`) |
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `HOST_PURPOSE` | Yes | `PRIVATE` or `WORK` - selects configuration profile |
+| `CURRENT_USER` | Auto | Detected via `whoami` |
+| `MYNIX_REPO_PATH` | Auto | Detected via `pwd` |
+| `SYSTEM_TYPE` | Auto | Detected via `uname -s` |
+| `MACHINE_ARCH` | Auto | Detected via `uname -m` |
 
-### Build Requirements
+## Build Requirements
 
-- **Build Flag**: `--impure` (required for environment variable access)
 - **Platform**: macOS (Darwin) with Apple Silicon (aarch64)
-- **Nix Version**: Compatible with flakes and experimental features
+- **Build flag**: `--impure` (required for environment variable access)
+- **Nix**: Flakes enabled
 
 ## References
 

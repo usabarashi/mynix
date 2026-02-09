@@ -1,13 +1,20 @@
 {
-  "cleanupPeriodDays": 30,
   "env": {
     "BASH_DEFAULT_TIMEOUT_MS": "300000",
     "BASH_MAX_TIMEOUT_MS": "1200000",
-    "DISABLE_AUTOUPDATER": "1"
+    "CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY": "1",
+    "CLAUDE_CODE_DISABLE_LOCATION": "1",
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
+    "DISABLE_AUTOUPDATER": "1",
+    "DISABLE_BUG_COMMAND": "1",
+    "DISABLE_ERROR_REPORTING": "1"
   },
   "includeCoAuthoredBy": false,
   "permissions": {
     "allow": [
+      "Bash(awk:*)",
+      "Bash(find:*)",
       "Bash(gemini:*)",
       "Bash(gh browse:*)",
       "Bash(gh issue list:*)",
@@ -50,6 +57,7 @@
       "Bash(git show:*)",
       "Bash(git status:*)",
       "Bash(git submodule:*)",
+      "Bash(wc:*)",
       "mcp__voicevox__text_to_speech",
       "mcp__voicevox__list_voice_styles",
       "WebFetch(domain:github.com)"
@@ -151,7 +159,6 @@
       "Edit(/etc/*)"
     ]
   },
-  "model": "opusplan",
   "hooks": {
     "PreToolUse": [
       {
@@ -186,5 +193,6 @@
         ]
       }
     ]
-  }
+  },
+  "cleanupPeriodDays": 30
 }

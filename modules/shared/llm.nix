@@ -36,7 +36,7 @@
 
       # Claude Code settings
       ".claude/permissive-open.sb" = {
-        source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/claude/permissive-open.sb";
+        source = config.lib.file.mkOutOfStoreSymlink "${repoPath}/config/agents/permissive-open.sb";
         force = true;
       };
       ".claude/CLAUDE.md" = {

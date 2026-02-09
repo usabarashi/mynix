@@ -86,7 +86,7 @@
               system = currentSystem;
               userName = env.currentUser;
               repoPath = env.repoPath;
-              inherit (selectedConfig) homeModule;
+              inherit (selectedConfig) homeModule hostPath;
             };
           }
         else

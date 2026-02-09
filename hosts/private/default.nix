@@ -2,6 +2,7 @@
 {
   imports = [
     ../../modules/darwin/blackhole.nix
+    ../../modules/darwin/nix-maintenance.nix
   ];
 
   users.users.${userName} = {

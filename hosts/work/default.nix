@@ -1,5 +1,9 @@
 { userName, homeDirectory, ... }:
 {
+  imports = [
+    ../../modules/darwin/nix-maintenance.nix
+  ];
+
   users.users.${userName} = {
     home = homeDirectory;
   };

@@ -37,7 +37,8 @@ nix build .#darwinConfigurations.default.system --impure --dry-run
 
 ### Manual GC
 
-Automatic GC runs weekly via launchd (`nix.gc`). To run manually:
+System store GC runs automatically via launchd (`nix.gc`).
+For a full cleanup including Home Manager and user profiles:
 
 ```bash
 nix shell github:nix-community/home-manager -c home-manager expire-generations now

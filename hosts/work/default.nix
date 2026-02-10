@@ -1,6 +1,7 @@
 { userName, homeDirectory, ... }:
 {
   imports = [
+    ../../modules/darwin/netskope-ssl.nix
     ../../modules/darwin/nix-maintenance.nix
   ];
 

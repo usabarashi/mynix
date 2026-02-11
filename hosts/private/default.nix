@@ -58,6 +58,11 @@
     };
   };
 
+  nix.settings.trusted-users = [
+    "root"
+    userName
+  ];
+
   programs.zsh.enable = true;
   security.pam.services.sudo_local.touchIdAuth = true;
   time.timeZone = "Asia/Tokyo";

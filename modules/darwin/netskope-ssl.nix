@@ -4,7 +4,7 @@
   # Requires bootstrap: generate the bundle before first `makers apply`.
   # See activation script below for auto-regeneration on subsequent applies.
   #
-  # Bootstrap (one-time manual setup):
+  # Bootstrap (one-time, before first `makers apply`):
   #   security find-certificate -a -p \
   #     /System/Library/Keychains/SystemRootCertificates.keychain \
   #     /Library/Keychains/System.keychain \
@@ -13,8 +13,7 @@
   #     "/Library/Application Support/Netskope/STAgent/data/nscacert.pem" \
   #     | sudo tee /etc/nix/ca_cert.pem > /dev/null
   #   rm /tmp/nix_ca_combined.pem
-  #   sudo sh -c 'echo "ssl-cert-file = /etc/nix/ca_cert.pem" >> /etc/static/nix/nix.conf'
-  #   sudo launchctl kickstart -k system/org.nixos.nix-daemon
+  # After bootstrap, `makers apply` manages ssl-cert-file and daemon restarts.
   nix.settings."ssl-cert-file" = "/etc/nix/ca_cert.pem";
 
   # Expose the combined CA bundle to user-space tools (Rust/rustls, Python requests, curl, etc.)

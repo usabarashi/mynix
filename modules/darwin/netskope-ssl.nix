@@ -31,13 +31,16 @@
     if [ -f "$NETSKOPE_CERT" ]; then
       TMPFILE=$(mktemp)
       trap 'rm -f "$TMPFILE"' EXIT
-      security find-certificate -a -p \
+      if security find-certificate -a -p \
         /System/Library/Keychains/SystemRootCertificates.keychain \
         /Library/Keychains/System.keychain \
-        > "$TMPFILE"
-      cat "$TMPFILE" "$NETSKOPE_CERT" > "$TARGET"
+        > "$TMPFILE" && [ -s "$TMPFILE" ]; then
+        cat "$TMPFILE" "$NETSKOPE_CERT" > "$TARGET"
+        echo "Netskope SSL: updated $TARGET"
+      else
+        echo "Netskope SSL: failed to extract system CAs, leaving $TARGET unchanged" >&2
+      fi
       rm -f "$TMPFILE"
-      echo "Netskope SSL: updated $TARGET"
     else
       echo "Netskope SSL: $NETSKOPE_CERT not found, skipping"
     fi

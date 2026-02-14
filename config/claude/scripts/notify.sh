@@ -11,7 +11,8 @@ set -euo pipefail
 EVENT=""
 while [[ $# -gt 0 ]]; do
     case "$1" in
-        --event) EVENT="$2"; shift 2 ;;
+        --event) [[ $# -ge 2 ]] || { echo "Error: --event requires a value" >&2; exit 1; }
+                 EVENT="$2"; shift 2 ;;
         *)       shift ;;
     esac
 done

@@ -83,7 +83,7 @@ IDE=$(detect_ide)
 #   -activate: brings an app to foreground by Bundle ID (Terminal.app)
 CLICK_ACTION=()
 case "$IDE" in
-    vscode)   CLICK_ACTION=("-open" "vscode://file${PROJECT_DIR}") ;;
+    vscode)   CLICK_ACTION=("-open" "vscode://file${PROJECT_DIR// /%20}") ;;
     terminal) CLICK_ACTION=("-activate" "com.apple.Terminal") ;;
 esac
 

@@ -24,11 +24,11 @@ fi
 
 # --- Read hook input from stdin ---
 INPUT=$(cat)
-SESSION_ID=$(echo "$INPUT" | jq -r '.session_id // empty')
+SESSION_ID=$(echo "$INPUT" | jq -r '.session_id // empty' 2>/dev/null || echo "")
 
 # Guard against recursive stop hooks
 if [[ "$EVENT" = "stop" ]]; then
-    STOP_HOOK_ACTIVE=$(echo "$INPUT" | jq -r '.stop_hook_active // empty')
+    STOP_HOOK_ACTIVE=$(echo "$INPUT" | jq -r '.stop_hook_active // empty' 2>/dev/null || echo "")
     if [[ "$STOP_HOOK_ACTIVE" = "true" ]]; then
         exit 0
     fi

@@ -5,7 +5,7 @@ Generate a pull request title and description from the diff against the default 
 ## Task
 
 1. Detect the default branch:
-   ```
+   ```sh
    git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@'
    ```
    Fall back to `main` if unavailable.

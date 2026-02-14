@@ -38,7 +38,12 @@ PROJECT_DIR="$PWD"
 SESSION_SHORT="${SESSION_ID:0:8}"
 
 # --- Gather project info ---
-REPO_NAME=$(basename "$(git -C "$PROJECT_DIR" rev-parse --show-toplevel 2>/dev/null)" 2>/dev/null || basename "$PROJECT_DIR")
+GIT_TOPLEVEL=$(git -C "$PROJECT_DIR" rev-parse --show-toplevel 2>/dev/null || true)
+if [[ -n "${GIT_TOPLEVEL:-}" ]]; then
+    REPO_NAME=$(basename "$GIT_TOPLEVEL")
+else
+    REPO_NAME=$(basename "$PROJECT_DIR")
+fi
 BRANCH=$(git -C "$PROJECT_DIR" rev-parse --abbrev-ref HEAD 2>/dev/null || echo "")
 
 # --- Determine message and sound by event type ---

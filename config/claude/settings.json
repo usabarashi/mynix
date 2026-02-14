@@ -177,7 +177,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash ~/.claude/scripts/notification.sh"
+            "command": "bash ~/.claude/scripts/notify.sh --event notification"
           }
         ]
       }
@@ -188,7 +188,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash ~/.claude/scripts/stop.sh"
+            "command": "bash ~/.claude/scripts/notify.sh --event stop"
           }
         ]
       }

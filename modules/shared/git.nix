@@ -53,6 +53,7 @@ in
       ".DS_Store"
       ".direnv"
       ".env"
+      ".claude/settings.local.json"
     ];
   };
 }

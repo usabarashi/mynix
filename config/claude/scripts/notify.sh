@@ -79,29 +79,13 @@ detect_ide() {
 IDE=$(detect_ide)
 
 # --- Build click action arguments for terminal-notifier ---
-# Uses the most reliable option per IDE:
 #   -open    : opens a URL/URI scheme (VSCode URI targets specific project window)
 #   -activate: brings an app to foreground by Bundle ID (Terminal.app)
-build_click_action() {
-    local ide="$1"
-    local dir="$2"
-
-    case "$ide" in
-        vscode)
-            echo "-open"
-            echo "vscode://file${dir}"
-            ;;
-        terminal)
-            echo "-activate"
-            echo "com.apple.Terminal"
-            ;;
-    esac
-}
-
 CLICK_ACTION=()
-if [[ "$IDE" != "unknown" ]]; then
-    mapfile -t CLICK_ACTION < <(build_click_action "$IDE" "$PROJECT_DIR")
-fi
+case "$IDE" in
+    vscode)   CLICK_ACTION=("-open" "vscode://file${PROJECT_DIR}") ;;
+    terminal) CLICK_ACTION=("-activate" "com.apple.Terminal") ;;
+esac
 
 # --- Build terminal-notifier arguments ---
 NOTIFY_ARGS=(

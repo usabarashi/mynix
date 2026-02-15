@@ -48,7 +48,12 @@
           home-manager.backupFileExtension = "backup";
           home-manager.users.${userName} = homeModule;
           home-manager.extraSpecialArgs = {
-            inherit repoPath userName homeDirectory flakeInputs;
+            inherit
+              repoPath
+              userName
+              homeDirectory
+              flakeInputs
+              ;
           };
         }
       ];

@@ -56,7 +56,7 @@ packages/              Custom package definitions
 
 ## Formatting
 
-- Formatter: `nixfmt-rfc-style`
+- Formatter: `nixfmt-tree` (treefmt wrapper for nixfmt-rfc-style)
 - Run `nix fmt -- --fail-on-change` before commit/push
 - If validation fails: run `nix fmt`, then re-validate
 - Keep formatting-only changes separate from semantic changes

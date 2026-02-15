@@ -2,7 +2,6 @@
   lib,
   nix-darwin,
   home-manager,
-  mkFlakeInputs,
 }:
 
 {
@@ -13,6 +12,7 @@
       homeModule,
       hostPath,
       repoPath,
+      flakeInputs,
     }:
     let
       homeDirectory = "/Users/${userName}";
@@ -25,9 +25,7 @@
         }:
         {
           ids.gids.nixbld = 350; # Use fixed GID instead of runtime detection
-          nixpkgs.overlays = import ../lib/overlays.nix {
-            flakeInputs = mkFlakeInputs system;
-          };
+          nixpkgs.overlays = import ../lib/overlays.nix;
           nixpkgs.config.allowUnfree = true;
           users.users.${userName} = {
             home = homeDirectory;
@@ -50,8 +48,12 @@
           home-manager.backupFileExtension = "backup";
           home-manager.users.${userName} = homeModule;
           home-manager.extraSpecialArgs = {
-            inherit repoPath userName homeDirectory;
-            flakeInputs = mkFlakeInputs system;
+            inherit
+              repoPath
+              userName
+              homeDirectory
+              flakeInputs
+              ;
           };
         }
       ];

@@ -49,12 +49,11 @@
           lib
           nix-darwin
           home-manager
-          mkFlakeInputs
           ;
       };
 
       homeModules = {
-        darwin = import ./home/darwin;
+        private = import ./home/private;
         work = import ./home/work;
       };
       hostPaths = {
@@ -62,7 +61,6 @@
         work = ./hosts/work;
       };
 
-      currentSystem = builtins.currentSystem;
     in
     flake-utils.lib.eachDefaultSystem (
       system:
@@ -102,18 +100,20 @@
     // {
       darwinConfigurations = {
         private = builders.mkDarwinSystem {
-          system = currentSystem;
+          system = "aarch64-darwin";
           userName = env.currentUser;
           repoPath = env.repoPath;
-          homeModule = homeModules.darwin;
+          homeModule = homeModules.private;
           hostPath = hostPaths.private;
+          flakeInputs = mkFlakeInputs "aarch64-darwin";
         };
         work = builders.mkDarwinSystem {
-          system = currentSystem;
+          system = "aarch64-darwin";
           userName = env.currentUser;
           repoPath = env.repoPath;
           homeModule = homeModules.work;
           hostPath = hostPaths.work;
+          flakeInputs = mkFlakeInputs "aarch64-darwin";
         };
       };
 

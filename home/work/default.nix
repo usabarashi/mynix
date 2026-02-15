@@ -1,10 +1,7 @@
 {
-  lib,
   pkgs,
-  repoPath ? null,
   userName,
   homeDirectory,
-  flakeInputs,
   ...
 }:
 

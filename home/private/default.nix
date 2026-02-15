@@ -1,10 +1,7 @@
 {
-  lib,
   pkgs,
-  repoPath ? null,
   userName,
   homeDirectory,
-  flakeInputs,
   ...
 }:
 
@@ -34,7 +31,6 @@
     ../../modules/shared/git.nix
     ../../modules/shared/llm.nix
     ../../modules/shared/neovim.nix
-    ../../modules/shared/nix.nix
     ../../modules/shared/terminal.nix
     ../../modules/shared/ssh.nix
     ../../modules/shared/terraform.nix

@@ -57,40 +57,60 @@
         work = ./hosts/work;
       };
 
-      configs = import ./lib/configs.nix { inherit lib homeModules hostPaths; };
-
-      selectedConfig =
-        if (builtins.tryEval env.hostPurpose).success then configs.selectConfig env.hostPurpose else null;
-
       currentSystem = builtins.currentSystem;
     in
     flake-utils.lib.eachDefaultSystem (
       system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
+        darwinRebuild = "${nix-darwin.packages.${system}.darwin-rebuild}/bin/darwin-rebuild";
+        mkApplyApp = name: {
+          type = "app";
+          program = toString (
+            pkgs.writeShellScript "apply-${name}" ''
+              set -euo pipefail
+              echo "Applying '${name}' configuration... (sudo password may be required)"
+              sudo env \
+                CURRENT_USER="''${CURRENT_USER:-$(whoami)}" \
+                MYNIX_REPO_PATH="''${MYNIX_REPO_PATH:-$(pwd)}" \
+                ${darwinRebuild} switch --flake ".#${name}" --impure "$@"
+            ''
+          );
+        };
       in
       {
+        apps = {
+          private = mkApplyApp "private";
+          work = mkApplyApp "work";
+        };
+
+        formatter = pkgs.nixfmt-tree;
+
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
             nixd
-            uv
+            nixfmt-tree
           ];
         };
       }
     )
     // {
-      darwinConfigurations =
-        if selectedConfig != null then
-          {
-            default = builders.mkDarwinSystem {
-              system = currentSystem;
-              userName = env.currentUser;
-              repoPath = env.repoPath;
-              inherit (selectedConfig) homeModule hostPath;
-            };
-          }
-        else
-          { };
+      darwinConfigurations = {
+        private = builders.mkDarwinSystem {
+          system = currentSystem;
+          userName = env.currentUser;
+          repoPath = env.repoPath;
+          homeModule = homeModules.darwin;
+          hostPath = hostPaths.private;
+        };
+        work = builders.mkDarwinSystem {
+          system = currentSystem;
+          userName = env.currentUser;
+          repoPath = env.repoPath;
+          homeModule = homeModules.work;
+          hostPath = hostPaths.work;
+        };
+      };
 
       nixosConfigurations = { };
     };

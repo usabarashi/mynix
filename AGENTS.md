@@ -6,30 +6,27 @@ Personal Nix Flake configuration for macOS using **nix-darwin** + **home-manager
 
 | Command | Description |
 |---------|-------------|
-| `makers apply` | Build and deploy configuration |
-| `makers validate` | Check syntax and formatting (same as CI) |
-| `makers fmt` | Auto-format all `*.nix` files |
+| `nix run .#private` | Build and deploy PRIVATE configuration |
+| `nix run .#work` | Build and deploy WORK configuration |
+| `nix fmt` | Auto-format all `*.nix` files |
+| `nix fmt -- --fail-on-change` | Check formatting without modifying |
+| `nix flake check --impure` | Validate flake syntax |
 | `nix flake update` | Update flake dependencies |
-
-All `makers` commands run via `nix shell nixpkgs#cargo-make -c`.
 
 ```bash
 # Deploy
-export HOST_PURPOSE=PRIVATE  # or WORK
-nix shell nixpkgs#cargo-make -c makers apply
+nix run .#private  # or: nix run .#work
 
 # Build test (without applying)
-export HOST_PURPOSE=PRIVATE  # or WORK
-nix build .#darwinConfigurations.default.system --impure
+nix build .#darwinConfigurations.private.system --impure --dry-run
 ```
 
 ## Architecture
 
-```
-flake.nix              Entry point - reads HOST_PURPOSE, assembles system
+```text
+flake.nix              Entry point - assembles system (private/work configs)
 lib/
   env.nix              Environment variable resolution
-  configs.nix          Purpose-based config selection (PRIVATE/WORK)
   builders.nix         mkDarwinSystem - composes nix-darwin + home-manager
   overlays.nix         Custom package overlays
 hosts/                 System-level nix-darwin config per environment
@@ -39,7 +36,7 @@ home/                  User-level home-manager config per environment
   darwin/              PRIVATE: personal packages and modules
   work/                WORK: work packages and modules
 modules/
-  darwin/              nix-darwin modules (blackhole, karabiner, nix-maintenance)
+  darwin/              nix-darwin modules (blackhole, karabiner, nix-maintenance, nix-settings)
   shared/              home-manager modules (git, terminal, neovim, vscode, llm, ...)
 packages/              Custom package definitions
 ```
@@ -54,15 +51,14 @@ packages/              Custom package definitions
 
 | Variable | Required | Description |
 |----------|----------|-------------|
-| `HOST_PURPOSE` | Yes | `PRIVATE` or `WORK` |
 | `CURRENT_USER` | Auto | Via `whoami` |
 | `MYNIX_REPO_PATH` | Auto | Via `pwd` |
 
 ## Formatting
 
-- Formatter: `nixfmt-rfc-style`
-- Run `makers validate` before commit/push
-- If validation fails: run `makers fmt`, then re-validate
+- Formatter: `nixfmt-tree` (treefmt wrapper for nixfmt-rfc-style)
+- Run `nix fmt -- --fail-on-change` before commit/push
+- If validation fails: run `nix fmt`, then re-validate
 - Keep formatting-only changes separate from semantic changes
 
 ## Operational Notes

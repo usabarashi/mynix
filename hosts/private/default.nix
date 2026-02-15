@@ -3,6 +3,7 @@
   imports = [
     ../../modules/darwin/blackhole.nix
     ../../modules/darwin/nix-maintenance.nix
+    ../../modules/darwin/nix-settings.nix
   ];
 
   users.users.${userName} = {
@@ -57,11 +58,6 @@
       remapCapsLockToControl = true;
     };
   };
-
-  nix.settings.trusted-users = [
-    "root"
-    userName
-  ];
 
   programs.zsh.enable = true;
   security.pam.services.sudo_local.touchIdAuth = true;

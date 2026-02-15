@@ -12,27 +12,25 @@ curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix 
 # Clone and apply
 git clone https://github.com/usabarashi/mynix.git
 cd mynix
-export HOST_PURPOSE=PRIVATE  # or WORK
-nix shell nixpkgs#cargo-make -c makers apply
+nix run .#private  # or: nix run .#work
 ```
 
 ## Commands
 
 | Command | Description |
 |---------|-------------|
-| `makers apply` | Build and apply configuration |
-| `makers validate` | Check syntax and formatting |
-| `makers fmt` | Auto-format all Nix files |
+| `nix run .#private` | Build and apply PRIVATE configuration |
+| `nix run .#work` | Build and apply WORK configuration |
+| `nix fmt` | Auto-format all Nix files |
+| `nix fmt -- --fail-on-change` | Check formatting without modifying |
+| `nix flake check --impure` | Validate flake syntax |
 | `nix flake update` | Update flake dependencies |
 | `nix flake show` | Show current configuration |
-
-All `makers` commands run via `nix shell nixpkgs#cargo-make -c`.
 
 ### Dry Run
 
 ```bash
-export HOST_PURPOSE=PRIVATE  # or WORK
-nix build .#darwinConfigurations.default.system --impure --dry-run
+nix build .#darwinConfigurations.private.system --impure --dry-run
 ```
 
 ### Manual GC
@@ -54,11 +52,8 @@ nix-collect-garbage -d && nix-store --gc
 
 | Variable | Required | Description |
 |----------|----------|-------------|
-| `HOST_PURPOSE` | Yes | `PRIVATE` or `WORK` - selects configuration profile |
 | `CURRENT_USER` | Auto | Detected via `whoami` |
 | `MYNIX_REPO_PATH` | Auto | Detected via `pwd` |
-| `SYSTEM_TYPE` | Auto | Detected via `uname -s` |
-| `MACHINE_ARCH` | Auto | Detected via `uname -m` |
 
 ## Build Requirements
 

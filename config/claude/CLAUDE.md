@@ -11,10 +11,11 @@
 
 ## MCP Usage Policy
 
-MCP tools are restricted to read-only operations:
+MCP tools are restricted to read-only operations by default:
 
 - Permitted: information retrieval, code navigation, symbol lookup
 - Prohibited: file creation, modification, deletion, system configuration changes
+- Exception: Serena symbolic editing (insert, replace, rename) and memory operations are permitted
 
 ## Documentation
 

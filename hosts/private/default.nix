@@ -6,10 +6,6 @@
     ../../modules/darwin/nix-settings.nix
   ];
 
-  users.users.${userName} = {
-    home = homeDirectory;
-  };
-
   # See: https://daiderd.com/nix-darwin/manual/
   system = {
     primaryUser = userName;

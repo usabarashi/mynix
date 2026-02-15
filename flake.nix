@@ -49,12 +49,11 @@
           lib
           nix-darwin
           home-manager
-          mkFlakeInputs
           ;
       };
 
       homeModules = {
-        darwin = import ./home/darwin;
+        private = import ./home/private;
         work = import ./home/work;
       };
       hostPaths = {
@@ -105,8 +104,9 @@
           system = currentSystem;
           userName = env.currentUser;
           repoPath = env.repoPath;
-          homeModule = homeModules.darwin;
+          homeModule = homeModules.private;
           hostPath = hostPaths.private;
+          flakeInputs = mkFlakeInputs currentSystem;
         };
         work = builders.mkDarwinSystem {
           system = currentSystem;
@@ -114,6 +114,7 @@
           repoPath = env.repoPath;
           homeModule = homeModules.work;
           hostPath = hostPaths.work;
+          flakeInputs = mkFlakeInputs currentSystem;
         };
       };
 

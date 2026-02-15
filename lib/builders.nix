@@ -2,7 +2,6 @@
   lib,
   nix-darwin,
   home-manager,
-  mkFlakeInputs,
 }:
 
 {
@@ -13,6 +12,7 @@
       homeModule,
       hostPath,
       repoPath,
+      flakeInputs,
     }:
     let
       homeDirectory = "/Users/${userName}";
@@ -49,7 +49,7 @@
           home-manager.users.${userName} = homeModule;
           home-manager.extraSpecialArgs = {
             inherit repoPath userName homeDirectory;
-            flakeInputs = mkFlakeInputs system;
+            inherit flakeInputs;
           };
         }
       ];

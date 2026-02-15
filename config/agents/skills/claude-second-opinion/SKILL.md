@@ -20,7 +20,7 @@ Get an alternative perspective from Claude CLI on any decision, design, or code.
    - If evaluating a design decision, summarize the options being considered
 2. Construct a prompt and run Claude CLI:
    ```bash
-   claude -p "<constructed prompt>"
+   claude --no-sandbox -p "<constructed prompt>"
    ```
 3. Run Claude CLI using environment-specific handling:
    - **If running in Codex CLI** (long-running-safe flow):

@@ -10,8 +10,8 @@ Define your entire development and daily-use software stack as code.
 curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
 
 # Clone and apply
-git clone https://github.com/usabarashi/mynix.git
-cd mynix
+git clone https://github.com/usabarashi/nix-config.git
+cd nix-config
 nix run .#private  # or: nix run .#work
 ```
 
@@ -53,7 +53,7 @@ nix-collect-garbage -d && nix-store --gc
 | Variable | Required | Description |
 |----------|----------|-------------|
 | `CURRENT_USER` | Auto | Detected via `whoami` |
-| `MYNIX_REPO_PATH` | Auto | Detected via `pwd` |
+| `REPOSITORY_PATH` | Auto | Detected via `pwd` |
 
 ## Build Requirements
 

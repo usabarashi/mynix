@@ -53,7 +53,7 @@ packages/              Custom package definitions
 | Variable | Required | Description |
 |----------|----------|-------------|
 | `CURRENT_USER` | Auto | Via `whoami` |
-| `MYNIX_REPO_PATH` | Auto | Via `pwd` |
+| `REPOSITORY_PATH` | Auto | Via `pwd` |
 
 ## Formatting
 

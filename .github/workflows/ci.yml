@@ -34,7 +34,7 @@ jobs:
     - name: Validate Nix flake syntax
       run: |
         export CURRENT_USER=$(whoami)
-        export MYNIX_REPO_PATH=$(pwd)
+        export REPOSITORY_PATH=$(pwd)
         nix flake show --impure
         nix flake check --no-build --impure
 
@@ -57,5 +57,5 @@ jobs:
     - name: Dry-run build
       run: |
         export CURRENT_USER=$(whoami)
-        export MYNIX_REPO_PATH=$(pwd)
+        export REPOSITORY_PATH=$(pwd)
         nix build .#darwinConfigurations.${{ matrix.config_name }}.system --dry-run --impure

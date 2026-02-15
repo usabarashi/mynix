@@ -75,7 +75,7 @@
               echo "Applying '${name}' configuration... (sudo password may be required)"
               sudo env \
                 CURRENT_USER="''${CURRENT_USER:-$(whoami)}" \
-                MYNIX_REPO_PATH="''${MYNIX_REPO_PATH:-$(pwd)}" \
+                REPOSITORY_PATH="''${REPOSITORY_PATH:-$(pwd)}" \
                 ${darwinRebuild} switch --flake ".#${name}" --impure "$@"
             ''
           );

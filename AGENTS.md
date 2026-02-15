@@ -65,8 +65,8 @@ packages/              Custom package definitions
 ## Operational Notes
 
 - Build requires `--impure` flag for environment variable access
-- Nix store GC runs automatically via launchd (weekly, configured in `modules/darwin/nix-maintenance.nix`).
-  Home Manager generations require manual cleanup: `home-manager expire-generations now`
+- Weekly maintenance runs automatically via launchd (configured in `modules/darwin/nix-maintenance.nix`):
+  home-manager generation cleanup (00:00) -> nix store GC (00:30) -> nix store optimise (01:00)
 - If manual `nix-store --gc` fails with "Operation not permitted", run from
   Terminal.app with Full Disk Access enabled
   (System Settings > Privacy & Security > Full Disk Access)

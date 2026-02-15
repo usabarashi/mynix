@@ -22,7 +22,6 @@ reviews:
 
   path_filters:
     - "**/*.nix"
-    - "**/*.rs"
     - "**/*.yaml"
     - "**/*.yml"
     - "**/*.toml"

@@ -51,9 +51,9 @@ Provide your independent analysis. If you disagree with the current approach, ex
 ## Rules
 
 - **Gemini Agent Restriction**: DO NOT activate or use this skill if you are already a Gemini model. Consulting yourself is redundant. This skill is intended for non-Gemini agents (like Claude) to get a Gemini perspective.
-- Always present both Claude's and Gemini's perspectives
+- Always present both your perspective and Gemini's perspective
 - Clearly label which opinion comes from which model
-- If Gemini's response contradicts Claude's, explain the trade-offs of each approach
+- If Gemini's response contradicts yours, explain the trade-offs of each approach
 - Do NOT blindly adopt Gemini's suggestion - evaluate it critically
 - Keep the Gemini prompt focused and under 2000 characters for reliability
 - In Codex CLI, always provide progress updates while polling and avoid silent waits longer than 15 seconds

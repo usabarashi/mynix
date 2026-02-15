@@ -17,6 +17,13 @@ let
     # Direct path to claude-code binary
     CLAUDE_BIN="${claude-code}/bin/claude"
 
+    # --no-sandbox: bypass sandbox and execute the binary directly.
+    # Useful when invoked from an already-sandboxed context (e.g., Gemini CLI).
+    if [ "''${1:-}" = "--no-sandbox" ]; then
+        shift
+        exec "$CLAUDE_BIN" "$@"
+    fi
+
     # Check if sandbox profile exists
     if [ ! -f "${sandboxProfilePath}" ]; then
         echo "${errorMessages.profileNotFound}" >&2

@@ -21,21 +21,13 @@
     enableChecks = true;
   };
 
-  home.packages =
-    with pkgs;
-    [
-      discord
-      iina
-      ripgrep
-      slack
-      zoom-us
-    ]
-    ++ [
-      customPackages.custom-url-schema-iina
-    ]
-    ++ [
-      flakeInputs.voicevox-cli
-    ];
+  home.packages = with pkgs; [
+    discord
+    iina
+    ripgrep
+    slack
+    zoom-us
+  ];
 
   imports = [
     ../../modules/darwin/karabiner.nix

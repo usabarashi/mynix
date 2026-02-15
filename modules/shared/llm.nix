@@ -14,9 +14,12 @@
       terminal-notifier
     ]
     ++ [
+      flakeInputs.voicevox-cli
+      flakeInputs.serena
+    ]
+    ++ [
       customPackages.claude-code-sandboxed
       customPackages.gemini-cli-workforce
-      customPackages.mcp-server-memory
     ];
 
   home.file =

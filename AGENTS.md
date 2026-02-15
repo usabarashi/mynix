@@ -1,4 +1,4 @@
-# CLAUDE.md
+# Nix Config
 
 Personal Nix Flake configuration for macOS using **nix-darwin** + **home-manager**.
 
@@ -33,7 +33,7 @@ hosts/                 System-level nix-darwin config per environment
   private/             PRIVATE: system defaults, blackhole, nix-maintenance
   work/                WORK: system defaults, nix-maintenance
 home/                  User-level home-manager config per environment
-  darwin/              PRIVATE: personal packages and modules
+  private/             PRIVATE: personal packages and modules
   work/                WORK: work packages and modules
 modules/
   darwin/              nix-darwin modules (blackhole, karabiner, nix-maintenance, nix-settings)

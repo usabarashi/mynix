@@ -33,7 +33,7 @@
         "False"
       ],
       "env": {
-        "HOME": "${PWD}"
+        "SERENA_HOME": "${PWD}/.serena"
       }
     }
   },

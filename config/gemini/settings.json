@@ -27,11 +27,14 @@
       "args": [
         "start-mcp-server",
         "--context",
-        "gemini",
+        "ide",
         "--project-from-cwd",
         "--open-web-dashboard",
         "False"
-      ]
+      ],
+      "env": {
+        "SERENA_HOME": "${PWD}/.serena"
+      }
     }
   },
   "general": {

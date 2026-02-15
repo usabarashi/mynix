@@ -54,6 +54,7 @@ in
       ".direnv"
       ".env"
       ".claude/settings.local.json"
+      ".serena"
     ];
   };
 }

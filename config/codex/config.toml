@@ -40,6 +40,8 @@ args = [
     "--open-web-dashboard",
     "False",
 ]
+env_vars = ["PWD"]
+
 
 # Model migration notice mapping
 [notice.model_migrations]

@@ -25,9 +25,7 @@
         }:
         {
           ids.gids.nixbld = 350; # Use fixed GID instead of runtime detection
-          nixpkgs.overlays = import ../lib/overlays.nix {
-            flakeInputs = mkFlakeInputs system;
-          };
+          nixpkgs.overlays = import ../lib/overlays.nix;
           nixpkgs.config.allowUnfree = true;
           users.users.${userName} = {
             home = homeDirectory;

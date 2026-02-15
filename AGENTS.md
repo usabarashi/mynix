@@ -23,7 +23,7 @@ nix build .#darwinConfigurations.private.system --impure --dry-run
 
 ## Architecture
 
-```
+```text
 flake.nix              Entry point - assembles system (private/work configs)
 lib/
   env.nix              Environment variable resolution

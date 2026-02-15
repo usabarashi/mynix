@@ -170,7 +170,7 @@ reviews:
     golangci-lint:
       enabled: false
     clippy:
-      enabled: true
+      enabled: false
     ruff:
       enabled: false
     buf:

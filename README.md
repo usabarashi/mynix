@@ -1,4 +1,4 @@
-# mynix
+# Nix Config
 
 Declarative macOS environment using **nix-darwin** + **home-manager**.
 Define your entire development and daily-use software stack as code.
@@ -25,7 +25,7 @@ nix run .#private  # or: nix run .#work
 | `nix fmt -- --fail-on-change` | Check formatting without modifying |
 | `nix flake check --impure` | Validate flake syntax |
 | `nix flake update` | Update flake dependencies |
-| `nix flake show` | Show current configuration |
+| `nix flake show --impure` | Show current configuration |
 
 ### Dry Run
 

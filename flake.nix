@@ -61,7 +61,6 @@
         work = ./hosts/work;
       };
 
-      currentSystem = builtins.currentSystem;
     in
     flake-utils.lib.eachDefaultSystem (
       system:
@@ -101,20 +100,20 @@
     // {
       darwinConfigurations = {
         private = builders.mkDarwinSystem {
-          system = currentSystem;
+          system = "aarch64-darwin";
           userName = env.currentUser;
           repoPath = env.repoPath;
           homeModule = homeModules.private;
           hostPath = hostPaths.private;
-          flakeInputs = mkFlakeInputs currentSystem;
+          flakeInputs = mkFlakeInputs "aarch64-darwin";
         };
         work = builders.mkDarwinSystem {
-          system = currentSystem;
+          system = "aarch64-darwin";
           userName = env.currentUser;
           repoPath = env.repoPath;
           homeModule = homeModules.work;
           hostPath = hostPaths.work;
-          flakeInputs = mkFlakeInputs currentSystem;
+          flakeInputs = mkFlakeInputs "aarch64-darwin";
         };
       };
 

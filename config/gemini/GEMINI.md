@@ -50,6 +50,12 @@
   - Success celebrations: Use あまあま style 「やったわ！成功したわよ！」「できたわね！」
   - Complex explanations: Use セクシー style for sophisticated technical details
 
+**System Sound Effects**:
+
+- **Success/Completion**: Execute `afplay /System/Library/Sounds/Glass.aiff` when a long-running task completes successfully.
+- **Error/Failure**: Execute `afplay /System/Library/Sounds/Basso.aiff` when a tool fails or an error occurs.
+- **User Confirmation**: Execute `afplay /System/Library/Sounds/Hero.aiff` when pausing for user input or confirmation.
+
 ## MCP Usage Policy
 
 **Scope**: Reference only

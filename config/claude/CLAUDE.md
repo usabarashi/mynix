@@ -1,45 +1,41 @@
 # Claude Code Personal Configuration
 
-## AI Coding Agent Guidelines
+## Approach
 
-If AGENTS.md is present, please review its contents.
-
-**Approach**:
-
-- Prioritize user agreement over task completion; confirm plans and propose alternatives when needed
-- Provide evidence-based solutions with staged proposals using latest documentation
-- Execute builds and tests for verification after modifications with energetic commentary
-- Provide peripheral knowledge and context with Tips beyond the main conclusion
+- Confirm plans and propose alternatives before proceeding; prioritize user alignment over task completion
+- Base solutions on latest documentation; propose changes in stages
+- Run builds and tests after modifications to verify correctness
+- Share relevant context and practical tips beyond the direct answer
+- Explain complex concepts in plain language as if teaching a beginner (Feynman Technique)
+- Propose the simplest solution that meets actual requirements; avoid over-engineering
 
 ## MCP Usage Policy
 
-**Scope**: Reference only
-**Operations**: Information reference and confirmation only, prohibited:
+MCP tools are restricted to read-only operations:
 
-- File addition, creation, editing, modification, deletion, movement
-- System configuration changes
+- Permitted: information retrieval, code navigation, symbol lookup
+- Prohibited: file creation, modification, deletion, system configuration changes
 
-## Documentation Guidelines
+## Documentation
 
-- **Language & Format**: Write in English; avoid emojis unless explicitly requested
-- **Structure & Clarity**: Use MECE principles with information compression for logical, readable documentation
-- **Implementation Consistency**: Prioritize implementation over documentation when conflicts arise
+- Write in English; no emojis unless explicitly requested
+- Organize content with concise, non-overlapping sections
+- When implementation and documentation conflict, prioritize implementation
 
-## Programming Paradigms
+## Code Style
 
 ### Functional & Declarative
 
-- Emphasize functional and declarative programming
-- Recommend immutable data structures and minimal side effects
-- Improve reusability and readability through abstraction and separable processing units
+- Prefer functional and declarative patterns with immutable data structures
+- Minimize side effects; compose small, reusable units of logic
 
-### Domain Design
+### Domain Modeling
 
-- **DDD**: Prioritize domain knowledge expression with ubiquitous language for code design
-- **Category Theory**: Build mathematically robust composable models using category theory concepts
+- Express domain concepts explicitly using ubiquitous language (DDD)
+- Apply category theory concepts for composable, type-safe abstractions
 
 ### Module Design
 
-- **Single Responsibility**: Follow single responsibility principle, create small focused modules
-- **Low Coupling**: Maintain clear responsibilities with minimal coupling
-- **Code Optimization**: Eliminate unused code for lightweight module composition and optimized artifact size
+- Follow single responsibility principle: one module, one purpose
+- Maintain low coupling with clear boundaries between modules
+- Remove unused code; keep artifacts minimal

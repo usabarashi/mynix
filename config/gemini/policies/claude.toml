@@ -1,0 +1,5 @@
+[[rule]]
+toolName = "run_shell_command"
+commandRegex = ".*claude\\s+--no-sandbox.*"
+decision = "allow"
+priority = 200

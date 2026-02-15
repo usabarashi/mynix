@@ -18,6 +18,10 @@
       url = "github:usabarashi/voicevox-cli";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    serena = {
+      url = "github:oraios/serena";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -27,6 +31,7 @@
       home-manager,
       flake-utils,
       voicevox-cli,
+      serena,
       ...
     }:
     let

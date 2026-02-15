@@ -21,14 +21,9 @@
     enableChecks = true;
   };
 
-  home.packages =
-    with pkgs;
-    [
-      gmailctl
-    ]
-    ++ [
-      flakeInputs.voicevox-cli
-    ];
+  home.packages = with pkgs; [
+    gmailctl
+  ];
 
   imports = [
     ../../modules/darwin/karabiner.nix

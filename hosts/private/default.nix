@@ -1,4 +1,4 @@
-{ userName, homeDirectory, ... }:
+{ userName, ... }:
 {
   imports = [
     ../../modules/darwin/blackhole.nix

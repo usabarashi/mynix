@@ -1,7 +1,5 @@
 {
-  lib,
   pkgs,
-  repoPath ? null,
   userName,
   homeDirectory,
   ...

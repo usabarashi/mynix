@@ -11,6 +11,7 @@ Personal Nix Flake configuration for macOS using **nix-darwin** + **home-manager
 | `nix fmt` | Auto-format all `*.nix` files |
 | `nix fmt -- --fail-on-change` | Check formatting without modifying |
 | `nix flake check --impure` | Validate flake syntax |
+| `nix flake show --impure` | Show current configuration |
 | `nix flake update` | Update flake dependencies |
 
 ```bash
